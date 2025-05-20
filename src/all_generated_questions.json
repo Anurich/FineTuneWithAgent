@@ -1,0 +1,2502 @@
+[
+  {
+    "question": "A rectangle has a length that is 3 times its width. If the perimeter is 96 cm, what are the dimensions of the rectangle?",
+    "reasoning": "Let the width be x cm, then the length is 3x cm. The perimeter P is given by the formula P = 2(length + width). Therefore, we have 96 = 2(3x + x). Simplifying this gives 96 = 8x, which leads to x = 12 cm. Thus, the width is 12 cm and the length is 36 cm.",
+    "answer": "Width: 12 cm, Length: 36 cm"
+  },
+  {
+    "question": "If a triangle has sides of lengths 7, 24, and x cm, what range of values can x take to maintain triangle inequality?",
+    "reasoning": "By the triangle inequality, the sum of any two sides must be greater than the third side. Thus, we set up the inequalities: 7 + 24 > x, which gives x < 31; 7 + x > 24, giving x > 17; and 24 + x > 7, which is always true for positive x. Therefore, x must satisfy 17 < x < 31.",
+    "answer": "x can be in the range (17, 31)"
+  },
+  {
+    "question": "A car travels at a speed of 60 km/h for 1 hour and then at 90 km/h for the next hour. What is the average speed for the entire journey?",
+    "reasoning": "To find average speed, we need total distance over total time. The distance covered in the first hour is 60 km, and in the second hour, it is 90 km, giving a total distance of 150 km. The total time is 2 hours. Thus, average speed = total distance / total time = 150 km / 2 h = 75 km/h.",
+    "answer": "75 km/h"
+  },
+  {
+    "question": "What are the roots of the quadratic equation 2x^2 - 4x - 6 = 0?",
+    "reasoning": "Using the quadratic formula x = (-b \u00b1 \u221a(b\u00b2 - 4ac)) / (2a), where a = 2, b = -4, c = -6. The discriminant is b\u00b2 - 4ac = (-4)\u00b2 - 4(2)(-6) = 16 + 48 = 64. Thus, the roots are x = (4 \u00b1 \u221a64) / 4 = (4 \u00b1 8) / 4, resulting in x = 3 and x = -1.",
+    "answer": "Roots: 3 and -1"
+  },
+  {
+    "question": "What is the sum of the first 20 positive integers?",
+    "reasoning": "The sum of the first n integers is given by the formula S = n(n + 1)/2. Therefore, for n = 20, S = 20(20 + 1)/2 = 20 * 21 / 2 = 210.",
+    "answer": "210"
+  },
+  {
+    "question": "If a circle has a radius of 5 cm, what is the area of the circle?",
+    "reasoning": "The area A of a circle is given by the formula A = \u03c0r\u00b2. Plugging in the radius, A = \u03c0(5)\u00b2 = 25\u03c0 cm\u00b2. Using \u03c0 \u2248 3.14 gives A \u2248 78.5 cm\u00b2.",
+    "answer": "78.5 cm\u00b2 (approximately)"
+  },
+  {
+    "question": "A store sells pencils for $0.50 each and pens for $1.20 each. If you buy a total of 10 items for $7, how many pencils and pens did you buy?",
+    "reasoning": "Let x be the number of pencils and y be the number of pens. We have two equations: x + y = 10 and 0.50x + 1.20y = 7. From the first equation, y = 10 - x. Substituting into the second equation gives 0.50x + 1.20(10 - x) = 7, simplifying to 0.50x + 12 - 1.20x = 7, leading to -0.70x = -5, thus x = 7. Therefore, y = 10 - 7 = 3.",
+    "answer": "7 pencils and 3 pens"
+  },
+  {
+    "question": "What is the volume of a cylinder with a radius of 4 cm and a height of 10 cm?",
+    "reasoning": "Volume V of a cylinder is given by the formula V = \u03c0r\u00b2h. Therefore, V = \u03c0(4)\u00b2(10) = \u03c0(16)(10) = 160\u03c0 cm\u00b3. Using \u03c0 \u2248 3.14 gives V \u2248 502.4 cm\u00b3.",
+    "answer": "502.4 cm\u00b3 (approximately)"
+  },
+  {
+    "question": "A boat travels downstream at 15 km/h and upstream at 10 km/h. What is the average speed of the boat for the round trip?",
+    "reasoning": "Let d be the distance. Time downstream = d/15, and time upstream = d/10. Total time = d/15 + d/10 = (2d + 3d)/30 = 5d/30 = d/6. The average speed is total distance / total time = 2d / (d/6) = 12 km/h.",
+    "answer": "12 km/h"
+  },
+  {
+    "question": "If the sum of two numbers is 30 and their product is 200, what are the two numbers?",
+    "reasoning": "Let the numbers be x and y. We have x + y = 30 and xy = 200. From the first equation, y = 30 - x. Substituting gives x(30 - x) = 200, leading to 30x - x\u00b2 = 200 or x\u00b2 - 30x + 200 = 0. The discriminant is (-30)\u00b2 - 4(1)(200) = 900 - 800 = 100. Thus, x = (30 \u00b1 \u221a100) / 2 = (30 \u00b1 10) / 2; therefore, x = 20 or 10. Thus, the numbers are 20 and 10.",
+    "answer": "20 and 10"
+  },
+  {
+    "question": "Solve for x in the equation |2x - 3| = 5.",
+    "reasoning": "This absolute value equation can be split into two cases: 2x - 3 = 5 or 2x - 3 = -5. Solving the first case gives 2x = 8, leading to x = 4. In the second case, 2x - 3 = -5 gives 2x = -2, leading to x = -1. Therefore, the solutions are x = 4 and x = -1.",
+    "answer": "4 and -1"
+  },
+  {
+    "question": "A 15% discount is applied to a $120 item. What is the final price after the discount?",
+    "reasoning": "First, we calculate the discount amount: 15% of $120 is 0.15 * 120 = $18. Therefore, the final price is 120 - 18 = $102.",
+    "answer": "$102"
+  },
+  {
+    "question": "Find the roots of the equation x^3 - 6x^2 + 11x - 6 = 0.",
+    "reasoning": "Using the Rational Root Theorem, we find that x = 1 is a root. Performing synthetic division with (x - 1) gives x^2 - 5x + 6 = 0. Factoring this further gives (x - 2)(x - 3) = 0, resulting in roots x = 1, 2, and 3.",
+    "answer": "Roots: 1, 2, and 3"
+  },
+  {
+    "question": "How many ways can you arrange the letters in the word 'MATH'?",
+    "reasoning": "The number of arrangements of n distinct objects is given by n!. Since 'MATH' has 4 letters, the number of arrangements is 4! = 4 \u00d7 3 \u00d7 2 \u00d7 1 = 24.",
+    "answer": "24 ways"
+  },
+  {
+    "question": "Calculate the measure of an angle in a right triangle if the adjacent side is 6 cm and the hypotenuse is 10 cm.",
+    "reasoning": "Using the cosine function, cos(\u03b8) = adjacent/hypotenuse. Thus, cos(\u03b8) = 6/10 = 0.6. Therefore, \u03b8 = cos\u207b\u00b9(0.6). Using a calculator, \u03b8 \u2248 53.13\u00b0.",
+    "answer": "\u2248 53.13\u00b0"
+  },
+  {
+    "question": "If the first term of an arithmetic sequence is 5 and the common difference is 3, what is the 15th term?",
+    "reasoning": "The n-th term of an arithmetic sequence is given by a_n = a_1 + (n - 1)d. Here, a_1 = 5, d = 3, and n = 15. So, a_15 = 5 + (15 - 1) * 3 = 5 + 42 = 47.",
+    "answer": "47"
+  },
+  {
+    "question": "What is the product of the roots of the quadratic equation x\u00b2 - 7x + 10 = 0?",
+    "reasoning": "The product of the roots of a quadratic equation ax\u00b2 + bx + c = 0 is given by c/a. Here, a = 1, b = -7, c = 10. So, the product is 10/1 = 10.",
+    "answer": "10"
+  },
+  {
+    "question": "A right triangle has one leg measuring 9 cm and the other leg measuring 12 cm. What is the length of the hypotenuse?",
+    "reasoning": "Using the Pythagorean theorem, a\u00b2 + b\u00b2 = c\u00b2, where a and b are the legs and c is the hypotenuse. So, 9\u00b2 + 12\u00b2 = c\u00b2 gives 81 + 144 = c\u00b2, thus c\u00b2 = 225. Therefore, c = \u221a225 = 15 cm.",
+    "answer": "15 cm"
+  },
+  {
+    "question": "What is the slope of a line that passes through the points (2, 3) and (5, 11)?",
+    "reasoning": "The slope m of a line passing through two points (x\u2081, y\u2081) and (x\u2082, y\u2082) is given by m = (y\u2082 - y\u2081) / (x\u2082 - x\u2081). Here, m = (11 - 3) / (5 - 2) = 8 / 3.",
+    "answer": "8/3"
+  },
+  {
+    "question": "In a standard deck of cards, what is the probability of drawing an Ace or a Heart?",
+    "reasoning": "There are 4 Aces and 13 Hearts in a deck, but one Ace is a Heart. So, the number of favorable outcomes is 4 + 13 - 1 = 16. The total number of outcomes is 52. Thus, the probability is 16/52 = 4/13.",
+    "answer": "4/13"
+  },
+  {
+    "question": "Calculate the circumradius of a triangle with sides measuring 7 cm, 24 cm, and 25 cm.",
+    "reasoning": "The circumradius R can be calculated using the formula R = (abc) / (4K), where K is the area. Using Heron's formula, s = (7 + 24 + 25) / 2 = 28, so K = \u221a(s(s - a)(s - b)(s - c)) = \u221a(28 * 21 * 4 * 3) = 84. Therefore, R = (7 * 24 * 25) / (4 * 84) = 25/4.",
+    "answer": "6.25 cm"
+  },
+  {
+    "question": "What is the smallest integer greater than the square root of 50?",
+    "reasoning": "The square root of 50 is approximately 7.07. Therefore, the smallest integer greater than this value is 8.",
+    "answer": "8"
+  },
+  {
+    "question": "If the sum of the angles in a polygon is given by (n-2) * 180 degrees, find the sum of the angles in a hexagon.",
+    "reasoning": "For a hexagon n = 6. Therefore, the sum of the angles = (6 - 2) * 180 = 4 * 180 = 720 degrees.",
+    "answer": "720 degrees"
+  },
+  {
+    "question": "A right cone has a base radius of 3 cm and a height of 4 cm. What is its volume?",
+    "reasoning": "The volume V of a cone is given by V = (1/3)\u03c0r\u00b2h. Therefore, V = (1/3)\u03c0(3)\u00b2(4) = (1/3)\u03c0(9)(4) = 12\u03c0 cm\u00b3. Using \u03c0 \u2248 3.14 gives V \u2248 37.68 cm\u00b3.",
+    "answer": "\u2248 37.68 cm\u00b3"
+  },
+  {
+    "question": "Find the sum of the first 10 even numbers.",
+    "reasoning": "The first 10 even numbers are 2, 4, 6, ..., 20. This is an arithmetic series where the first term a = 2, the last term l = 20, and the number of terms n = 10. The sum S = (n/2)(a + l) = (10/2)(2 + 20) = 5 * 22 = 110.",
+    "answer": "110"
+  },
+  {
+    "question": "If x + 2y = 10 and 3x - y = 5, what are the values of x and y?",
+    "reasoning": "From the first equation, x = 10 - 2y. Substituting into the second equation gives 3(10 - 2y) - y = 5, leading to 30 - 6y - y = 5, or 30 - 7y = 5, which gives -7y = -25, thus y = 25/7. Then substituting back gives x = 10 - 2(25/7) = 10 - 50/7 = (70/7 - 50/7) = 20/7.",
+    "answer": "x = 20/7, y = 25/7"
+  },
+  {
+    "question": "Calculate the distance between the points (3, 4) and (7, 1).",
+    "reasoning": "Using the distance formula d = \u221a[(x\u2082 - x\u2081)\u00b2 + (y\u2082 - y\u2081)\u00b2], we have d = \u221a[(7 - 3)\u00b2 + (1 - 4)\u00b2] = \u221a[4 + 9] = \u221a13.",
+    "answer": "\u221a13"
+  },
+  {
+    "question": "A jogger runs at a speed of 8 km/h. How far will she run in 45 minutes?",
+    "reasoning": "First, convert 45 minutes to hours: 45 minutes = 0.75 hours. Using the formula distance = speed \u00d7 time, the distance = 8 km/h \u00d7 0.75 h = 6 km.",
+    "answer": "6 km"
+  },
+  {
+    "question": "What will be the 5th term in the geometric series starting with 3 and having a common ratio of 2?",
+    "reasoning": "The n-th term of a geometric sequence can be calculated using the formula a_n = a_1 * r^(n-1). Here, a_1 = 3, r = 2, and n = 5. Thus, a_5 = 3 * 2^(5-1) = 3 * 16 = 48.",
+    "answer": "48"
+  },
+  {
+    "question": "What is the median of the set of numbers: 2, 5, 1, 7, 3?",
+    "reasoning": "First, we need to arrange the data in ascending order: 1, 2, 3, 5, 7. Since there are 5 data points, the median is the middle number, which is the 3rd number: 3.",
+    "answer": "3"
+  },
+  {
+    "question": "In a group of test-takers, 60% passed Math, 50% passed Science, and 30% passed both. What percentage of test-takers passed at least one subject?",
+    "reasoning": "Using the principle of inclusion-exclusion: Percentage passing at least one = P(Math) + P(Science) - P(Both) = 60% + 50% - 30% = 80%.",
+    "answer": "80%"
+  },
+  {
+    "question": "What is the area of a triangle with a base of 8 cm and a height of 5 cm?",
+    "reasoning": "The area A of a triangle is given by A = 1/2 * base * height. Therefore, A = 1/2 * 8 * 5 = 20 cm\u00b2.",
+    "answer": "20 cm\u00b2"
+  },
+  {
+    "question": "If two sides of a triangle measure 8 cm and 15 cm, what is the maximum possible length of the third side?",
+    "reasoning": "According to triangle inequality, the maximum length of the third side must be less than the sum of the other two sides. Thus, x < 8 + 15 = 23 cm.",
+    "answer": "Less than 23 cm"
+  },
+  {
+    "question": "Calculate the harmonic mean of the numbers 4 and 6.",
+    "reasoning": "The harmonic mean H of two numbers a and b is given by H = 2ab / (a + b). Here, H = 2 * (4 * 6) / (4 + 6) = 48 / 10 = 4.8.",
+    "answer": "4.8"
+  },
+  {
+    "question": "In how many ways can you select 2 students from a group of 10?",
+    "reasoning": "The number of ways to choose k out of n is given by the combination formula C(n, k) = n! / [k!(n - k)!]. Thus, C(10, 2) = 10! / [2!(10 - 2)!] = (10 \u00d7 9) / (2 \u00d7 1) = 45.",
+    "answer": "45 ways"
+  },
+  {
+    "question": "What is the LCM of 12 and 15?",
+    "reasoning": "To calculate the least common multiple (LCM), we factor both numbers: 12 = 2\u00b2 * 3, 15 = 3 * 5. LCM is found by taking the highest power of each prime: LCM = 2\u00b2 * 3 * 5 = 60.",
+    "answer": "60"
+  },
+  {
+    "question": "If the measures of the angles of a triangle are in the ratio 3:4:5, what are the measures of the angles?",
+    "reasoning": "Let the angles be 3x, 4x, and 5x. According to the triangle angle sum property, 3x + 4x + 5x = 180. Solving gives 12x = 180, hence x = 15. The angles are 3x = 45\u00b0, 4x = 60\u00b0, and 5x = 75\u00b0.",
+    "answer": "45\u00b0, 60\u00b0, and 75\u00b0"
+  },
+  {
+    "question": "A sum of money doubles itself in 5 years at simple interest. What is the rate of interest per annum?",
+    "reasoning": "Let the principal be P. The amount after 5 years is 2P. Using the simple interest formula A = P(1 + rt), we have 2P = P(1 + 5r), thus 2 = 1 + 5r gives 5r = 1, leading to r = 1/5 = 20%.",
+    "answer": "20%"
+  },
+  {
+    "question": "What are the dimensions of a rectangular garden with a length that is 4 meters more than its width, if the area is 60 square meters?",
+    "reasoning": "Let the width be x meters; then the length is x + 4 meters. The area is given by length \u00d7 width: x(x + 4) = 60. This leads to the equation x\u00b2 + 4x - 60 = 0. Factoring gives (x - 6)(x + 10) = 0, yielding x = 6 (negative width is not feasible). Thus, dimensions are 6m (width) by 10m (length).",
+    "answer": "Width: 6 m, Length: 10 m"
+  },
+  {
+    "question": "If a car's value decreases by 20% each year, what will its value be after 3 years if it starts at $25,000?",
+    "reasoning": "Using the formula for depreciation: Value after n years = initial value \u00d7 (1 - rate)^n. Here, Value = 25000 \u00d7 (1 - 0.2)\u00b3 = 25000 \u00d7 (0.8)\u00b3 \u2248 25000 \u00d7 0.512 = $12,800.",
+    "answer": "$12,800"
+  },
+  {
+    "question": "If 3 workers can complete a task in 12 days, how long will it take for 6 workers to complete the same task, assuming they work at the same rate?",
+    "reasoning": "The formula relating worker-days is: Total work = Number of workers \u00d7 Time taken. For 3 workers, Work = 3 \u00d7 12 = 36 worker-days. If 6 workers are working, Time = Total work / Number of workers = 36 / 6 = 6 days.",
+    "answer": "6 days"
+  },
+  {
+    "question": "What is the 10th term of the arithmetic sequence where the first term is 5 and the common difference is 3?",
+    "reasoning": "Using the formula for the n-th term of an arithmetic sequence, a_n = a_1 + (n - 1)d. Here, a_1 = 5, d = 3, and n = 10. Thus, a_10 = 5 + (10 - 1) * 3 = 5 + 27 = 32.",
+    "answer": "32"
+  },
+  {
+    "question": "Evaluate the factorial of 5, denoted as 5!.",
+    "reasoning": "The factorial of a non-negative integer n is defined as n! = n \u00d7 (n-1) \u00d7 (n-2) \u00d7 ... \u00d7 1. Therefore, 5! = 5 \u00d7 4 \u00d7 3 \u00d7 2 \u00d7 1 = 120.",
+    "answer": "120"
+  },
+  {
+    "question": "If x + y = 10 and x - y = 2, find the values of x and y.",
+    "reasoning": "We can solve the two equations simultaneously. Adding the two equations yields 2x = 12, thus x = 6. Now substitute x back into the first equation: 6 + y = 10, leading to y = 4.",
+    "answer": "x = 6, y = 4"
+  },
+  {
+    "question": "What is the standard deviation of the dataset: 5, 10, 15?",
+    "reasoning": "First, calculate the mean: (5 + 10 + 15) / 3 = 10. Next, compute the variance: [(5-10)\u00b2 + (10-10)\u00b2 + (15-10)\u00b2] / 3 = (25 + 0 + 25) / 3 = 16.67. Finally, the standard deviation is \u221a16.67 \u2248 4.08.",
+    "answer": "\u2248 4.08"
+  },
+  {
+    "question": "A basketball team won 60% of its games. If they played 30 games, how many games did they win?",
+    "reasoning": "The total number of wins can be calculated by taking 60% of 30, which is 0.6 * 30 = 18.",
+    "answer": "18 games"
+  },
+  {
+    "question": "In a normal distribution, what percentage of data falls within one standard deviation from the mean?",
+    "reasoning": "In a normal distribution, approximately 68% of data points fall within one standard deviation (\u00b11\u03c3) from the mean.",
+    "answer": "68%"
+  },
+  {
+    "question": "Determine if the following set of points are collinear: (1, 1), (2, 2), (3, 3).",
+    "reasoning": "Collinear points will have the same slope between any two pairs of points. The slope between (1,1) and (2,2) is (2-1)/(2-1) = 1, and the slope between (2,2) and (3,3) is also 1. Since the slopes are equal, the points are collinear.",
+    "answer": "Yes, they are collinear"
+  },
+  {
+    "question": "What is the next term in the sequence: 2, 4, 8, 16, ...?",
+    "reasoning": "This is a geometric sequence where each term is multiplied by 2. Thus, the next term is 16 \u00d7 2 = 32.",
+    "answer": "32"
+  },
+  {
+    "question": "Find the value of x in the equation 3(x - 2) = 2x + 1.",
+    "reasoning": "First, distribute: 3x - 6 = 2x + 1. Now, rearranging gives 3x - 2x = 1 + 6, resulting in x = 7.",
+    "answer": "7"
+  },
+  {
+    "question": "What is the GCD of 8 and 12?",
+    "reasoning": "The greatest common divisor (GCD) of two numbers is found by determining their factors. The factors of 8 are 1, 2, 4, 8, and the factors of 12 are 1, 2, 3, 4, 6, 12. The largest common factor is 4.",
+    "answer": "4"
+  },
+  {
+    "question": "A train travels 120 km at a speed of 60 km/h and then returns at a speed of 40 km/h. What is the average speed of the whole journey?",
+    "reasoning": "Total distance = 120 km + 120 km = 240 km. Total time = 120/60 + 120/40 = 2 + 3 = 5 hours. Average speed = total distance / total time = 240 km / 5 h = 48 km/h.",
+    "answer": "48 km/h"
+  },
+  {
+    "question": "What is the area of a circle with a diameter of 10 cm?",
+    "reasoning": "First, find the radius: radius = diameter / 2 = 10 / 2 = 5 cm. The area A of a circle is A = \u03c0r\u00b2. Therefore, A = \u03c0(5)\u00b2 = 25\u03c0 cm\u00b2, approximately 78.54 cm\u00b2.",
+    "answer": "\u2248 78.54 cm\u00b2"
+  },
+  {
+    "question": "If you flip a fair coin 4 times, what is the probability of getting exactly 2 heads?",
+    "reasoning": "The number of ways to choose 2 heads from 4 flips is C(4, 2) = 6. The probability for each specific sequence is (1/2)\u2074 = 1/16. Thus, the probability P = Number of favorable outcomes \u00d7 Probability of each outcome = 6 \u00d7 (1/16) = 6/16 = 3/8.",
+    "answer": "3/8"
+  },
+  {
+    "question": "If a rectangular prism has a length of 4, width of 3, and height of 2, what is its volume?",
+    "reasoning": "The volume V of a rectangular prism is given by V = length \u00d7 width \u00d7 height. Thus, V = 4 \u00d7 3 \u00d7 2 = 24 cubic units.",
+    "answer": "24 cubic units"
+  },
+  {
+    "question": "A person invests $100 at a rate of 5% annually. How much will this investment grow to in 3 years with simple interest?",
+    "reasoning": "The simple interest formula is I = PRT, where P is principal, R is rate, and T is time. Thus, I = 100 * 0.05 * 3 = $15. Total amount = Principal + Interest = $100 + $15 = $115.",
+    "answer": "$115"
+  },
+  {
+    "question": "Solve for x in the equation 2(x + 3) = 3(x - 4) + 5.",
+    "reasoning": "Expanding both sides gives 2x + 6 = 3x - 12 + 5, leading to 2x + 6 = 3x - 7. Rearranging gives 6 + 7 = 3x - 2x, thus 13 = x.",
+    "answer": "13"
+  },
+  {
+    "question": "Convert 75 degrees Fahrenheit to Celsius.",
+    "reasoning": "The formula for conversion is C = (F - 32) \u00d7 5/9. Therefore, C = (75 - 32) \u00d7 5/9 = 43 \u00d7 5/9 \u2248 23.89\u00b0C.",
+    "answer": "\u2248 23.89\u00b0C"
+  },
+  {
+    "question": "What is the ratio of the circumference to the diameter of a circle?",
+    "reasoning": "The circumference C of a circle is given by C = \u03c0d, where d is the diameter. Therefore, the ratio C/d = \u03c0.",
+    "answer": "\u03c0"
+  },
+  {
+    "question": "If a die is rolled twice, what is the probability of rolling a sum of 7?",
+    "reasoning": "The possible combinations to achieve a sum of 7 are (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) totaling 6 combinations. The total outcomes when rolling two dice are 6 \u00d7 6 = 36. Thus, probability P = 6/36 = 1/6.",
+    "answer": "1/6"
+  },
+  {
+    "question": "Calculate the area of a trapezoid with bases of lengths 8 cm and 5 cm, and a height of 4 cm.",
+    "reasoning": "The area A of a trapezoid is given by A = 1/2 * (base1 + base2) * height. Therefore, A = 1/2 * (8 + 5) * 4 = 1/2 * 13 * 4 = 26 cm\u00b2.",
+    "answer": "26 cm\u00b2"
+  },
+  {
+    "question": "What is the 7th term of the Fibonacci sequence starting with 0 and 1?",
+    "reasoning": "The Fibonacci sequence starts: 0, 1, 1, 2, 3, 5, 8, 13. The 7th term (when counting from 0) is 8.",
+    "answer": "8"
+  },
+  {
+    "question": "Given the equation of a line y = 2x + 3, what is the y-intercept?",
+    "reasoning": "The equation of a line in slope-intercept form is y = mx + b, where b is the y-intercept. Here, b = 3, which means the y-intercept is 3.",
+    "answer": "3"
+  },
+  {
+    "question": "If 45 is increased by 30%, what is the new value?",
+    "reasoning": "First, calculate 30% of 45: 0.3 * 45 = 13.5. Therefore, the new value is 45 + 13.5 = 58.5.",
+    "answer": "58.5"
+  },
+  {
+    "question": "Calculate the square root of 144.",
+    "reasoning": "The square root of 144 is the number which when multiplied by itself gives 144. Thus, \u221a144 = 12.",
+    "answer": "12"
+  },
+  {
+    "question": "If the measure of an angle is 45 degrees, what is the measure of its supplement?",
+    "reasoning": "The supplement of an angle is calculated by subtracting the angle from 180 degrees. Therefore, the supplement of 45 degrees is 180 - 45 = 135 degrees.",
+    "answer": "135 degrees"
+  },
+  {
+    "question": "What is the smallest prime number?",
+    "reasoning": "By definition, a prime number is greater than 1 and has no divisors other than 1 and itself. The smallest prime is 2.",
+    "answer": "2"
+  },
+  {
+    "question": "Simplify the expression (2/3) + (3/4).",
+    "reasoning": "Finding a common denominator (which is 12): (2/3) becomes (8/12) and (3/4) becomes (9/12). Adding these gives (8 + 9) / 12 = 17/12.",
+    "answer": "17/12"
+  },
+  {
+    "question": "Find the perimeter of a triangle with sides measuring 5 cm, 12 cm, and 13 cm.",
+    "reasoning": "The perimeter P of a triangle is the sum of its sides. Thus, P = 5 + 12 + 13 = 30 cm.",
+    "answer": "30 cm"
+  },
+  {
+    "question": "Calculate the probability of selecting a red marble from a jar containing 10 red, 20 blue, and 30 green marbles.",
+    "reasoning": "The total number of marbles = 10 + 20 + 30 = 60. The probability of selecting a red marble is the number of red marbles divided by the total: P(Red) = 10/60 = 1/6.",
+    "answer": "1/6"
+  },
+  {
+    "question": "If the length of a rectangle is halved and the width is doubled, how does the area change?",
+    "reasoning": "Let the initial area be A = length * width. If length is halved and width is doubled, the new area = (length/2) * (2 * width) = length * width = A. Thus, the area remains the same.",
+    "answer": "The area remains the same"
+  },
+  {
+    "question": "Determine the slope of the line represented by the equation y = -3x + 7.",
+    "reasoning": "In the slope-intercept form y = mx + b, m represents the slope. Here, the slope (m) is -3.",
+    "answer": "-3"
+  },
+  {
+    "question": "If the ratio of boys to girls in a class is 2:3 and there are 10 boys, how many girls are in the class?",
+    "reasoning": "If the ratio of boys to girls is 2:3, for every 2 boys, there are 3 girls. If there are 10 boys, set up the proportion: 2/3 = 10/girls, leading to girls = (10 * 3) / 2 = 15.",
+    "answer": "15 girls"
+  },
+  {
+    "question": "Find the area of a parallelogram with a base of 10 cm and a height of 5 cm.",
+    "reasoning": "The area A of a parallelogram is given by A = base * height. Thus, A = 10 cm * 5 cm = 50 cm\u00b2.",
+    "answer": "50 cm\u00b2"
+  },
+  {
+    "question": "If a train travels 60 miles at a speed of 30 mph, how long does the trip take?",
+    "reasoning": "Using the formula time = distance/speed, we have time = 60 miles / 30 mph = 2 hours.",
+    "answer": "2 hours"
+  },
+  {
+    "question": "Calculate 25% of 200.",
+    "reasoning": "To find 25%, multiply 200 by 0.25: 200 * 0.25 = 50.",
+    "answer": "50"
+  },
+  {
+    "question": "If an object's price increases from $80 to $100, what is the percentage increase?",
+    "reasoning": "Percentage increase = [(new price - old price) / old price] * 100 = [(100 - 80) / 80] * 100 = (20/80) * 100 = 25%.",
+    "answer": "25%"
+  },
+  {
+    "question": "Find the median of the following numbers: 2, 9, 5, 7, 11.",
+    "reasoning": "First arranging the numbers in ascending order gives: 2, 5, 7, 9, 11. Since there are 5 numbers, the median is the middle number, which is 7.",
+    "answer": "7"
+  },
+  {
+    "question": "How many degrees are in a straight angle?",
+    "reasoning": "A straight angle is defined as an angle that measures exactly 180 degrees.",
+    "answer": "180 degrees"
+  },
+  {
+    "question": "Solve for x: 4x - 8 = 16.",
+    "reasoning": "Add 8 to both sides: 4x = 24. Now divide both sides by 4: x = 6.",
+    "answer": "6"
+  },
+  {
+    "question": "If a rectangle has a length of 15 cm and a width of 10 cm, what is its perimeter?",
+    "reasoning": "The perimeter P of a rectangle is given by P = 2(length + width). Thus, P = 2(15 + 10) = 2(25) = 50 cm.",
+    "answer": "50 cm"
+  },
+  {
+    "question": "What is the volume of a cube with a side length of 3 cm?",
+    "reasoning": "The volume V of a cube is given by V = side\u00b3. Therefore, V = 3\u00b3 = 27 cm\u00b3.",
+    "answer": "27 cm\u00b3"
+  },
+  {
+    "question": "In how many ways can you arrange the letters in the word 'TEST'?",
+    "reasoning": "The total arrangements is calculated by factorial of the number of letters divided by the factorial of repeating letters, so it will be 4! / 2! = 12.",
+    "answer": "12"
+  },
+  {
+    "question": "What is the area of a rectangle with a length of 10 meters and a width of 4 meters?",
+    "reasoning": "The area A of a rectangle is given by A = length \u00d7 width. Thus, A = 10 m \u00d7 4 m = 40 m\u00b2.",
+    "answer": "40 m\u00b2"
+  },
+  {
+    "question": "Determine 12% of $250.",
+    "reasoning": "To find 12%, multiply by 0.12: $250 \u00d7 0.12 = $30.",
+    "answer": "$30"
+  },
+  {
+    "question": "If you have a 60% average in a class and want to score a 70% overall, how many additional points do you need from another test worth 100 points?",
+    "reasoning": "Let x be the score needed on the test. Average = (0.60 * n + x) / (n + 1) = 0.70. Assume n = number of tests, solve for x.",
+    "answer": "x = 80"
+  },
+  {
+    "question": "Convert 150 pounds to kilograms (1 pound = 0.453592 kg).",
+    "reasoning": "Using the conversion factor, 150 lbs \u00d7 0.453592 kg/lb = 68.1816 kg.",
+    "answer": "\u2248 68.18 kg"
+  },
+  {
+    "question": "If a circle has a circumference of 31.4 cm, what is its radius? (Use \u03c0 \u2248 3.14)",
+    "reasoning": "Circumference C = 2\u03c0r. Therefore, r = C / (2\u03c0) = 31.4 / (2 * 3.14) = 5 cm.",
+    "answer": "5 cm"
+  },
+  {
+    "question": "If a pair of shoes originally costs $120 and is on sale for 25% off, what is the sale price?",
+    "reasoning": "The discount is 25% of $120 which is 0.25 * 120 = $30. Therefore, the sale price is 120 - 30 = $90.",
+    "answer": "$90"
+  },
+  {
+    "question": "In 5 years, a population of 1,000 is expected to grow by 15%. What will the population be in 5 years?",
+    "reasoning": "The population growth can be calculated by multiplying the current population by the growth factor: 1,000 * (1 + 0.15) = 1,000 * 1.15 = 1,150.",
+    "answer": "1,150"
+  },
+  {
+    "question": "If you roll two six-sided dice, what is the probability of rolling a sum of 8?",
+    "reasoning": "Possible combinations to achieve a sum of 8 are (2,6), (3,5), (4,4), (5,3), (6,2) totaling 5 combinations. Total outcomes are 36, so P = 5/36.",
+    "answer": "5/36"
+  },
+  {
+    "question": "If a pencil costs $1.25, how many pencils can you buy with $20?",
+    "reasoning": "Total pencils = Total money / Price per pencil = 20 / 1.25 = 16.",
+    "answer": "16 pencils"
+  },
+  {
+    "question": "What is 5 to the power of 3?",
+    "reasoning": "5 to the power of 3 means 5 * 5 * 5 = 125.",
+    "answer": "125"
+  },
+  {
+    "question": "What is the least common multiple (LCM) of 8 and 12?",
+    "reasoning": "LCM can be calculated as the product of the highest power of each prime factor. LCM = 2^3 * 3^1 = 24.",
+    "answer": "24"
+  },
+  {
+    "question": "Solve for x in the equation 5x + 10 = 35.",
+    "reasoning": "Subtracting 10 from both sides gives 5x = 25. Dividing both sides by 5 results in x = 5.",
+    "answer": "5"
+  },
+  {
+    "question": "Calculate the area of a circular garden with a radius of 7 m.",
+    "reasoning": "The area A of a circle is given by A = \u03c0r\u00b2. Thus, A = \u03c0(7)\u00b2 = 49\u03c0 m\u00b2. Approx. using \u03c0 \u2248 3.14 gives A \u2248 153.86 m\u00b2.",
+    "answer": "\u2248 153.86 m\u00b2"
+  },
+  {
+    "question": "Find the next number in the sequence: 2, 5, 10, 17, ...",
+    "reasoning": "The differences between successive terms are 3, 5, 7, showing an addition of consecutive odd numbers (2n+1). The next difference will be 9 leading to 17 + 9 = 26.",
+    "answer": "26"
+  },
+  {
+    "question": "How much interest is earned on a $2,000 investment at a rate of 3% per year over 4 years with simple interest?",
+    "reasoning": "Interest = Principal \u00d7 Rate \u00d7 Time = 2000 \u00d7 0.03 \u00d7 4 = $240.",
+    "answer": "$240"
+  },
+  {
+    "question": "What is the value of x in the equation 9 - 3x = 0?",
+    "reasoning": "Rearranging gives 3x = 9, thus x = 9/3 = 3.",
+    "answer": "3"
+  },
+  {
+    "question": "A car travels at 50 mph for 2 hours, then at 65 mph for 3 hours. What is the average speed for the entire trip?",
+    "reasoning": "Total distance = (50 mph * 2 h) + (65 mph * 3 h) = 100 + 195 = 295 miles. Total time = 2 + 3 = 5 hours. Average speed = Total distance / Total time = 295 miles / 5 h = 59 mph.",
+    "answer": "59 mph"
+  },
+  {
+    "question": "If the sum of the ages of a father and son is 50, and the father is 4 times as old as the son, how old are they both?",
+    "reasoning": "Let the son's age be x. Then the father's age is 4x. According to the problem, x + 4x = 50. This gives us 5x = 50, which simplifies to x = 10. Thus, the son is 10 years old, and the father is 40 years old.",
+    "answer": "Father: 40 years old, Son: 10 years old."
+  },
+  {
+    "question": "A rectangle's length is twice its width. If the perimeter of the rectangle is 48 cm, what are the dimensions of the rectangle?",
+    "reasoning": "Let the width be w cm, then length is 2w cm. The perimeter P=2(length + width)=48. Substituting gives us 2(2w + w) = 48, simplifying to 6w = 48. Therefore, w = 8 cm, and the length, being twice that, is 16 cm.",
+    "answer": "Width: 8 cm, Length: 16 cm."
+  },
+  {
+    "question": "If 3x - 4 = 2x + 5, what is the value of x?",
+    "reasoning": "First, isolate x: 3x - 2x = 5 + 4. This simplifies to x = 9.",
+    "answer": "x = 9."
+  },
+  {
+    "question": "What is the volume of a cylinder with a radius of 3 cm and height of 5 cm? (Use \u03c0 \u2248 3.14)",
+    "reasoning": "The volume V of a cylinder is calculated using the formula V = \u03c0r\u00b2h. Here, r = 3 cm and h = 5 cm. Substituting these values, we get V = 3.14 * (3)\u00b2 * 5 = 3.14 * 9 * 5 = 141.3 cm\u00b3.",
+    "answer": "141.3 cm\u00b3."
+  },
+  {
+    "question": "Solve the equation 4(x - 2) + 3 = 2(x + 6).",
+    "reasoning": "Distribute both sides: 4x - 8 + 3 = 2x + 12. This simplifies to 4x - 5 = 2x + 12. Rearranging gives us 4x - 2x = 12 + 5, leading to 2x = 17, so x = 8.5.",
+    "answer": "x = 8.5."
+  },
+  {
+    "question": "A train departs from station A at 2:00 PM moving towards station B at a speed of 60 km/h. Another train departs station B towards A at 3:00 PM at a speed of 90 km/h. If the distance between the two stations is 300 km, at what time will they meet?",
+    "reasoning": "Let t be the hours after 2:00 PM when they meet. Train A travels at 60 km/h, so it covers 60t km. Train B starts 1 hour later and travels at 90 km/h, hence it covers 90(t-1) km. Setting up the equation: 60t + 90(t - 1) = 300. This simplifies to 60t + 90t - 90 = 300. Combining gives 150t = 390, hence t = 2.6 hours. The meeting time is 4:36 PM.",
+    "answer": "They meet at 4:36 PM."
+  },
+  {
+    "question": "If a car's value depreciates by 20% each year and it was purchased for $15,000, what will its value be after 3 years?",
+    "reasoning": "After one year, the car's value = 15000 - 0.2 * 15000 = 12000. After the second year, it will be 12000 - 0.2 * 12000 = 9600. After the third year, it will be 9600 - 0.2 * 9600 = 7680. So, after 3 years, the value is $7680.",
+    "answer": "$7680."
+  },
+  {
+    "question": "Find the roots of the quadratic equation x\u00b2 - 7x + 10 = 0 using the quadratic formula.",
+    "reasoning": "Using the quadratic formula x = [-b \u00b1 \u221a(b\u00b2 - 4ac)] / 2a, where a = 1, b = -7, and c = 10, we calculate the discriminant: (-7)\u00b2 - 4(1)(10) = 49 - 40 = 9. The roots therefore are x = [7 \u00b1 3] / 2, resulting in x = 5 and x = 2.",
+    "answer": "Roots are x = 5 and x = 2."
+  },
+  {
+    "question": "If the ratio of the sides of a triangle is 3:4:5, and the perimeter is 48 cm, what are the lengths of the sides?",
+    "reasoning": "Let the lengths be 3x, 4x, and 5x. The perimeter is 3x + 4x + 5x = 12x. Setting this equal to 48, we get 12x = 48, so x = 4. Thus, the sides are 12 cm (3x), 16 cm (4x), and 20 cm (5x).",
+    "answer": "12 cm, 16 cm, 20 cm."
+  },
+  {
+    "question": "A recipe requires 2 cups of flour for every 3 cups of water. If you have 5 cups of flour, how many cups of water do you need to maintain the ratio?",
+    "reasoning": "The ratio of flour to water is 2:3. If 2 cups of flour corresponds to 3 cups of water, then for 5 cups of flour, let w be the required water. Setting up the proportion gives 2/3 = 5/w, leading to w = 5 * 3 / 2 = 7.5.",
+    "answer": "7.5 cups of water."
+  },
+  {
+    "question": "If the average of five numbers is 20 and the largest number is 30, what is the minimum possible value for the smallest number?",
+    "reasoning": "The total sum of the five numbers = 5 * 20 = 100. If the largest number is 30, then the sum of the other four numbers must be 100 - 30 = 70. To minimize the smallest number, let the next largest numbers be as large as possible, say 20 each (making two of them 20). This makes: x + 20 + 20 + 30 = 100, solving gives x = 30. This is invalid because 30 cannot be smallest. Trying x = 19 gives 19 + 20 + 20 + 30 = 89, so we need 11 or lower. After testing, minimum possible value of the smallest number will be 10 if other three numbers are 20 each.",
+    "answer": "10."
+  },
+  {
+    "question": "A store originally sold a jacket for $80. After a 25% discount, the jacket is further marked up by 10%. What is the final selling price of the jacket?",
+    "reasoning": "First, find the discounted price: $80 - 0.25 * $80 = $60. Then, calculate the markup: 10% of $60 = $6. So the final price is $60 + $6 = $66.",
+    "answer": "$66."
+  },
+  {
+    "question": "If the lengths of two sides of a right triangle are 6 cm and 8 cm, what is the length of the hypotenuse?",
+    "reasoning": "According to the Pythagorean theorem, hypotenuse^2 = side1^2 + side2^2. Thus, hypotenuse^2 = 6^2 + 8^2 = 36 + 64 = 100. Letting the hypotenuse be c, we have c = \u221a100 = 10 cm.",
+    "answer": "10 cm."
+  },
+  {
+    "question": "Solve for y in the equation 3y/4 - 2 = 5.",
+    "reasoning": "Adding 2 to both sides gives 3y/4 = 7. Multiplying both sides by 4 results in 3y = 28. Dividing by 3 gives y = 28/3 = 9.33.",
+    "answer": "y = 28/3 or 9.33."
+  },
+  {
+    "question": "A box can hold a maximum volume of 5000 cm\u00b3. If the height of the box is 20 cm, what base area can the box have?",
+    "reasoning": "Volume = base area \u00d7 height. Here, 5000 = base area \u00d7 20. Therefore, base area = 5000 / 20 = 250 cm\u00b2.",
+    "answer": "250 cm\u00b2."
+  },
+  {
+    "question": "A garden is in the shape of a rectangle with a length that is 3 meters longer than its width. If the area of the garden is 70 m\u00b2, what are the dimensions of the garden?",
+    "reasoning": "Let width = w meters. Then length = w + 3 meters. The area is length \u00d7 width = w(w + 3) = 70. Expanding and rearranging gives us w\u00b2 + 3w - 70 = 0. Using the quadratic formula we find w = 7 and w = -10 (discarding this as it is negative). So, width = 7 m, and length = 10 m.",
+    "answer": "Width: 7 m, Length: 10 m."
+  },
+  {
+    "question": "If a number is increased by 15% and the result is 230, what was the original number?",
+    "reasoning": "Let the original number be x. The equation can be represented as x + 0.15x = 230 or 1.15x = 230. Dividing both sides by 1.15 gives x = 230 / 1.15 = 200.",
+    "answer": "200."
+  },
+  {
+    "question": "A triangle has sides of lengths 7 cm, 24 cm, and x cm. For the triangle to be valid, what is the maximum possible value of x?",
+    "reasoning": "Using the triangle inequality theorem, specifically a + b > c: 7 + 24 > x gives x < 31. Hence, the maximum possible value for x is 30.99 cm (the largest valid value).",
+    "answer": "30.99 cm."
+  },
+  {
+    "question": "If an equilateral triangle has a perimeter of 30 cm, what is the area of the triangle?",
+    "reasoning": "Each side of the triangle = 30 / 3 = 10 cm. The area A of an equilateral triangle is given by A = (\u221a3/4)s\u00b2. Substituting s = 10 gives A = (\u221a3/4)(10)\u00b2 = 25\u221a3 cm\u00b2.",
+    "answer": "25\u221a3 cm\u00b2."
+  },
+  {
+    "question": "If the equation of a line is y = 3x + 1, what is the y-coordinate when x = 5?",
+    "reasoning": "Substituting x = 5 into the equation results in y = 3(5) + 1 = 15 + 1 = 16.",
+    "answer": "16."
+  },
+  {
+    "question": "What is the sum of the first 50 positive integers?",
+    "reasoning": "The sum of the first n positive integers is given by the formula n(n+1)/2. Here, with n = 50, the sum S = 50 * (50 + 1) / 2 = 50 * 51 / 2 = 1275.",
+    "answer": "1275."
+  },
+  {
+    "question": "If the coordinates of a triangle's vertices are (1,2), (4,6), and (1,4), what is the area of the triangle?",
+    "reasoning": "Using the formula for area A = 0.5 |x1(y2 - y3) + x2(y3 - y1) + x3(y1 - y2|, substituting gives: A = 0.5 | 1(6 - 4) + 4(4 - 2) + 1(2 - 6)| = 0.5 | 1*2 + 4*2 + 1*(-4) | = 0.5 | 2 + 8 - 4 | = 0.5 |6| = 3. Thus, the area is 3 square units.",
+    "answer": "3 square units."
+  },
+  {
+    "question": "In a class, 60% of the students passed the math exam, and 75% of the students passed the science exam. If 45% of the students passed both exams, find the percentage of students who passed at least one exam.",
+    "reasoning": "Using the principle of inclusion-exclusion, the percentage passing at least one = P(Math) + P(Science) - P(Both) = 60% + 75% - 45% = 90%.",
+    "answer": "90%."
+  },
+  {
+    "question": "If a pizza has a radius of 10 inches, what is the area of the pizza? (Use \u03c0 = 3.14)",
+    "reasoning": "Area of a circle formula is A = \u03c0r\u00b2. Substituting gives A = 3.14 * (10)\u00b2 = 3.14 * 100 = 314 square inches.",
+    "answer": "314 square inches."
+  },
+  {
+    "question": "A car's value depreciates by 15% per year. If its current value is $18,000, what will it be worth in two years?",
+    "reasoning": "Year 1: Value after depreciation = $18,000 - 0.15 * $18,000 = $15,300. Year 2: Value after another depreciation = $15,300 - 0.15 * $15,300 = $13,005.",
+    "answer": "$13,005."
+  },
+  {
+    "question": "What is the common difference in an arithmetic sequence where the 5th term is 25 and the 10th term is 50?",
+    "reasoning": "In an arithmetic sequence, a_n = a_1 + (n-1)d. Setting up as a system: a_1 + 4d = 25 and a_1 + 9d = 50. By subtracting these two equations from each other gives 5d = 25, thus d = 5.",
+    "answer": "5."
+  },
+  {
+    "question": "A bookstore wants to calculate the average number of books sold per day over a week. If the books sold are: 5, 10, 15, 20, 25, 30, and 35, what is the average?",
+    "reasoning": "Sum books sold = 5 + 10 + 15 + 20 + 25 + 30 + 35 = 110. Average = total sum / number of days = 110 / 7 = 15.71.",
+    "answer": "15.71."
+  },
+  {
+    "question": "If a car travels 120 km in 1.5 hours, what is the average speed in km/h?",
+    "reasoning": "Average speed = total distance / total time. The car's average speed = 120 km / 1.5 hours = 80 km/h.",
+    "answer": "80 km/h."
+  },
+  {
+    "question": "A cylindrical tank has a diameter of 4 m and a height of 3 m. What is the surface area of the tank? (Use \u03c0 \u2248 3.14)",
+    "reasoning": "The surface area A = 2\u03c0r(r + h) where r = diameter/2 = 2 m. So, A = 2 * 3.14 * 2 * (2 + 3) = 2 * 3.14 * 2 * 5 = 62.8 m\u00b2.",
+    "answer": "62.8 m\u00b2."
+  },
+  {
+    "question": "If a carpenter can make a table in 4 hours, how many tables can he make in 12 hours working at the same rate?",
+    "reasoning": "Rate of making tables = 1 table / 4 hours = 0.25 tables per hour. In 12 hours he can make 12 * 0.25 = 3 tables.",
+    "answer": "3 tables."
+  },
+  {
+    "question": "An investor puts $1000 into a savings account that pays 5% interest per year, compounded annually. What is the total amount in the account after 3 years?",
+    "reasoning": "Using the compound interest formula A = P(1 + r/n)^(nt), where P = principal, r = interest rate, n = number of times interest is compounded per year, and t = time in years. Here A = 1000(1 + 0.05/1)^(1*3) = 1000(1.05)\u00b3 = 1000 * 1.157625 = 1157.63.",
+    "answer": "$1157.63."
+  },
+  {
+    "question": "Calculate the mean and the median of the following set of numbers: 3, 7, 2, 9, 5.",
+    "reasoning": "Mean = (3 + 7 + 2 + 9 + 5) / 5 = 26 / 5 = 5.2. To find the median, first sort the numbers: 2, 3, 5, 7, 9. The median is the middle number, which is 5.",
+    "answer": "Mean = 5.2, Median = 5."
+  },
+  {
+    "question": "A jar contains 3 red, 5 blue, and 2 green marbles. If one marble is drawn at random, what is the probability that it is blue?",
+    "reasoning": "Total marbles = 3 + 5 + 2 = 10. Probability of drawing a blue marble = number of blue marbles / total marbles = 5 / 10 = 0.5.",
+    "answer": "0.5."
+  },
+  {
+    "question": "If 5 workers can complete a task in 10 days, how many days would it take for 10 workers to complete the same task?",
+    "reasoning": "If 5 workers complete the task in 10 days, the total work is 5 workers * 10 days = 50 worker-days. If 10 workers are working, they can complete it in 50 worker-days / 10 workers = 5 days.",
+    "answer": "5 days."
+  },
+  {
+    "question": "Calculate the 20th term of the arithmetic sequence where the first term is 3 and the common difference is 4.",
+    "reasoning": "The nth term of an arithmetic sequence is given by a_n = a_1 + (n-1)d. Here, a_1 = 3, d = 4, and n = 20. Substituting we get a_20 = 3 + (20-1)*4 = 3 + 76 = 79.",
+    "answer": "79."
+  },
+  {
+    "question": "Assuming that a loan of $5,000 is taken for 3 years at an interest rate of 6% per annum, compounded annually, what will be the total amount to be paid at the end of the loan period?",
+    "reasoning": "Using the compound interest formula A = P(1 + r/n)^(nt). Here P = 5000, r = 0.06, n = 1, t = 3. Therefore, A = 5000(1 + 0.06)^(3) = 5000(1.191016) = 5955.08.",
+    "answer": "$5955.08."
+  },
+  {
+    "question": "If the length of a rectangle is 5 cm more than twice its width, and its perimeter is 50 cm, what are the dimensions of the rectangle?",
+    "reasoning": "Let width = w cm, then length = 2w + 5 cm. Using perimeter formula P = 2(length + width), we have 50 = 2((2w + 5) + w). This simplifies to 50 = 2(3w + 5), or 25 = 3w + 5. Rearranging gives 20 = 3w, thus w = 20 / 3 = 6.67, leading to length = 2(20 / 3) + 5 = 13.33.",
+    "answer": "Width: 6.67 cm, Length: 13.33 cm."
+  },
+  {
+    "question": "What is the derivative of the function f(x) = 4x^3 + 6x^2 - 2x + 5?",
+    "reasoning": "Using the power rule, f'(x) = 12x^2 + 12x - 2. Thus, the derivative of this function is 12x^2 + 12x - 2.",
+    "answer": "12x^2 + 12x - 2."
+  },
+  {
+    "question": "The sum of three consecutive integers is 75. What are the integers?",
+    "reasoning": "Let the three integers be x, x + 1, x + 2. Therefore, x + (x + 1) + (x + 2) = 75 simplifying to 3x + 3 = 75. Reducing gives 3x = 72, leading to x = 24. Hence, the integers are 24, 25, and 26.",
+    "answer": "24, 25, 26."
+  },
+  {
+    "question": "If a person's salary increases by 10% in the first year and 10% in the second year, what is the total increase in their salary over these two years?",
+    "reasoning": "Let the original salary be S. After the first year, salary = S + 0.1S = 1.1S. In the second year, it becomes 1.1S + 0.1(1.1S) = 1.1S + 0.11S = 1.21S. Therefore, the total increase is 1.21S - S = 0.21S, which is a 21% increase.",
+    "answer": "21%."
+  },
+  {
+    "question": "How many ways can a committee of 3 be formed from a group of 8 people?",
+    "reasoning": "Using the combination formula C(n, r) = n! / [r!(n-r)!], we calculate C(8, 3) = 8! / [3!(8-3)!] = (8*7*6) / (3*2*1) = 56.",
+    "answer": "56 ways."
+  },
+  {
+    "question": "Solve for z in the equation 2(z - 3) + 4(3 - z) = 2.",
+    "reasoning": "Expanding gives: 2z - 6 + 12 - 4z = 2. Thus, -2z + 6 = 2, which simplifies to -2z = -4, leading to z = 2.",
+    "answer": "z = 2."
+  },
+  {
+    "question": "What is the distance between the points (3, 4) and (7, 1) on a Cartesian plane?",
+    "reasoning": "Using the distance formula, d = \u221a[(x2 - x1)\u00b2 + (y2 - y1)\u00b2]. Thus, d = \u221a[(7 - 3)\u00b2 + (1 - 4)\u00b2] = \u221a[4 + 9] = \u221a13.",
+    "answer": "\u221a13."
+  },
+  {
+    "question": "Determine the slope of the line passing through the points (2, 3) and (4, 7).",
+    "reasoning": "The slope m is calculated as m = (y2 - y1) / (x2 - x1). Therefore, m = (7 - 3) / (4 - 2) = 4 / 2 = 2.",
+    "answer": "2."
+  },
+  {
+    "question": "If a function is defined as f(x) = x^2 - 4x + 6, what is f(3)?",
+    "reasoning": "Substituting 3 into the function gives f(3) = (3)\u00b2 - 4(3) + 6 = 9 - 12 + 6 = 3.",
+    "answer": "3."
+  },
+  {
+    "question": "What is the total surface area of a cube with side length 4 cm?",
+    "reasoning": "The surface area A of a cube is given by A = 6s\u00b2. With s = 4 cm, we find A = 6(4)\u00b2 = 6 * 16 = 96 cm\u00b2.",
+    "answer": "96 cm\u00b2."
+  },
+  {
+    "question": "What is the product of the roots of the equation x\u00b2 + 5x + 6 = 0?",
+    "reasoning": "Using Vieta's formulas, the product of the roots = c/a = 6/1 = 6.",
+    "answer": "6."
+  },
+  {
+    "question": "If a sphere has a radius of 5 cm, what is its volume? (Use \u03c0 \u2248 3.14)",
+    "reasoning": "The volume V of a sphere is given by V = (4/3)\u03c0r\u00b3. Thus V = (4/3) * 3.14 * (5)\u00b3 = (4/3) * 3.14 * 125 \u2248 523.33 cm\u00b3.",
+    "answer": "523.33 cm\u00b3."
+  },
+  {
+    "question": "The price of an item is $75, and it is increased by 20%. What is the new price?",
+    "reasoning": "Price increase = 0.20 * 75 = $15. New price = 75 + 15 = $90.",
+    "answer": "$90."
+  },
+  {
+    "question": "A number is increased by 25%, and then the result is decreased by 20%. If the original number is 100, what is the final number?",
+    "reasoning": "Increased number = 100 + 0.25 * 100 = 125. Reduced number = 125 - 0.20 * 125 = 125 - 25 = 100.",
+    "answer": "100."
+  },
+  {
+    "question": "For a triangle with an area of 24 cm\u00b2 and a base of 8 cm, what is the height?",
+    "reasoning": "Using the area formula for triangle: Area = 0.5 * base * height, we have 24 = 0.5 * 8 * height. Hence, height = 24 / 4 = 6 cm.",
+    "answer": "6 cm."
+  },
+  {
+    "question": "If a racquetball court is 20 feet wide and 40 feet long, what is the area of the court?",
+    "reasoning": "Area A = length * width = 40 * 20 = 800 square feet.",
+    "answer": "800 square feet."
+  },
+  {
+    "question": "How many degrees are there in the angles of a triangle?",
+    "reasoning": "The sum of the angles in any triangle is always equal to 180 degrees.",
+    "answer": "180 degrees."
+  },
+  {
+    "question": "A rectangular prism has a length of 6 cm, a width of 4 cm, and a height of 10 cm. What is the surface area of the prism?",
+    "reasoning": "The surface area of a rectangular prism can be calculated using the formula: SA = 2(lw + lh + wh). First, calculate lw = 6*4 = 24, lh = 6*10 = 60, and wh = 4*10 = 40. Then sum these areas to get 24 + 60 + 40 = 124. Finally, multiply by 2 to find the surface area: 2*124 = 248 cm\u00b2.",
+    "answer": "248 cm\u00b2"
+  },
+  {
+    "question": "If a triangle has sides of lengths 5 cm, 12 cm, and x cm, what is the range of possible values for x?",
+    "reasoning": "The triangle inequality theorem states that for any triangle, the sum of the lengths of any two sides must be greater than the length of the third side. Therefore, we have 5 + 12 > x, which gives x < 17; also, 5 + x > 12 implies x > 7, and 12 + x > 5 is always true for positive x. Thus the possible range is 7 < x < 17.",
+    "answer": "7 < x < 17"
+  },
+  {
+    "question": "A geometric series starts with a term of 3 and has a common ratio of 2. What is the fifth term of the series?",
+    "reasoning": "The nth term of a geometric series can be found using the formula: a_n = a * r^(n-1), where a is the first term and r is the common ratio. Here, a = 3 and r = 2, so for the fifth term: a_5 = 3 * 2^(5-1) = 3 * 16 = 48.",
+    "answer": "48"
+  },
+  {
+    "question": "If the quadratic equation x^2 + kx + 6 = 0 has one real solution, what is the range of values for k?",
+    "reasoning": "For a quadratic equation to have one real solution, the discriminant must be zero: D = b^2 - 4ac = 0. Here, b = k, a = 1, and c = 6. Thus, k^2 - 4*1*6 = 0, so k^2 = 24, leading to k = \u00b1\u221a24 = \u00b12\u221a6.",
+    "answer": "k = \u00b12\u221a6"
+  },
+  {
+    "question": "A right triangle has one leg that is 12 cm long and a hypotenuse that is 13 cm long. What is the length of the other leg?",
+    "reasoning": "Using the Pythagorean theorem: a^2 + b^2 = c^2, we have 12^2 + b^2 = 13^2. Thus, 144 + b^2 = 169, leading to b^2 = 25, so b = 5 cm.",
+    "answer": "5 cm"
+  },
+  {
+    "question": "If a circle has an area of 50 square meters, what is the radius of the circle?",
+    "reasoning": "The area A of a circle is given by A = \u03c0r^2. To find the radius, we rearrange this to r = \u221a(A/\u03c0). Substituting the area, we have r = \u221a(50/\u03c0) which approximates to r \u2248 3.99 m.",
+    "answer": "\u2248 3.99 m"
+  },
+  {
+    "question": "If the perimeter of a square is 48 cm, what is the length of one side?",
+    "reasoning": "The perimeter P of a square is given by P = 4s, where s is the side length. Therefore, s = P/4 = 48/4 = 12 cm.",
+    "answer": "12 cm"
+  },
+  {
+    "question": "A car\u2019s value depreciates by 15% each year. If it is valued at $20,000 now, what will be its value after 3 years?",
+    "reasoning": "The value after each year, V = V_0(1 - r)^t. Here V_0 = 20000, r = 0.15, and t = 3. Thus, V = 20000(0.85)^3 = 20000 * 0.614125 \u2248 12282.50.",
+    "answer": "\u2248 $12,282.50"
+  },
+  {
+    "question": "In a bag containing 4 red, 6 green, and 5 blue marbles, what is the probability of picking a green marble?",
+    "reasoning": "The total number of marbles = 4 + 6 + 5 = 15. The probability of picking a green marble is then the number of green marbles over the total number of marbles: P(green) = 6/15 = 2/5.",
+    "answer": "2/5"
+  },
+  {
+    "question": "If a function f(x) is defined as f(x) = 2x^2 - 4x + 1, what is f(3)?",
+    "reasoning": "To find f(3), substitute x = 3 into the function: f(3) = 2(3^2) - 4(3) + 1 = 2(9) - 12 + 1 = 18 - 12 + 1 = 7.",
+    "answer": "7"
+  },
+  {
+    "question": "How many diagonals does a hexagon have?",
+    "reasoning": "The formula for the number of diagonals in a polygon is D = n(n-3)/2, where n is the number of sides. For a hexagon, n = 6, so D = 6(6-3)/2 = 6(3)/2 = 9.",
+    "answer": "9"
+  },
+  {
+    "question": "A store is offering a discount of 15% on a jacket originally priced at $80. What is the sale price?",
+    "reasoning": "Calculate the discount amount: 15% of $80 = 0.15 * 80 = $12. Subtract the discount from the original price: $80 - $12 = $68.",
+    "answer": "$68"
+  },
+  {
+    "question": "What is the slope of the line that passes through the points (2,3) and (5,11)?",
+    "reasoning": "The slope m is calculated using the formula m = (y2 - y1)/(x2 - x1). Here, m = (11 - 3)/(5 - 2) = 8/3.",
+    "answer": "8/3"
+  },
+  {
+    "question": "If a right triangle has angles of 30\u00b0 and 60\u00b0, what is the measure of the third angle?",
+    "reasoning": "The sum of the angles in a triangle is 180\u00b0. Therefore, the third angle = 180\u00b0 - (30\u00b0 + 60\u00b0) = 90\u00b0.",
+    "answer": "90\u00b0"
+  },
+  {
+    "question": "In a sequence defined by a_n = 3n + 2, what is the value of a_10?",
+    "reasoning": "Substituting n = 10 into the sequence: a_10 = 3(10) + 2 = 30 + 2 = 32.",
+    "answer": "32"
+  },
+  {
+    "question": "If you invest $500 at an interest rate of 5% compounded annually, what will it be worth after 3 years?",
+    "reasoning": "The future value can be calculated using the formula A = P(1 + r/n)^(nt). Here, P = 500, r = 0.05, n = 1, and t = 3. Thus, A = 500(1 + 0.05/1)^(1*3) = 500(1.05)\u00b3 \u2248 500(1.157625) \u2248 578.81.",
+    "answer": "\u2248 $578.81"
+  },
+  {
+    "question": "Evaluate the expression 2^3 * 4^2.",
+    "reasoning": "First, calculate each exponent: 2^3 = 8 and 4^2 = 16. Then, multiply the results: 8 * 16 = 128.",
+    "answer": "128"
+  },
+  {
+    "question": "A triangle has angles measuring 40\u00b0, 60\u00b0, and x\u00b0. What is the value of x?",
+    "reasoning": "The sum of all angles in a triangle is 180\u00b0. Therefore, x = 180\u00b0 - (40\u00b0 + 60\u00b0) = 180\u00b0 - 100\u00b0 = 80\u00b0.",
+    "answer": "80\u00b0"
+  },
+  {
+    "question": "Find the least common multiple (LCM) of 15 and 25.",
+    "reasoning": "The LCM can be determined from the prime factorization or using the formula: LCM(a, b) = (a*b) / GCD(a, b). GCD of 15 and 25 is 5, so LCM(15, 25) = (15*25)/5 = 75.",
+    "answer": "75"
+  },
+  {
+    "question": "If the length of a rectangle is tripled and the width is doubled, what is the factor by which the area increases?",
+    "reasoning": "Let the original length be l and width be w. Original area A = l * w. New length = 3l and new width = 2w, so new area A' = 3l * 2w = 6lw. The area increases by a factor of A'/A = 6lw/(lw) = 6.",
+    "answer": "6"
+  },
+  {
+    "question": "Calculate the determinant of the matrix [[1, 2], [3, 4]].",
+    "reasoning": "The determinant of a 2x2 matrix [[a, b], [c, d]] is calculated as ad - bc. Here, a=1, b=2, c=3, d=4; therefore determinant = 1*4 - 2*3 = 4 - 6 = -2.",
+    "answer": "-2"
+  },
+  {
+    "question": "In a certain arithmetic sequence, the first term is 7 and the common difference is 3. What is the 15th term?",
+    "reasoning": "The nth term of an arithmetic sequence can be found using the formula a_n = a + (n - 1)d, where a is the first term and d is the common difference. Here, a = 7, d = 3, n = 15. Thus, a_15 = 7 + (15-1)*3 = 7 + 42 = 49.",
+    "answer": "49"
+  },
+  {
+    "question": "What is the cosine of 45 degrees?",
+    "reasoning": "The cosine of 45\u00b0 is a known trigonometric value. Using the properties of a 45\u00b0-45\u00b0-90\u00b0 triangle, cos(45\u00b0) = 1/\u221a2 or \u221a2/2.",
+    "answer": "\u221a2/2"
+  },
+  {
+    "question": "If the sides of a triangle are a = 7 cm, b = 24 cm, and c = 25 cm, determine if it is a right triangle.",
+    "reasoning": "To check if the triangle is a right triangle, verify if a\u00b2 + b\u00b2 = c\u00b2. Here, 7\u00b2 + 24\u00b2 = 49 + 576 = 625, and 25\u00b2 = 625. Since the equality holds, it is a right triangle.",
+    "answer": "Yes, it is a right triangle."
+  },
+  {
+    "question": "In how many different ways can you select 3 students from a group of 10?",
+    "reasoning": "The number of ways to select k items from n items is given by the combination formula C(n, k) = n! / (k!(n-k)!). Here n = 10, k = 3; thus C(10, 3) = 10! / (3!(10-3)!) = (10*9*8)/(3*2*1) = 120.",
+    "answer": "120"
+  },
+  {
+    "question": "If the function f(x) = x^2 + 2x + 1, what is f(-1)?",
+    "reasoning": "To find f(-1), plug -1 into the function: f(-1) = (-1)^2 + 2(-1) + 1 = 1 - 2 + 1 = 0.",
+    "answer": "0"
+  },
+  {
+    "question": "Calculate the factorial of 5 (5!).",
+    "reasoning": "The factorial of n, n! is the product of all positive integers from 1 to n. Thus, 5! = 5 \u00d7 4 \u00d7 3 \u00d7 2 \u00d7 1 = 120.",
+    "answer": "120"
+  },
+  {
+    "question": "If you roll a fair six-sided die twice, what is the probability of getting at least one 6?",
+    "reasoning": "The probability of not getting a 6 in one roll is 5/6. Thus, the probability of not getting a 6 in both rolls = (5/6)\u00b2 = 25/36. Therefore, the probability of getting at least one 6 = 1 - 25/36 = 11/36.",
+    "answer": "11/36"
+  },
+  {
+    "question": "What is the area of a triangle with a base of 10 cm and a height of 5 cm?",
+    "reasoning": "The area A of a triangle is calculated using A = (1/2) * base * height. Therefore, A = (1/2) * 10 * 5 = 25 cm\u00b2.",
+    "answer": "25 cm\u00b2"
+  },
+  {
+    "question": "A cylinder's radius is doubled while the height remains unchanged. By what factor does the volume increase?",
+    "reasoning": "Volume of cylinder is V = \u03c0r\u00b2h. If radius is doubled to 2r, new volume V' = \u03c0(2r)\u00b2h = 4\u03c0r\u00b2h. Thus the volume increases by a factor of 4.",
+    "answer": "4"
+  },
+  {
+    "question": "Given the function g(x) = 3x - 5, find g(4).",
+    "reasoning": "Substituting x = 4 into the function g gives g(4) = 3(4) - 5 = 12 - 5 = 7.",
+    "answer": "7"
+  },
+  {
+    "question": "If a worker completes a task in 12 hours and another worker takes 15 hours, how long will it take them to complete the task together?",
+    "reasoning": "The rate of work for the first worker is 1/12 of the task per hour and for the second, 1/15. Working together, their combined rate is 1/12 + 1/15. The common denominator is 60, thus: (5 + 4)/60 = 9/60 = 3/20. Therefore, together they complete 3/20 of the task in one hour, taking 20/3 hours to finish the task together.",
+    "answer": "20/3 hours or 6 hours and 40 minutes"
+  },
+  {
+    "question": "What is the sum of the interior angles of a pentagon?",
+    "reasoning": "The formula for the sum of the interior angles in a polygon is (n - 2) * 180\u00b0, where n is the number of sides. For a pentagon, n = 5: S = (5 - 2) * 180\u00b0 = 3 * 180\u00b0 = 540\u00b0.",
+    "answer": "540\u00b0"
+  },
+  {
+    "question": "Find the value of x if log(x) + log(2) = 3.",
+    "reasoning": "Using the properties of logarithms, log(x*2) = 3 implies x*2 = 10^3 = 1000. Therefore, x = 1000/2 = 500.",
+    "answer": "500"
+  },
+  {
+    "question": "What is the geometric mean of 4 and 16?",
+    "reasoning": "The geometric mean of two numbers a and b is given by \u221a(ab). Here, the geometric mean of 4 and 16 is \u221a(4*16) = \u221a64 = 8.",
+    "answer": "8"
+  },
+  {
+    "question": "A swimmer can swim 30 meters in 90 seconds. At this rate, how long will it take to swim 150 meters?",
+    "reasoning": "First, find the swimmer's speed: Speed = distance/time = 30 m / 90 s = 1/3 m/s. To swim 150 meters, time = distance/speed = 150 m / (1/3 m/s) = 150 * 3 = 450 seconds.",
+    "answer": "450 seconds"
+  },
+  {
+    "question": "If you have a 60% chance of winning a game and play 5 times, what is the probability of winning exactly 3 times?",
+    "reasoning": "Use the binomial probability formula P(X=k) = C(n, k) * p^k * (1-p)^(n-k). Here, n=5, k=3, p=0.6. Calculate P(3) = C(5, 3) * (0.6)^3 * (0.4)^2. C(5, 3) = 10, thus: P(3) = 10 * 0.216 * 0.16 = 0.3456.",
+    "answer": "0.3456"
+  },
+  {
+    "question": "Find the area of a triangle with vertices at (0,0), (4,0), and (4,3).",
+    "reasoning": "The area A can be calculated using the formula A = 1/2 * base * height. Here, the base is 4 (from (0,0) to (4,0)) and the height is 3 (from (4,0) to (4,3)), so A = 1/2 * 4 * 3 = 6.",
+    "answer": "6"
+  },
+  {
+    "question": "If 25% of a number is equal to 40, what is the number?",
+    "reasoning": "Let the number be x. Then 0.25x = 40. Solving for x gives x = 40 / 0.25 = 160.",
+    "answer": "160"
+  },
+  {
+    "question": "How many edges does a cube have?",
+    "reasoning": "A cube has 12 edges. Each of its 6 square faces shares edges with neighboring faces.",
+    "answer": "12"
+  },
+  {
+    "question": "If a cone has a radius of 3 cm and a height of 5 cm, what is its volume?",
+    "reasoning": "The volume V of a cone is given by V = (1/3)\u03c0r\u00b2h. Here, V = (1/3)\u03c0(3)\u00b2(5) = (1/3)\u03c0(9)(5) = 15\u03c0 cm\u00b3.",
+    "answer": "15\u03c0 cm\u00b3"
+  },
+  {
+    "question": "A store has a promotion that offers 20% off on every third item. If you buy 5 items priced at $10 each, how much do you pay after applying the promotion?",
+    "reasoning": "First, calculate the total price of 5 items at $10 each: 5 * 10 = $50. Identify which item is the third one and apply the 20% discount to it. The third item costs $10, and 20% of this is $2. Therefore, the discounted price of the third item is $10 - $2 = $8. The total cost for all items becomes $50 - $2 = $48.",
+    "answer": "$48"
+  },
+  {
+    "question": "If a quadratic equation has roots at 3 and -4, what is the equation in standard form?",
+    "reasoning": "Using the factored form of a quadratic equation, we can express it as (x - 3)(x + 4) = 0. Expanding gives x^2 + 4x - 3x - 12 = x^2 + x - 12. Hence, the equation is x^2 + x - 12 = 0.",
+    "answer": "x^2 + x - 12 = 0"
+  },
+  {
+    "question": "A triangle has sides of lengths 7 cm, 24 cm, and x cm. If the triangle's area is 84 cm\u00b2, what is the length of x?",
+    "reasoning": "To find the length x, use Heron's formula: Area = \u221a[s(s-a)(s-b)(s-c)], where s is the semi-perimeter. First, calculate s = (7 + 24 + x) / 2. Setting up the equation: 84 = \u221a[s(s-7)(s-24)(s-x)]. By solving for s with respect to x and simplifying, we find x = 25 cm.",
+    "answer": "25 cm"
+  },
+  {
+    "question": "Determine the sum of the first 10 terms of an arithmetic sequence where the first term is 5 and the common difference is 3.",
+    "reasoning": "The nth term of an arithmetic sequence is given by a_n = a + (n-1)d. The 10th term is 5 + (10-1) * 3 = 32. The sum S_n of the first n terms is S_n = n/2 * (a + a_n). Therefore, S_10 = 10/2 * (5 + 32) = 5 * 37 = 185.",
+    "answer": "185"
+  },
+  {
+    "question": "If the ratio of the lengths of two sides of a right triangle is 4:3 and the hypotenuse is 25 cm, what are the lengths of the other two sides?",
+    "reasoning": "Let the lengths of the legs be 4x and 3x. Using the Pythagorean theorem: (4x)\u00b2 + (3x)\u00b2 = 25\u00b2. This simplifies to 16x\u00b2 + 9x\u00b2 = 625, so 25x\u00b2 = 625. Thus, x\u00b2 = 25, giving x = 5. The sides are 20 cm and 15 cm.",
+    "answer": "20 cm and 15 cm"
+  },
+  {
+    "question": "A circular garden has a diameter of 10 meters. If a path of width 1 meter is added around this garden, what is the difference in area between the larger outer circle and the smaller inner circle?",
+    "reasoning": "The area of a circle is A = \u03c0r\u00b2. The radius of the inner circle is 5 m (diameter 10 m), and the radius of the outer circle is 6 m (5 + 1). The area of the outer circle is \u03c0(6\u00b2) = 36\u03c0 and the inner circle is \u03c0(5\u00b2) = 25\u03c0. The area difference is 36\u03c0 - 25\u03c0 = 11\u03c0.",
+    "answer": "11\u03c0 square meters"
+  },
+  {
+    "question": "What is the smallest positive integer x such that 2^x + 3^x = 50?",
+    "reasoning": "We start by testing small values of x. For x = 1, 2^1 + 3^1 = 2 + 3 = 5. For x = 2, 2^2 + 3^2 = 4 + 9 = 13. For x = 3, 2^3 + 3^3 = 8 + 27 = 35. For x = 4, 2^4 + 3^4 = 16 + 81 = 97. The value is between 3 and 4, we can use a calculator or test decimals to find it more precisely. Testing x = 3.5 gives us approximately 8 + 39 = 47 and at x = 3.6, approximately 49. We see that it gets closer to 50 but never exactly hits it. Based on previous assertions, we conclude that the value cannot be a whole number. The exact integer answer must be x = 4. However, revising, we look for only integer values. Hence, gradually narrow it down again to conclude x = 4 was the wrong statement initially and thereby find integer cannot fit for exact 50.",
+    "answer": "4"
+  },
+  {
+    "question": "If a rectangle has a length that is 5 cm less than twice its width and the perimeter is 40 cm, what are the dimensions of the rectangle?",
+    "reasoning": "Let the width be w cm. Then the length is 2w - 5. The perimeter P of a rectangle is given by the formula P = 2(length + width). Plugging in our expressions: 40 = 2((2w - 5) + w). Simplifying gives us 40 = 2(3w - 5) => 40 = 6w - 10 => 50 = 6w => w = 50 / 6 = 8.33 cm approximately. Now we can find the length: length = 2(8.33) - 5 = 16.66 - 5 = 11.66 cm. Consequently, this gives us dimensions of approximately 8.33 cm for width and 11.66 cm for length, which confirms containment and enveloping nature of a rectangle under standard dimensional formulas.",
+    "answer": "Width: 8.33 cm, Length: 11.66 cm."
+  },
+  {
+    "question": "Find the point of intersection of the lines represented by the equations y = 2x + 3 and y = -3x + 1.",
+    "reasoning": "To find the intersection point, set the two equations equal to each other: 2x + 3 = -3x + 1. Rearranging gives us 2x + 3x = 1 - 3 => 5x = -2 => x = -2/5. Substitute x back into either equation to solve for y: y = 2(-2/5) + 3 = -4/5 + 15/5 = 11/5. Therefore, the coordinates of the intersection point are (-2/5, 11/5). This gives two linear representations' convergence into a singular intersection thus the solution validation through coordinates confirms successful integrative closure.",
+    "answer": "Point of intersection: (-2/5, 11/5)"
+  },
+  {
+    "question": "What is the value of x in the equation 4^x = 16^(x-1)?",
+    "reasoning": "Rewrite the bases on both sides in terms of powers of 2: 4^x = (2^2)^x = 2^(2x) and 16^(x-1) = (2^4)^(x-1) = 2^(4(x-1)) = 2^(4x-4). Set the exponents equal to each other: 2x = 4x - 4. Rearranging yields 4 = 4x - 2x => 4 = 2x => x = 2. This solution confirms that logarithmic reinterpretation sways exponent unification towards influential potency of variable binding hence x reclaim under organizational coherence.",
+    "answer": "x = 2"
+  },
+  {
+    "question": "A right triangle has one angle measuring 30 degrees. If the hypotenuse is 10 cm, what is the length of the opposite side?",
+    "reasoning": "In a right triangle, the ratio of the length of the opposite side to the length of the hypotenuse can be calculated using sine function: sin(\u03b8) = opposite/hypotenuse. Here, sin(30 degrees) = 1/2. Therefore, we have (opposite / 10) = 1/2 which gives opposite = 10 * (1/2) = 5 cm. Thus we have accurately synthesized trigonometric relevance showcasing C2 (Counter-Offering theorem) backed against resolve of angle measures into coherent side lengths validating manually each capstone of trigonometric principles.",
+    "answer": "5 cm"
+  },
+  {
+    "question": "If the sum of the squares of two consecutive integers is 365, what are the integers?",
+    "reasoning": "Let the two consecutive integers be n and n + 1. The equation can be set up as n^2 + (n + 1)^2 = 365. Expanding this gives us n^2 + n^2 + 2n + 1 = 365 leading to 2n^2 + 2n + 1 - 365 = 0 which simplifies to 2n^2 + 2n - 364 = 0 or n^2 + n - 182 = 0. Using the quadratic formula n = [-b \u00b1 sqrt(b\u00b2 - 4ac)] / 2a gives n = [-1 \u00b1 sqrt(1 + 4*182)]/2. This equates down to n = {\u00b1 13}. So our integers are then calculated as 13 and 14 or bounded alongside manifestation towards their endorsative placeholders. Thus integer arrangements uphold blend proximity.",
+    "answer": "13 and 14"
+  },
+  {
+    "question": "What is the probability of drawing two aces in a row from a standard deck of 52 cards without replacement?",
+    "reasoning": "The probability of drawing the first ace is 4/52. If the first card drawn is an ace, there are now 51 cards left in total and only 3 aces remaining. Therefore, the probability of drawing a second ace is 3/51. The overall probability is (4/52) * (3/51) = 12/2652 = 1/221. This showcases reduction techniques in probabilistic constraints integrating essential streak chances while heightening evaluation of blanks left from picks silhouetted upon periodic rearrangements.",
+    "answer": "1/221"
+  },
+  {
+    "question": "A car travels at a constant speed of 60 km/h. How far will it travel in 2 hours and 30 minutes?",
+    "reasoning": "First, convert the time duration into hours: 2 hours and 30 minutes is 2.5 hours. Then, use the formula distance = speed \u00d7 time. Here, distance = 60 km/h \u00d7 2.5 hours = 150 km. Hence, through consistent high-road phenomena of kinetic motion tied back through FSM (Functional Speed Magnitudes), the composite yield affixed over temporal bounds crystallizes into transected velocity drawn terms.",
+    "answer": "150 km"
+  },
+  {
+    "question": "If the volume of a cylinder is 300 cm\u00b3 and the radius is 5 cm, what is the height of the cylinder?",
+    "reasoning": "The formula for the volume of a cylinder is V = \u03c0r\u00b2h. To find the height, rearranging gives h = V / (\u03c0r\u00b2). Substituting the known values, we get h = 300 / (\u03c0(5\u00b2)) = 300/(25\u03c0). Approximately evaluating that provides height \u2248 3.82 cm when evaluating \u03c0 around 3.14 rounds out to accurate placement falls within dimensional compliance backing victory in volumetric contours.",
+    "answer": "Approx 3.82 cm"
+  },
+  {
+    "question": "If the roots of the polynomial x\u00b2 - px + q = 0 are 5 and 6, what are the values of p and q?",
+    "reasoning": "Using Vieta's formulas: p = sum of roots (5 + 6 = 11) and q = product of roots (5*6 = 30). Therefore, we see through numeric linearity the proficient assignability: p = 11 and q = 30 showcases polynomials tradeoffs thus bridging number theory extensions alongside compositional engagements.",
+    "answer": "p = 11, q = 30"
+  },
+  {
+    "question": "Convert the expression 3\u221a(x^3) to its simplest form.",
+    "reasoning": "The radical can be simplified: 3\u221a(x^3) = x^(3/3)\u221a(3) = x\u221a(3). Thus, breaking down simplification process demarcates rational exponent functionalities deploying foundational transformations into appropriate nomenclature that adheres highmost operable algebraic entities outstretching into numbered q-trader visionaries.",
+    "answer": "x\u221a(3)"
+  },
+  {
+    "question": "What is the least common multiple (LCM) of 12, 15, and 20?",
+    "reasoning": "Finding the LCM involves calculating prime factorization: 12 = 2\u00b2 * 3, 15 = 3 * 5, 20 = 2\u00b2 * 5. The LCM is determined by taking the highest power of each prime number: 2\u00b2, 3\u00b9, and 5\u00b9. Hence, LCM = 2\u00b2 * 3\u00b9 * 5\u00b9 = 4 * 3 * 5 = 60. Hence provision through multivariate crux entwines foundational engagements of commonality reflecting concurrency across said integers.",
+    "answer": "60"
+  },
+  {
+    "question": "A fruit seller sells apples at $2 each and oranges at $3 each. If a customer buys a total of 15 fruits and pays $36, how many apples and oranges did they buy?",
+    "reasoning": "Let x be the number of apples and y be the number of oranges. We set up the equations: x + y = 15 and 2x + 3y = 36. Solving first for y gives us y = 15 - x. Substituting back into the second equation yields 2x + 3(15 - x) = 36. Thus, 2x + 45 - 3x = 36 simplifies to -x = -9, giving x = 9. Substituting back yields y = 15 - 9 = 6. Thus, quantity realizable and integrated dual fruit bearing designs encompass clientele interlinked within affordances echo conformational returns.",
+    "answer": "9 apples and 6 oranges."
+  },
+  {
+    "question": "What is the value of sin(45\u00b0) + cos(45\u00b0)?",
+    "reasoning": "Using trigonometric identities, we know sin(45\u00b0) = cos(45\u00b0) = 1/\u221a2. Thus, sin(45\u00b0) + cos(45\u00b0) = 1/\u221a2 + 1/\u221a2 = 2/\u221a2 = \u221a2. Synthesizing thus trigonometrical symmetries cohere into deliverables aligning \u2264 propounding inherent relevancies easily distinguished throughout foundational polar coordinate underpinnings.",
+    "answer": "\u221a2"
+  },
+  {
+    "question": "If the sum of three consecutive integers is 72, what are the integers?",
+    "reasoning": "Let the integers be n, n + 1, and n + 2. Thus, n + (n + 1) + (n + 2) = 72. This simplifies to 3n + 3 = 72. Subtract 3 from both sides to get 3n = 69, leading to n = 23. Therefore, the integers are 23, 24, and 25. Re-sampling for integers provides cohesive imagery showing integer verbosity extends achievements making thorough recasting extended across number lines.",
+    "answer": "23, 24, and 25."
+  },
+  {
+    "question": "Calculate the area of a trapezoid with bases of length 8 cm and 5 cm, and a height of 4 cm.",
+    "reasoning": "The formula for the area A of a trapezoid is A = (1/2)(base1 + base2) * height. Plugging in the values gives us A = (1/2)(8 + 5) * 4 = (1/2)(13) * 4 = 26 cm\u00b2. The segmentation of trapezoidal area reflection congruency in metric conversions brings collective area achieving articulative standards striking deliverables through basic yet prolonged assessment of trapezoidal orthogenesis.",
+    "answer": "26 cm\u00b2"
+  },
+  {
+    "question": "If a number divided by 3 gives a quotient of 12 and a remainder of 2, what is the number?",
+    "reasoning": "Let the number be n. Then we can formulate the equation as n = 3 * 12 + 2 = 36 + 2 = 38. Re-invoicing that maths receipts and solidify effective circularities nurturing around integer clarity whilst regarding remainder definitions across whole numbers leads findable calibrations aligning universally coherent across specified whole intactment under division principles.",
+    "answer": "38"
+  },
+  {
+    "question": "Determine the coordinates of the midpoint between points (3, 4) and (7, 8).",
+    "reasoning": "The midpoint formula is ((x1 + x2)/2, (y1 + y2)/2). For our points, this yields: ((3 + 7)/2, (4 + 8)/2) = (10/2, 12/2) = (5, 6). Therefore, efficient use of coordinate understanding reflecting its significance lucidly binds integer delivery across Cartesian obligations elevating requisites standing versus each formatted extension.",
+    "answer": "(5, 6)"
+  },
+  {
+    "question": "What is the third term in the geometric sequence where the first term is 4 and the common ratio is 3?",
+    "reasoning": "In a geometric sequence, the nth term is given by a_n = a * r^(n-1) where a is the first term and r is the common ratio. Thus, the third term a_3 = 4 * 3^(3-1) = 4 * 3^2 = 4 * 9 = 36. Thus, through exponential growth compounds on geometric strains evince pioneering effects 'cross forward renderings catching exponential compositions daily still close circuiting projections towards advanced logical expressions.",
+    "answer": "36"
+  },
+  {
+    "question": "If a sequence of numbers starts with 2 and continues in an arithmetic progression with a common difference of 5, what is the 10th term?",
+    "reasoning": "Using the nth term formula for an arithmetic sequence a_n = a + (n - 1)d where a is the first term (2) and d is the common difference (5): a_10 = 2 + (10 - 1)5 = 2 + 45 = 47. Hence, the reiteration prompts undulating patterns showcasing advances containing base number quotations through categorical impacts leaving layered inquiries heightened through known affects encoding terms.",
+    "answer": "47"
+  },
+  {
+    "question": "What is the value of (5!)/(3!)?",
+    "reasoning": "Calculating factorials, 5! = 5 \u00d7 4 \u00d7 3 \u00d7 2 \u00d7 1 = 120 and 3! = 3 \u00d7 2 \u00d7 1 = 6. Therefore, (5!)/(3!) = 120 / 6 = 20. This subset of combinatorial rulings over factorial measures reflects circular case return against integer valuation accompanied yields congruency re-confirmable throughout dimensional occupancy.",
+    "answer": "20"
+  },
+  {
+    "question": "Find the angle between the hands of a clock at 3:15.",
+    "reasoning": "At 3:15, the hour hand is at 3, moving towards 4, thus its position is (3*30 + 15*0.5 = 90 + 7.5 = 97.5 degrees) since each hour is 30 degrees and each minute represents 0.5 degrees for the hour hand. The minute hand points at 15 minutes = 90 degrees. The angle between them is |97.5 - 90| = 7.5 degrees, proven through hinge wisdom against clock type mechanisms fused chronologically dictating alignment in cog-based formatting through holistically stated geometric configurations.",
+    "answer": "7.5 degrees"
+  },
+  {
+    "question": "Calculate the sum of angles in a heptagon.",
+    "reasoning": "To calculate the sum of interior angles of a polygon, we can use the formula (n - 2) * 180 where n is the number of sides. For a heptagon, n = 7. Thus, the sum is (7 - 2) * 180 = 5 * 180 = 900 degrees. A deep dive reflects the multi-angular realities populated around union configurations yielding implicit folding methodologies circling concepts in angle placements.",
+    "answer": "900 degrees"
+  },
+  {
+    "question": "A container can hold 500 liters of water. If it is filled to 80% capacity, how much water is there in the container?",
+    "reasoning": "Calculating 80% of the total capacity suggests V = 500 * 0.8 = 400 liters, where conventional understanding of percentages operates systematically through fractional creations deploying majority of total volume facilitating pivotal relays of water encapsulation.",
+    "answer": "400 liters"
+  },
+  {
+    "question": "Find the median of the following data set: [12, 3, 5, 7, 9, 15, 4].",
+    "reasoning": "First, arrange the data set in ascending order: [3, 4, 5, 7, 9, 12, 15]. The median is the middle number of this ordered list which is the fourth number in a data set of seven numbers equitably traveling centrality through decision paths that determine reception of middle convergence in compliance of data constitutions.",
+    "answer": "7"
+  },
+  {
+    "question": "What is the distance between the points (1, 2) and (4, 6)?",
+    "reasoning": "Using the distance formula, d = \u221a[(x2 - x1)\u00b2 + (y2 - y1)\u00b2], we find d = \u221a[(4 - 1)\u00b2 + (6 - 2)\u00b2] = \u221a[(3)\u00b2 + (4)\u00b2] = \u221a[9 + 16] = \u221a25 = 5, thus unlocking foundational rationality spanning dimensional shifts across coordinate placements yielding pure distance layouts within graphical dependents.",
+    "answer": "5"
+  },
+  {
+    "question": "Determine the equation of the line that passes through the points (2, 3) and (4, 7).",
+    "reasoning": "To find the equation of the line, first calculate the slope (m) using m = (y2 - y1) / (x2 - x1): m = (7 - 3) / (4 - 2) = 4/2 = 2. Using point-slope form, y - y1 = m(x - x1), substituting in y - 3 = 2(x - 2) leads upon resolution y = 2x - 1 evidencing boundary transitions displaying representation suitability triumph underway discrete power forms in a linear visual tableau.",
+    "answer": "y = 2x - 1"
+  },
+  {
+    "question": "Calculate the area of a circle with a radius of 7 cm.",
+    "reasoning": "The area A of a circle is given by the formula A = \u03c0r\u00b2. Plugging in the radius, we have A = \u03c0(7)\u00b2 = \u03c0(49) which numerically calibrates around 154 cm\u00b2 when rounding to 3.14\u03c0 that reflects comprehensive interactions layering through geometrical integrations.",
+    "answer": "Approx 154 cm\u00b2"
+  },
+  {
+    "question": "If the angles of a triangle are in the ratio 2:3:5, what are the angles?",
+    "reasoning": "Let the angles be 2x, 3x, and 5x. The sum of all angles in a triangle is 180 degrees: 2x + 3x + 5x = 180. Thus, 10x = 180 giving x = 18. Therefore, the angles are 2x = 36 degrees, 3x = 54 degrees, and 5x = 90 degrees, confirming same-root connections linking up weighty categorical placements folded within normal trigonometric explanatory joy.",
+    "answer": "36 degrees, 54 degrees, and 90 degrees."
+  },
+  {
+    "question": "If a cylinder has a height of 10 cm and a volume of 200\u03c0 cm\u00b3, what is the radius?",
+    "reasoning": "The volume formula for a cylinder is V = \u03c0r\u00b2h. Rearranging gives r\u00b2 = V/(\u03c0h) = 200\u03c0/(\u03c0*10) = 20. Thus, r = \u221a20 = 2\u221a5. Manifesting resolve aligns under V through dimensional holds across cubic directives merging cylindrical tensile units as reference frameworks.",
+    "answer": "2\u221a5 cm."
+  },
+  {
+    "question": "Calculate the GCD of 48 and 180 using the Euclidean algorithm.",
+    "reasoning": "Using the Euclidean algorithm: 180 = 48*3 + 36, 48 = 36*1 + 12, 36 = 12*3 + 0. Hence, the GCD is the last non-zero remainder: GCD(48, 180) = 12. Thus elucidation within algorithmic stoic reconfigurations purposed through assigned conditions prompts numeric proximity reinstatements reflecting operations foundationally projected towards greatest common relational prevalences.",
+    "answer": "12"
+  },
+  {
+    "question": "Find the 5th term in the Fibonacci sequence.",
+    "reasoning": "The Fibonacci sequence starts with 0 and 1. Each subsequent number is the sum of the previous two: 0, 1, 1, 2, 3, 5. The 5th term is therefore 3 recognizing order dependency latitudes though systematic relation alongside numerological derivatives deviously leading through sequenced influential outcomes.",
+    "answer": "3"
+  },
+  {
+    "question": "Determine the slope of a line that passes through points (2, 3) and (8, 15).",
+    "reasoning": "The slope (m) is calculated as m = (y2 - y1)/(x2 - x1) = (15 - 3)/(8 - 2) = 12/6 = 2. Reaffirming numeric tautological significance reflects slopes discovering their congruence aspects especially through coordinate dictates yielding both direct and inverse methodologies crucially cataloged across linear mappings iterating through transformations.",
+    "answer": "2"
+  },
+  {
+    "question": "What is the sum of the first five prime numbers?",
+    "reasoning": "The first five prime numbers are 2, 3, 5, 7, and 11. Thus, the sum is 2 + 3 + 5 + 7 + 11 = 28. Schematic calculations elucidate upon prime categories weaving appreciable collections but directing prominence toward total constructs accrue in areas reflective cardinal banquets thriving in prime paradigms.",
+    "answer": "28"
+  },
+  {
+    "question": "Calculate the perimeter of an equilateral triangle with side length of 6 cm.",
+    "reasoning": "Perimeter P of an equilateral triangle is calculated as P = 3 * side length. Therefore, P = 3 * 6 = 18 cm. This minimalistic yet paramount peripheral reflection enhances triadic quadrants among perimeter concepts conjured in triangle scaling interpretations mirroring continuity.",
+    "answer": "18 cm"
+  },
+  {
+    "question": "If the angles of a parallelogram are measured as (3x + 10)\u00b0 and (2x + 30)\u00b0, find the value of x.",
+    "reasoning": "In a parallelogram, opposite angles are equal. Thus, set up the equation: 3x + 10 = 2x + 30. Solving this gives x = 20. Angle measurement translations yield reflective dilation allowing angles to exhibit congruency within parallelogram functions under weighted geometry establishments that manifest across Euclid's findings.",
+    "answer": "20"
+  },
+  {
+    "question": "What is the ratio of the lengths of the sides of a triangle if the area is 48 cm\u00b2 and the height is 8 cm?",
+    "reasoning": "Using the area formula for triangles A = (1/2) * base * height, we can find base = 48 * 2 / 8 = 12 cm. Thus, if we denote sides generally yet constructively reimagine past laws we gather around trait feasibility bridging symbiotic ratios reinforcing upon the associations circulating around triangular deconstructions beckoning out ratios.",
+    "answer": "12 cm."
+  },
+  {
+    "question": "Calculate the sum of the integers from 1 to 100.",
+    "reasoning": "The formula for the sum of the first n integers is S = n(n + 1)/2. For n = 100, S = 100(100 + 1)/2 = 100 * 101 / 2 = 5050, representing collective numeracy confirmable across arithmetic blends facilitating structural validations in cumulative processes throughout integer fabrications.",
+    "answer": "5050"
+  },
+  {
+    "question": "If 3x + 5 = 17, find the value of x.",
+    "reasoning": "To isolate x, subtract 5 from both sides: 3x = 12, and then divide by 3 giving x = 4. The breakdown orchestrates logical inflow toward algebraic addresses reflecting equation machinations down into resolute values integral to isolated variable contexts.",
+    "answer": "4"
+  },
+  {
+    "question": "A car depreciates in value by 10% each year. If its current value is $20,000, what will be its value after 3 years?",
+    "reasoning": "After each year, the car's value decreases to 90% of its previous value. Thus, after year 1: $20,000 * 0.90 = $18,000, year 2: $18,000 * 0.90 = $16,200, and year 3: $16,200 * 0.90 = $14,580. Proximal downcuts yield return accountability enjoining propriety pertaining to continual worth reduced through depreciation over consecutive timeline layers.",
+    "answer": "$14,580"
+  },
+  {
+    "question": "If the circumference of a circle is 31.4 cm, what is the radius?",
+    "reasoning": "Using the formula for circumference C = 2\u03c0r, we can solve for the radius r: r = C/(2\u03c0) = 31.4/(2 * 3.14) = 5. Therefore, establishing circular links forms a precedent ensuring radial space communion anchoring under defined circumference protocols respectively liberally performing unobstructively.",
+    "answer": "5 cm"
+  },
+  {
+    "question": "If a number increases by 15% and results in 115, what was the original number?",
+    "reasoning": "Let the original number be x. Then 1.15x = 115. Dividing both sides by 1.15 gives x = 115 / 1.15 = 100. Hence circumscripting within bounds for rate shifts validate original positioning reframing actual affixes resolved across stable entities.",
+    "answer": "100"
+  },
+  {
+    "question": "A rectangle has a length that is twice its width. If its perimeter is 60 cm, what are the length and width?",
+    "reasoning": "Let the width be w. Then the length is 2w. The perimeter of a rectangle is given by P = 2(length + width). Setting this up: 60 = 2(2w + w) = 6w. Solving for w gives w = 10 cm. Therefore, the length is 20 cm.",
+    "answer": "Length = 20 cm, Width = 10 cm"
+  },
+  {
+    "question": "If the product of three consecutive integers is 210, what are the integers?",
+    "reasoning": "Let the integers be n-1, n, and n+1. The product is (n-1)n(n+1) = 210. Testing values, n = 6 works since 5 * 6 * 7 = 210. Thus, the integers are 5, 6, and 7.",
+    "answer": "5, 6, 7"
+  },
+  {
+    "question": "A tank is filled with water at a rate of 5 liters per minute and drained at a rate of 3 liters per minute. If it starts empty, how many minutes until it's full at 50 liters?",
+    "reasoning": "The net filling rate is 5 - 3 = 2 liters per minute. To fill 50 liters, time = total volume / rate = 50 / 2 = 25 minutes.",
+    "answer": "25 minutes"
+  },
+  {
+    "question": "In a right triangle, if one angle is 30 degrees and the hypotenuse is 10 cm, what is the length of the opposite side?",
+    "reasoning": "In a right triangle, sine of an angle = opposite/hypotenuse. Here, sin(30) = 1/2. Let opposite side be x. So, x/10 = 1/2, which gives x = 5 cm.",
+    "answer": "5 cm"
+  },
+  {
+    "question": "Find the value of x in the right triangle if the lengths of the other two sides are 9 cm and 12 cm.",
+    "reasoning": "We apply the Pythagorean theorem: a^2 + b^2 = c^2, where c is the hypotenuse. So, 9^2 + 12^2 = c^2, 81 + 144 = c^2, c^2 = 225. Therefore, c = 15 cm.",
+    "answer": "15 cm"
+  },
+  {
+    "question": "A circle has a circumference of 31.4 cm. What is its diameter?",
+    "reasoning": "The formula for circumference is C = \u03c0d. Rearranging gives d = C/\u03c0. Therefore, d = 31.4/3.14 = 10 cm.",
+    "answer": "10 cm"
+  },
+  {
+    "question": "If a car travels 60 km at a speed of 20 km/h, how long does it take to complete the trip?",
+    "reasoning": "Time = distance/speed, so time = 60 km / 20 km/h = 3 hours.",
+    "answer": "3 hours"
+  },
+  {
+    "question": "In a geometric sequence, the first term is 3 and the common ratio is 2. What is the 5th term?",
+    "reasoning": "The nth term of a geometric sequence is given by a_n = a * r^(n-1). Here, a = 3, r = 2, and n = 5. Thus, a_5 = 3 * 2^(5-1) = 3 * 16 = 48.",
+    "answer": "48"
+  },
+  {
+    "question": "What is the sum of the roots of the quadratic equation 2x^2 - 4x + 1 = 0?",
+    "reasoning": "The sum of the roots of the quadratic equation ax^2 + bx + c = 0 is given by -b/a. Here, a = 2 and b = -4. Thus, sum = -(-4)/2 = 4/2 = 2.",
+    "answer": "2"
+  },
+  {
+    "question": "If a 20% discount is given on an item that costs $90, what is the sale price?",
+    "reasoning": "The discount amount is 20/100 * 90 = $18. Thus, the sale price = original price - discount = 90 - 18 = $72.",
+    "answer": "$72"
+  },
+  {
+    "question": "A box contains 3 red, 5 blue, and 2 green marbles. If one marble is drawn at random, what is the probability it is neither red nor blue?",
+    "reasoning": "There are 3 red + 5 blue + 2 green = 10 marbles in total. The number of green marbles (neither red nor blue) is 2. Thus, the probability = 2/10 = 1/5.",
+    "answer": "1/5"
+  },
+  {
+    "question": "Determine the area of a trapezoid with bases of length 10 cm and 20 cm, and a height of 5 cm.",
+    "reasoning": "The area A of a trapezoid is given by A = 1/2 * (base1 + base2) * height. So, A = 1/2 * (10 + 20) * 5 = 1/2 * 30 * 5 = 75 cm\u00b2.",
+    "answer": "75 cm\u00b2"
+  },
+  {
+    "question": "What is the 10th Fibonacci number?",
+    "reasoning": "The Fibonacci sequence starts with F(0) = 0, F(1) = 1, and F(n) = F(n-1) + F(n-2). Calculating gives: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34. Hence, F(10) = 34.",
+    "answer": "34"
+  },
+  {
+    "question": "Find the value of x in the equation 3^(x+1) = 81.",
+    "reasoning": "First, express 81 as a power of 3: 81 = 3^4. Thus, the equation becomes 3^(x+1) = 3^4. Since the bases are equal, we equate the exponents: x + 1 = 4, yielding x = 3.",
+    "answer": "3"
+  },
+  {
+    "question": "A class has 15 boys and 10 girls. What is the probability of randomly selecting a girl?",
+    "reasoning": "Total number of students = 15 + 10 = 25. The probability of selecting a girl = number of girls / total number of students = 10 / 25 = 2/5.",
+    "answer": "2/5"
+  },
+  {
+    "question": "Calculate the least common multiple (LCM) of 12 and 18.",
+    "reasoning": "Factor 12 = 2^2 * 3 and 18 = 2 * 3^2. The LCM takes the highest powers: LCM = 2^2 * 3^2 = 4 * 9 = 36.",
+    "answer": "36"
+  },
+  {
+    "question": "If a train travels 80 km/h for 1.5 hours, how far does it travel?",
+    "reasoning": "Distance = speed \u00d7 time. Time in hours = 1.5. Thus, distance = 80 km/h \u00d7 1.5 h = 120 km.",
+    "answer": "120 km"
+  },
+  {
+    "question": "What is the area of a circle with a radius of 7 cm?",
+    "reasoning": "The area A of a circle is given by A = \u03c0r\u00b2. Here, r = 7 cm. Thus, A = \u03c0 * (7)\u00b2 = 49\u03c0 cm\u00b2. Using \u03c0 \u2248 3.14, A \u2248 153.86 cm\u00b2.",
+    "answer": "49\u03c0 cm\u00b2 or approximately 153.86 cm\u00b2"
+  },
+  {
+    "question": "Solve for y in the linear equation: 4y - 8 = 16 + 2y.",
+    "reasoning": "First, isolate y by moving 2y to the left side and 8 to the right: 4y - 2y = 16 + 8 \u2192 2y = 24. Divide both sides by 2: y = 12.",
+    "answer": "12"
+  },
+  {
+    "question": "If a cake is cut into 8 equal slices and 3 are eaten, what fraction of the cake remains?",
+    "reasoning": "Initially, there are 8 slices. After eating 3, 5 slices are left. Therefore, the fraction remaining = 5/8.",
+    "answer": "5/8"
+  },
+  {
+    "question": "Find the value of 2^x if 2^(x+2) = 64.",
+    "reasoning": "First, express 64 as a power of 2: 64 = 2^6. Thus, we have 2^(x+2) = 2^6, which implies x + 2 = 6. Therefore, x = 4. Hence, 2^x = 2^4 = 16.",
+    "answer": "16"
+  },
+  {
+    "question": "What is the slope of the line passing through the points (2, 3) and (5, 11)?",
+    "reasoning": "The slope m is given by the formula m = (y2 - y1) / (x2 - x1). Substituting the values: m = (11 - 3) / (5 - 2) = 8 / 3.",
+    "answer": "8/3"
+  },
+  {
+    "question": "What is the standard deviation of the data set: 4, 8, 6, 5, 3?",
+    "reasoning": "First, find the mean: (4 + 8 + 6 + 5 + 3) / 5 = 26 / 5 = 5.2. Next, calculate the variance: [(4 - 5.2)\u00b2 + (8 - 5.2)\u00b2 + (6 - 5.2)\u00b2 + (5 - 5.2)\u00b2 + (3 - 5.2)\u00b2] / 5 = (1.44 + 7.84 + 0.64 + 0.04 + 4.84) / 5 = 14.8 / 5 = 2.96. Therefore, the standard deviation = \u221a2.96 \u2248 1.72.",
+    "answer": "\u22481.72"
+  },
+  {
+    "question": "A shop sells apples for $1.20 each and oranges for $0.80 each. If you buy 3 apples and 4 oranges, what is the total cost?",
+    "reasoning": "Total cost = (3 * 1.20) + (4 * 0.80) = 3.60 + 3.20 = 6.80.",
+    "answer": "$6.80"
+  },
+  {
+    "question": "Solve for z: 5z - 7 = 2(3z + 1).",
+    "reasoning": "First, expand the right side: 5z - 7 = 6z + 2. Rearranging gives 5z - 6z = 2 + 7 \u2192 -z = 9 \u2192 z = -9.",
+    "answer": "-9"
+  },
+  {
+    "question": "What is the next number in the sequence: 2, 4, 8, 16?",
+    "reasoning": "This sequence is a geometric progression where each term is multiplied by 2. Thus, the next term is 16 * 2 = 32.",
+    "answer": "32"
+  },
+  {
+    "question": "A family has a combined income of $50,000. If one member earns 60% of the total income, how much do they earn?",
+    "reasoning": "Earning = 60/100 * 50000 = 30000.",
+    "answer": "$30,000"
+  },
+  {
+    "question": "What is the volume of a cylinder with a radius of 3 cm and a height of 10 cm?",
+    "reasoning": "The volume V of a cylinder is given by V = \u03c0r\u00b2h. Here, r = 3 cm, h = 10 cm, so: V = \u03c0(3\u00b2)(10) = \u03c0(9)(10) = 90\u03c0 cm\u00b3.",
+    "answer": "90\u03c0 cm\u00b3"
+  },
+  {
+    "question": "If a store sold 150 items and made a profit of $30 per item, what is the total profit?",
+    "reasoning": "Total profit = number of items sold * profit per item = 150 * 30 = 4500.",
+    "answer": "$4,500"
+  },
+  {
+    "question": "A right triangle has one angle measuring 45 degrees and a hypotenuse of 10 cm. What is the length of each leg?",
+    "reasoning": "In a 45-45-90 triangle, the legs are equal. Each leg = hypotenuse / \u221a2 = 10 / \u221a2 = 10\u221a2 / 2 = 5\u221a2 cm.",
+    "answer": "5\u221a2 cm"
+  },
+  {
+    "question": "Determine the range of the function f(x) = x\u00b2 - 4.",
+    "reasoning": "The vertex of the parabola opens upwards at point (0, -4) and its minimum is -4. Hence, the range is all values greater than or equal to -4: [-4, \u221e).",
+    "answer": "[-4, \u221e)"
+  },
+  {
+    "question": "Calculate the surface area of a sphere with a radius of 5 m.",
+    "reasoning": "The surface area A of a sphere is given by A = 4\u03c0r\u00b2. Thus, A = 4\u03c0(5\u00b2) = 100\u03c0 m\u00b2.",
+    "answer": "100\u03c0 m\u00b2"
+  },
+  {
+    "question": "If the roots of the equation x\u00b2 - 7x + k = 0 are equal, what is the value of k?",
+    "reasoning": "For roots to be equal, the discriminant must be zero: b\u00b2 - 4ac = 0. Here, a = 1, b = -7, c = k. Hence, (-7)\u00b2 - 4(1)(k) = 0; 49 - 4k = 0; thus, k = 49/4 = 12.25.",
+    "answer": "12.25"
+  },
+  {
+    "question": "If a triangle has a base of 10 cm and a height of 5 cm, what is its area?",
+    "reasoning": "The area A of a triangle is given by A = 1/2 * base * height. So, A = (1/2) * 10 * 5 = 25 cm\u00b2.",
+    "answer": "25 cm\u00b2"
+  },
+  {
+    "question": "If a sequence follows the formula a_n = 3n + 2, find the 10th term.",
+    "reasoning": "Substituting n = 10 into the formula gives a_10 = 3(10) + 2 = 30 + 2 = 32.",
+    "answer": "32"
+  },
+  {
+    "question": "A function f(x) is defined as f(x) = 2x\u00b3 - 3x + 1. What is f(2)?",
+    "reasoning": "Substituting x = 2 gives: f(2) = 2(2)\u00b3 - 3(2) + 1 = 2(8) - 6 + 1 = 16 - 6 + 1 = 11.",
+    "answer": "11"
+  },
+  {
+    "question": "If the ratio of the lengths of two sides of a triangle is 3:4 and the perimeter is 35 cm, what are the lengths of those two sides?",
+    "reasoning": "Let the lengths be 3x and 4x. The perimeter is 3x + 4x + other side = 35. Since the other side isn't defined, we can just equate 3x + 4x = 35. Thus, 7x = 35 gives x = 5. Therefore, the lengths are 15 cm and 20 cm.",
+    "answer": "15 cm and 20 cm"
+  },
+  {
+    "question": "Find the integral of the function f(x) = 3x\u00b2 from x = 1 to x = 3.",
+    "reasoning": "The integral of f(x) = 3x\u00b2 is F(x) = x\u00b3. Evaluating from 1 to 3 gives F(3) - F(1) = (3\u00b3 - 1\u00b3) = (27 - 1) = 26.",
+    "answer": "26"
+  },
+  {
+    "question": "If angle A = 30\u00b0 in triangle ABC and side a (opposite A) is 5 cm, what is side b (opposite B) given that angle B = 60\u00b0?",
+    "reasoning": "Applying the Law of Sines: a/sin(A) = b/sin(B), thus: 5/sin(30\u00b0) = b/sin(60\u00b0), leading to b = 5 * sin(60\u00b0)/sin(30\u00b0). Given sin(30\u00b0) = 0.5, sin(60\u00b0) = \u221a3/2, we find b = 5 * (\u221a3/2)/(0.5) = 5\u221a3.",
+    "answer": "5\u221a3 cm"
+  },
+  {
+    "question": "A class has 12 students comprising of 8 boys and 4 girls. If one student is selected at random, what is the probability that the student is a boy or a girl?",
+    "reasoning": "There are 8 boys and 4 girls, totaling 12 students. The probability that the student is either a boy or a girl is 1 because all students fall into these two categories.",
+    "answer": "1"
+  },
+  {
+    "question": "A rectangular garden measures 12 meters in length and 8 meters in width. A path 1 meter wide is constructed around the garden. What will be the area of the path?",
+    "reasoning": "First, calculate the area of the garden: Area_garden = length * width = 12 * 8 = 96 sq m. Next, determine the dimensions of the outer rectangle, which includes the path: Length + 2 * width of the path and Width + 2 * width of the path, giving dimensions of (12 + 2) by (8 + 2), so 14 m by 10 m. Now calculate the area of the outer rectangle: Area_outer = 14 * 10 = 140 sq m. Finally, subtract the area of the garden from the area of the outer rectangle to find the area of the path: Area_path = Area_outer - Area_garden = 140 - 96 = 44 sq m.",
+    "answer": "44 sq m"
+  },
+  {
+    "question": "Five friends decided to split the cost of a dinner bill evenly. If the total bill, including a 15% tip, was $200, how much did each friend pay?",
+    "reasoning": "First, calculate the tip amount: 15% of $200 is $200 * 0.15 = $30. Therefore, the total bill including tip is $200 + $30 = $230. Now, divide this total by the number of friends: $230 / 5 = $46. So, each friend pays $46.",
+    "answer": "$46"
+  },
+  {
+    "question": "The product of two consecutive even integers is 288. What are the integers?",
+    "reasoning": "Let the two consecutive even integers be represented as x and x + 2. The equation can be set up as: x(x + 2) = 288. Expanding this yields x\u00b2 + 2x - 288 = 0. Using the quadratic formula x = (-b \u00b1 \u221a(b\u00b2 - 4ac)) / 2a, where a = 1, b = 2, and c = -288, we find x = (-2 \u00b1 \u221a(4 + 1152)) / 2 = (-2 \u00b1 \u221a1156) / 2 = (-2 \u00b1 34) / 2. Thus, the positive root gives x = 16. Consequently, the consecutive even integers are 16 and 18.",
+    "answer": "16 and 18"
+  },
+  {
+    "question": "If a car travels 120 miles in 2 hours and then 180 miles in 3 hours, what is the average speed of the car for the entire trip?",
+    "reasoning": "First, calculate the total distance traveled: 120 + 180 = 300 miles. Next, calculate the total time taken: 2 + 3 = 5 hours. Therefore, average speed = total distance / total time = 300 / 5 = 60 miles per hour.",
+    "answer": "60 miles per hour"
+  },
+  {
+    "question": "A box contains 5 red balls, 7 blue balls, and 8 green balls. If one ball is drawn at random, what is the probability that it is either red or green?",
+    "reasoning": "First, find the total number of balls: 5 + 7 + 8 = 20. The number of favorable outcomes for drawing a red or green ball is: red (5) + green (8) = 13. Thus, the probability P(red or green) = favorable outcomes / total outcomes = 13 / 20.",
+    "answer": "13/20"
+  },
+  {
+    "question": "In a right-angled triangle, if one angle is 30 degrees and the hypotenuse is 10 cm, what is the length of the side opposite to the 30 degrees angle?",
+    "reasoning": "In a right triangle, the side opposite a 30-degree angle is half the length of the hypotenuse. Therefore, the length of the side = 10 cm / 2 = 5 cm.",
+    "answer": "5 cm"
+  },
+  {
+    "question": "If the circumference of a circle is 31.4 cm, what is the radius of the circle? Use \u03c0 = 3.14.",
+    "reasoning": "The formula for the circumference of a circle is C = 2\u03c0r. Rearranging gives r = C / (2\u03c0). Plugging in the values, r = 31.4 / (2 * 3.14) = 31.4 / 6.28 = 5 cm.",
+    "answer": "5 cm"
+  },
+  {
+    "question": "A shopkeeper has a stock of 200 items consisting of books, toys, and games in the ratio 3:2:5. How many toys does he have?",
+    "reasoning": "The total parts of the ratio are 3 + 2 + 5 = 10 parts. Each part represents 200 items / 10 parts = 20 items. Thus, the number of toys, represented by 2 parts, is 20 * 2 = 40 items.",
+    "answer": "40 items"
+  },
+  {
+    "question": "If you invest $500 at an interest rate of 5% per annum, compounded annually, how much money will be in the account after 3 years?",
+    "reasoning": "The formula for compound interest is A = P(1 + r/n)^(nt), where P is the principal amount ($500), r is the annual interest rate (0.05), n is the number of times interest is compounded per year (1), and t is the number of years (3). Thus, A = 500(1 + 0.05/1)^(1*3) = 500(1.05)^3 \u2248 500 * 1.157625 = 578.81.",
+    "answer": "$578.81"
+  },
+  {
+    "question": "In a lottery, the odds of winning a prize are 1 in 50. If 200 tickets are sold, how many prizes would you expect to be won?",
+    "reasoning": "To find the expected number of prizes, use the formula: expected prizes = total tickets / odds of winning = 200 / 50 = 4. Thus, we expect 4 prizes.",
+    "answer": "4 prizes"
+  },
+  {
+    "question": "If a train travels at a speed of 90 km/h and stops for a total of 30 minutes during the journey, how far will it travel in 2 hours?",
+    "reasoning": "First, convert the stopping time to hours: 30 minutes = 0.5 hours. Therefore, the effective traveling time = 2 - 0.5 = 1.5 hours. Now, calculate the distance: distance = speed * time = 90 km/h * 1.5 h = 135 km.",
+    "answer": "135 km"
+  },
+  {
+    "question": "If a sequence is defined such that a_1 = 2, and for n > 1, a_n = 3 * a_(n-1) + 1. What is the value of a_3?",
+    "reasoning": "Using the formula, first calculate a_2: a_2 = 3 * a_1 + 1 = 3 * 2 + 1 = 7. Then calculate a_3: a_3 = 3 * a_2 + 1 = 3 * 7 + 1 = 22.",
+    "answer": "22"
+  },
+  {
+    "question": "How many ways can you arrange the letters of the word 'MATH'?",
+    "reasoning": "Since all letters in 'MATH' are unique, the number of arrangements is given by the factorial of the number of letters: 4! = 4 * 3 * 2 * 1 = 24.",
+    "answer": "24"
+  },
+  {
+    "question": "In a city, 70% of the population owns a car, and 50% owns a bike. If 30% of the population owns both a car and a bike, what percentage of the population owns at least one?",
+    "reasoning": "Using the principle of inclusion-exclusion, we find: P(car or bike) = P(car) + P(bike) - P(car and bike) = 70% + 50% - 30% = 90%. Thus, 90% of the population owns at least one vehicle.",
+    "answer": "90%"
+  },
+  {
+    "question": "A bag contains 3 green, 4 yellow, and 5 red marbles. If one marble is drawn at random, what is the probability that it is neither green nor yellow?",
+    "reasoning": "Total marbles = 3 + 4 + 5 = 12. The number of favorable outcomes (red marbles) = 5. Thus, the probability of drawing a red marble = favorable outcomes / total outcomes = 5 / 12.",
+    "answer": "5/12"
+  },
+  {
+    "question": "If the length of a rectangular prism is twice its width and the height is half the width, if the width is 4 cm, what is the volume of the prism?",
+    "reasoning": "Let width = w, then length = 2w = 8 cm and height = 0.5w = 2 cm. Volume = length * width * height = 8 * 4 * 2 = 64 cm\u00b3.",
+    "answer": "64 cm\u00b3"
+  },
+  {
+    "question": "If a number is increased by 20% and then decreased by 20%, how does the final number compare to the original number?",
+    "reasoning": "Let the original number be x. Increasing by 20% gives 1.2x. Decreasing this by 20% gives 1.2x * 0.8 = 0.96x. Thus, the final number is 96% of the original, which is less than the original number.",
+    "answer": "The final number is less than the original."
+  },
+  {
+    "question": "A right triangle has legs of lengths 6 cm and 8 cm. How long is the hypotenuse?",
+    "reasoning": "Using the Pythagorean theorem, hypotenuse\u00b2 = leg\u2081\u00b2 + leg\u2082\u00b2. Thus: hypotenuse\u00b2 = 6\u00b2 + 8\u00b2 = 36 + 64 = 100. Taking the square root gives hypotenuse = \u221a100 = 10 cm.",
+    "answer": "10 cm"
+  },
+  {
+    "question": "A boat travels downstream for 2 hours at a speed of 12 km/h and then returns upstream at a speed of 8 km/h. What is the total distance traveled by the boat?",
+    "reasoning": "First, calculate the distance traveled downstream: Distance = Speed \u00d7 Time = 12 km/h \u00d7 2 h = 24 km. Then calculate the time taken to return upstream: Time = Distance / Speed = 24 km / 8 km/h = 3 h. Total distance is 24 km (downstream) + 24 km (upstream) = 48 km.",
+    "answer": "48 km"
+  },
+  {
+    "question": "In a right triangle, the length of one leg is 4 cm, and the hypotenuse is 10 cm. What is the length of the other leg?",
+    "reasoning": "Use the Pythagorean theorem: a\u00b2 + b\u00b2 = c\u00b2, where a and b are the legs and c is the hypotenuse. Here, a = 4 cm and c = 10 cm. Thus, b\u00b2 = 10\u00b2 - 4\u00b2 = 100 - 16 = 84. Therefore, b = \u221a84 = 2\u221a21 cm.",
+    "answer": "2\u221a21 cm"
+  },
+  {
+    "question": "If a car's price decreases by 15% during a sale and the sale price becomes $17,000, what was the original price of the car?",
+    "reasoning": "Let the original price be P. The equation after the discount is P - 0.15P = 17000, which simplifies to 0.85P = 17000. Dividing both sides by 0.85 gives P = 17000 / 0.85 = $20,000.",
+    "answer": "$20,000"
+  },
+  {
+    "question": "A rectangle has a perimeter of 50 cm, and the length is 5 cm more than twice the width. What are the dimensions of the rectangle?",
+    "reasoning": "Let the width be w cm. Therefore, the length is 2w + 5 cm. The perimeter P = 2(length + width) = 50 cm translates to 2((2w + 5) + w) = 50. Simplifying gives 2(3w + 5) = 50, leading to 3w + 5 = 25. Hence, 3w = 20, so w = 20/3 cm and length = 2(20/3) + 5 = 25/3 cm.",
+    "answer": "Width: 20/3 cm, Length: 25/3 cm"
+  },
+  {
+    "question": "Find the area of a trapezoid with bases of lengths 10 cm and 6 cm, and a height of 4 cm.",
+    "reasoning": "The area A of a trapezoid is given by A = (1/2) \u00d7 (base1 + base2) \u00d7 height. Here, base1 = 10 cm, base2 = 6 cm, and height = 4 cm. Thus, A = (1/2) \u00d7 (10 + 6) \u00d7 4 = (1/2) \u00d7 16 \u00d7 4 = 32 cm\u00b2.",
+    "answer": "32 cm\u00b2"
+  },
+  {
+    "question": "If a recipe calls for 3 cups of flour to make 12 cookies, how many cups of flour are needed to make 30 cookies?",
+    "reasoning": "Set up a ratio: 3 cups flour / 12 cookies = x cups flour / 30 cookies. Cross-multiply to find x: 3 \u00d7 30 = 12x; therefore, 90 = 12x, leading to x = 90 / 12 = 7.5 cups of flour.",
+    "answer": "7.5 cups"
+  },
+  {
+    "question": "A pattern is created by arranging squares, where the number of squares in each row increases by 3 from the previous row. If the first row has 2 squares and there are 4 rows, how many squares are there in total?",
+    "reasoning": "First row has 2 squares. Second row has 2 + 3 = 5 squares. Third row has 5 + 3 = 8 squares. Fourth row has 8 + 3 = 11 squares. Total squares = 2 + 5 + 8 + 11 = 26 squares.",
+    "answer": "26 squares"
+  },
+  {
+    "question": "In a class of 30 students, 40% have taken math, and 50% have taken science. If 10 students have taken both subjects, how many students have taken at least one subject?",
+    "reasoning": "Use the principle of inclusion-exclusion: Total students = (Math) + (Science) - (Both). So, Math = 0.4 \u00d7 30 = 12, Science = 0.5 \u00d7 30 = 15, and Both = 10. Therefore, students taking at least one subject = 12 + 15 - 10 = 17.",
+    "answer": "17 students"
+  },
+  {
+    "question": "A sequence is defined as follows: a_1 = 1, a_2 = 1, and a_n = a_(n-1) + a_(n-2) for n > 2. What is the 10th term of this sequence?",
+    "reasoning": "This is the Fibonacci sequence. By calculating, we get a_3 = 2, a_4 = 3, a_5 = 5, a_6 = 8, a_7 = 13, a_8 = 21, a_9 = 34, a_10 = 55. Thus, the 10th term is 55.",
+    "answer": "55"
+  },
+  {
+    "question": "If the sum of three consecutive integers is 72, what are these integers?",
+    "reasoning": "Let the three consecutive integers be x, x+1, and x+2. The equation is x + (x + 1) + (x + 2) = 72, simplifying to 3x + 3 = 72, so 3x = 69 and x = 23. The integers are 23, 24, and 25.",
+    "answer": "23, 24, 25"
+  },
+  {
+    "question": "A company produces three types of toys in the ratio of 2:3:5. If they produced 100 toys in total, how many of each type were produced?",
+    "reasoning": "The total parts of the ratio is 2 + 3 + 5 = 10. For each type: Type 1 = (2/10) \u00d7 100 = 20, Type 2 = (3/10) \u00d7 100 = 30, Type 3 = (5/10) \u00d7 100 = 50. Therefore, the numbers are 20, 30, and 50.",
+    "answer": "20, 30, 50"
+  },
+  {
+    "question": "If the test scores of five students are 80, 85, 90, 75, and x, and the average score is 82, what is the value of x?",
+    "reasoning": "The average score is calculated as (80 + 85 + 90 + 75 + x) / 5 = 82. Multiply both sides by 5: 80 + 85 + 90 + 75 + x = 410; combined scores thus far are 330. Solving gives x = 410 - 330 = 80.",
+    "answer": "80"
+  },
+  {
+    "question": "If the difference between a number and 12 is 8, what is the number?",
+    "reasoning": "Let the number be x. Set up the equation: x - 12 = 8. Solving gives x = 8 + 12 = 20.",
+    "answer": "20"
+  },
+  {
+    "question": "Two angles of a triangle measure 50 degrees and 60 degrees. What is the measure of the third angle?",
+    "reasoning": "In a triangle, the sum of angles equals 180 degrees. Therefore, the third angle, A, can be calculated as A = 180 - (50 + 60) = 180 - 110 = 70 degrees.",
+    "answer": "70 degrees"
+  },
+  {
+    "question": "A car\u2019s value depreciates at a rate of 12% per year. If the car was initially bought for $25,000, what is its value after 3 years?",
+    "reasoning": "Calculate the value after each year using depreciation: Year 1: $25,000 \u00d7 (1 - 0.12) = $25,000 \u00d7 0.88 = $22,000. Year 2: $22,000 \u00d7 0.88 = $19,360. Year 3: $19,360 \u00d7 0.88 = $17,036.80.",
+    "answer": "$17,036.80"
+  },
+  {
+    "question": "If a cylinder has a radius of 3 cm and a height of 5 cm, what is the volume of the cylinder?",
+    "reasoning": "The volume V of a cylinder is given by the formula V = \u03c0r\u00b2h. Here, r = 3 cm and h = 5 cm. Therefore, V = \u03c0(3)\u00b2(5) = 45\u03c0 cm\u00b3. Approximating \u03c0 as 3.14, V \u2248 141.3 cm\u00b3.",
+    "answer": "141.3 cm\u00b3"
+  },
+  {
+    "question": "A rectangular garden has a length that is 3 meters more than twice its width. If the perimeter of the garden is 30 meters, what are the dimensions of the garden?",
+    "reasoning": "Let the width be w meters; then the length is 2w + 3 meters. The perimeter is given by P = 2(length + width) = 30. Therefore, 2((2w + 3) + w) = 30; simplifying gives (3w + 3) = 15, leading to 3w = 12, and w = 4. Length = 2(4) + 3 = 11. Dimensions are 4 m (width) and 11 m (length).",
+    "answer": "Width: 4 m, Length: 11 m"
+  },
+  {
+    "question": "If a number is first halved and then increased by 10, the result is 30. What is the original number?",
+    "reasoning": "Let the number be x. The equation is (1/2)x + 10 = 30. Subtract 10 from both sides: (1/2)x = 20. Multiplying by 2 gives x = 40.",
+    "answer": "40"
+  },
+  {
+    "question": "A train leaves a station at 60 km/h and another train leaves the same station 30 minutes later traveling at 75 km/h. How far from the station will they meet?",
+    "reasoning": "The first train travels for (t + 0.5) hours, while the second travels for t hours when they meet. Therefore, 60(t + 0.5) = 75t. Expanding gives 60t + 30 = 75t, leading to 15t = 30, thus t = 2. The distance is 60 \u00d7 (2 + 0.5) = 60 \u00d7 2.5 = 150 km.",
+    "answer": "150 km"
+  },
+  {
+    "question": "Find the least common multiple (LCM) of 12, 15, and 20.",
+    "reasoning": "To find the LCM, factor each number: 12 = 2\u00b2 \u00d7 3, 15 = 3 \u00d7 5, 20 = 2\u00b2 \u00d7 5. The LCM takes the highest power of each prime: LCM = 2\u00b2 \u00d7 3 \u00d7 5 = 60.",
+    "answer": "60"
+  },
+  {
+    "question": "A triangle has two sides of lengths 7 cm and 24 cm. What is the range of possible lengths for the third side?",
+    "reasoning": "Using the triangle inequality theorem, the sum of any two sides must be greater than the third. Thus, let the third side be x. The inequalities are: 7 + 24 > x (x < 31) and 7 + x > 24 (x > 17) and 24 + x > 7 (x > -17). Therefore, 17 < x < 31.",
+    "answer": "17 < x < 31"
+  },
+  {
+    "question": "A rectangular prism has a length of 10 cm, a width of 4 cm, and a height of 6 cm. What is the surface area of the prism?",
+    "reasoning": "The surface area A of a rectangular prism is given by A = 2lw + 2lh + 2wh. Substituting l = 10, w = 4, h = 6 gives A = 2(10\u00d74) + 2(10\u00d76) + 2(4\u00d76) = 80 + 120 + 48 = 248 cm\u00b2.",
+    "answer": "248 cm\u00b2"
+  },
+  {
+    "question": "If the ratio of boys to girls in a school is 5:7 and there are 84 girls, how many boys are there?",
+    "reasoning": "Let the number of boys be b. The ratio gives us the equation b/84 = 5/7. To find b, cross-multiply: 7b = 5 \u00d7 84 leads to 7b = 420. Dividing gives b = 420 / 7 = 60 boys.",
+    "answer": "60 boys"
+  },
+  {
+    "question": "A rectangular piece of paper measures 8 cm by 10 cm. If it is folded in half along its length, what is the area of the resultant rectangle?",
+    "reasoning": "Folding in half along the length gives a new length of 8 cm and width of (10/2) = 5 cm. The area A of the new rectangle = length \u00d7 width = 8 \u00d7 5 = 40 cm\u00b2.",
+    "answer": "40 cm\u00b2"
+  },
+  {
+    "question": "An investment of $1,000 earns 7% interest compounded annually. How much money will be in the account after 5 years?",
+    "reasoning": "Use the formula for compound interest: A = P(1 + r/n)^(nt), where P = $1000, r = 0.07, n = 1, t = 5. Thus, A = 1000(1 + 0.07/1)^(1 \u00d7 5) = 1000(1.07)^5 \u2248 $1,402.55.",
+    "answer": "$1,402.55"
+  },
+  {
+    "question": "What is the sum of the interior angles of a hexagon?",
+    "reasoning": "The sum of the interior angles of a polygon is given by the formula (n - 2) \u00d7 180\u00b0, where n is the number of sides. For a hexagon, n = 6, thus sum = (6 - 2) \u00d7 180 = 4 \u00d7 180 = 720\u00b0.",
+    "answer": "720\u00b0"
+  },
+  {
+    "question": "A worker is required to complete a certain task in 40 hours. If he works 8 hours a day, how many days will it take him to complete the task?",
+    "reasoning": "The total work is 40 hours. If he works 8 hours a day, the number of days required is total work / hours per day = 40 / 8 = 5 days.",
+    "answer": "5 days"
+  },
+  {
+    "question": "If the vertices of a right triangle are at (0,0), (4,0), and (4,3), what is the length of the hypotenuse?",
+    "reasoning": "Using the distance formula, find the distance between (0,0) and (4,3): d = \u221a((4-0)\u00b2 + (3-0)\u00b2) = \u221a(16 + 9) = \u221a25 = 5. Hence, the hypotenuse length is 5.",
+    "answer": "5"
+  },
+  {
+    "question": "In a box of 60 balls, 20 are red, 30 are blue, and the rest are green. If a ball is drawn at random, what is the probability that it is green?",
+    "reasoning": "The number of green balls = Total balls - (Red + Blue) = 60 - (20 + 30) = 10. Therefore, the probability P(green) = Number of green balls / Total balls = 10/60 = 1/6.",
+    "answer": "1/6"
+  },
+  {
+    "question": "A student scores 85, 90, and 78 in three exams. What must be the minimum score in the fourth exam to achieve an average of 85?",
+    "reasoning": "To find the minimum score x needed in the fourth exam for an average of 85: (85 + 90 + 78 + x) / 4 \u2265 85. Thus, 253 + x \u2265 340, leading to x \u2265 87.",
+    "answer": "87"
+  },
+  {
+    "question": "The sum of three consecutive even integers is 48. What are the integers?",
+    "reasoning": "Let the integers be x, x + 2, and x + 4. The equation is x + (x + 2) + (x + 4) = 48. This simplifies to 3x + 6 = 48. Thus, 3x = 42, giving x = 14. The integers are 14, 16, and 18.",
+    "answer": "14, 16, 18"
+  },
+  {
+    "question": "If a square has a perimeter of 36 cm, what is the length of one side?",
+    "reasoning": "The perimeter P of a square is given by P = 4s, where s is the side length. Therefore, s = P / 4 = 36 / 4 = 9 cm.",
+    "answer": "9 cm"
+  },
+  {
+    "question": "A right pyramid has a square base with an area of 64 cm\u00b2 and a height of 10 cm. What is the volume of the pyramid?",
+    "reasoning": "The volume V of a pyramid is given by V = (1/3) \u00d7 base area \u00d7 height. Here, V = (1/3) \u00d7 64 \u00d7 10 = (640 / 3) cm\u00b3 \u2248 213.33 cm\u00b3.",
+    "answer": "213.33 cm\u00b3"
+  },
+  {
+    "question": "What is the greatest common divisor (GCD) of 48 and 180?",
+    "reasoning": "To find the GCD, list the prime factors: 48 = 2\u2074 \u00d7 3, 180 = 2\u00b2 \u00d7 3\u00b2 \u00d7 5. The common factors are 2\u00b2 and 3. Thus, GCD = 2\u00b2 \u00d7 3 = 12.",
+    "answer": "12"
+  },
+  {
+    "question": "If you roll two six-sided dice, what is the probability that the sum of the numbers rolled is greater than 8?",
+    "reasoning": "The possible outcomes with sums greater than 8 are (3,6), (4,5), (5,4), (6,3), (4,6), (5,5), (6,4), (6,5), (5,6), (6,6). There are 10 outcomes out of 36 total outcomes, so P(sum > 8) = 10/36 = 5/18.",
+    "answer": "5/18"
+  },
+  {
+    "question": "The lengths of two sides of a triangle are 13 cm and 14 cm. What could be the range of lengths for the third side?",
+    "reasoning": "Using the triangle inequality, the length of the third side s must satisfy s < 13 + 14 = 27 and s > 14 - 13 = 1. Therefore, the range is 1 < s < 27.",
+    "answer": "1 < s < 27"
+  },
+  {
+    "question": "A car travels from City A to City B at a speed of 60 km/h. On return, it travels at a speed of 90 km/h. If the distance between the cities is 180 km, what is the average speed for the entire journey?",
+    "reasoning": "Distance = 180 km; Time for trip to B = 180/60 = 3 hours; Time for return trip = 180/90 = 2 hours. Total distance = 360 km and total time = 5 hours. Average speed = Total distance / Total time = 360/5 = 72 km/h.",
+    "answer": "72 km/h"
+  },
+  {
+    "question": "If the cost of 5 pencils and 3 erasers is $2.40 and the cost of 2 pencils and 1 eraser is $0.92, what is the cost of one pencil and one eraser?",
+    "reasoning": "Let the cost of one pencil be x and one eraser be y. We set up two equations: 5x + 3y = 2.40 (1) and 2x + y = 0.92 (2). Solve (2) for y: y = 0.92 - 2x. Substitute into (1): 5x + 3(0.92 - 2x) = 2.4; solving yields x = 0.40, and from y = 0.92 - 0.80 = 0.12. Therefore, cost of a pencil is $0.40 and eraser is $0.12.",
+    "answer": "$0.40, $0.12"
+  },
+  {
+    "question": "If a right circular cone has a radius of 3 cm and a height of 9 cm, what is its volume?",
+    "reasoning": "The volume V of a cone is given by V = (1/3)\u03c0r\u00b2h. Substituting radius = 3 cm and height = 9 cm: V = (1/3)\u03c0(3)\u00b2(9) = (1/3)\u03c0(9)(9) = 27\u03c0 cm\u00b3. Approximating \u03c0 as 3.14, V \u2248 84.78 cm\u00b3.",
+    "answer": "84.78 cm\u00b3"
+  },
+  {
+    "question": "If 5 workers complete a job in 8 hours, how long will it take for 10 workers to complete the same job?",
+    "reasoning": "The total work is measured in worker-hours: 5 workers \u00d7 8 hours = 40 worker-hours. If we have 10 workers, the time T taken to complete the job is: T = Total work / Number of workers = 40 / 10 = 4 hours.",
+    "answer": "4 hours"
+  },
+  {
+    "question": "Find the area of a circle with a diameter of 10 cm.",
+    "reasoning": "The radius r of the circle is half of the diameter: r = 10 cm / 2 = 5 cm. The area A of a circle is given by A = \u03c0r\u00b2, thus A = \u03c0(5 cm)\u00b2 = 25\u03c0 cm\u00b2. Approximating \u03c0 as 3.14, A \u2248 78.5 cm\u00b2.",
+    "answer": "78.5 cm\u00b2"
+  },
+  {
+    "question": "If the sum of the first n natural numbers is 105, what is the value of n?",
+    "reasoning": "The formula for the sum of the first n natural numbers is S = n(n + 1)/2. Setting it equal to 105 gives n(n + 1)/2 = 105, leading to n(n + 1) = 210. Solving the quadratic equation, n\u00b2 + n - 210 = 0 gives n = 14.",
+    "answer": "14"
+  },
+  {
+    "question": "A container holds 5 liters of liquid, and it can be filled using 0.5 liter bottles. How many bottles are needed to fill the container?",
+    "reasoning": "Divide the total volume of the container by the volume of one bottle: 5 liters / 0.5 liters per bottle = 10 bottles.",
+    "answer": "10 bottles"
+  },
+  {
+    "question": "What is the probability of drawing a queen from a standard deck of cards?",
+    "reasoning": "There are 4 queens in a standard deck of 52 cards. Therefore, the probability P = Number of favorable outcomes / Total outcomes = 4 / 52 = 1 / 13.",
+    "answer": "1/13"
+  },
+  {
+    "question": "If each angle of a regular polygon is 120 degrees, how many sides does the polygon have?",
+    "reasoning": "The formula for the measure of each interior angle of a regular polygon with n sides is (n-2) \u00d7 180/n = 120. Rearranging gives n = (n - 2) \u00d7 180 / 120. Solving leads to n = 6, thus the polygon is a hexagon.",
+    "answer": "6 sides"
+  },
+  {
+    "question": "A bottle can hold 1.5 liters of liquid. How many gallons does it hold (1 liter = 0.264 gallons)?",
+    "reasoning": "To convert liters to gallons, multiply the volume by the conversion factor of 0.264. Therefore, 1.5 liters \u00d7 0.264 = 0.396 gallons.",
+    "answer": "0.396 gallons"
+  },
+  {
+    "question": "In how many ways can you select 3 fruits from a basket containing 5 different types of fruits?",
+    "reasoning": "To find the number of combinations, use the formula for combinations: C(n, r) = n! / (r! \u00d7 (n - r)!). Here, n = 5 and r = 3. So, C(5, 3) = 5! / (3! \u00d7 2!) = (5 \u00d7 4) / (2 \u00d7 1) = 10.",
+    "answer": "10 ways"
+  },
+  {
+    "question": "What is the median of the following set of numbers: 2, 5, 7, 8, and 10?",
+    "reasoning": "To find the median, first, order the numbers (they are already ordered): 2, 5, 7, 8, 10. Since there are 5 numbers (odd), the median is the middle number, which is 7.",
+    "answer": "7"
+  },
+  {
+    "question": "A rectangular garden measures 12 m by 15 m. If it is surrounded by a path of width 2 m, what is the area of the path?",
+    "reasoning": "The area of the garden is 12 m \u00d7 15 m = 180 m\u00b2. The dimensions of the garden plus the path are (12+2+2) m and (15+2+2) m, so 16 m by 19 m. The total area is 16 \u00d7 19 = 304 m\u00b2. The area of the path is the total area minus the area of the garden: 304 m\u00b2 - 180 m\u00b2 = 124 m\u00b2.",
+    "answer": "124 m\u00b2"
+  },
+  {
+    "question": "If the factorial of a number n is equal to 720, what is the value of n?",
+    "reasoning": "Calculate the factorials of numbers until reaching 720: 6! = 720. Therefore, n = 6.",
+    "answer": "6"
+  },
+  {
+    "question": "The sum of a number and its double is 33. What is the number?",
+    "reasoning": "Let the number be x. The equation is x + 2x = 33, simplifying to 3x = 33. Thus, x = 11.",
+    "answer": "11"
+  },
+  {
+    "question": "An investment of $1,200 earns an annual interest rate of 6% compounded quarterly. How much will the investment be worth after 2 years?",
+    "reasoning": "Using the compound interest formula A = P(1 + r/n)^(nt), where P = 1200, r = 0.06, n = 4, and t = 2: A = 1200(1 + 0.06/4)^(4 \u00d7 2) = 1200(1 + 0.015)^(8) = 1200(1.015)^(8) \u2248 1200 \u00d7 1.126 = 1,351.20.",
+    "answer": "$1,351.20"
+  },
+  {
+    "question": "Five times a number decreased by 4 is equal to 21. What is the number?",
+    "reasoning": "Let the number be x. The equation is 5x - 4 = 21. Adding 4 to both sides gives 5x = 25. Dividing by 5 gives x = 5.",
+    "answer": "5"
+  },
+  {
+    "question": "How many different permutations can be formed from the letters of the word 'MATH'?",
+    "reasoning": "The number of permutations of n distinct objects is given by n!. Here, n = 4, thus the number of permutations = 4! = 24.",
+    "answer": "24"
+  },
+  {
+    "question": "The lengths of the sides of a triangle are 7 cm, 8 cm, and 9 cm. What is the semi-perimeter of the triangle?",
+    "reasoning": "The semi-perimeter s is given by s = (side1 + side2 + side3) / 2. Thus, s = (7 + 8 + 9) / 2 = 24 / 2 = 12 cm.",
+    "answer": "12 cm"
+  },
+  {
+    "question": "A triangle has a base of 10 cm and a height of 6 cm. Calculate its area.",
+    "reasoning": "The area A of a triangle is given by A = (1/2) \u00d7 base \u00d7 height. Here, A = (1/2) \u00d7 10 cm \u00d7 6 cm = 30 cm\u00b2.",
+    "answer": "30 cm\u00b2"
+  },
+  {
+    "question": "If the cost of 3 kg of apples is $6.30, what is the cost per kg?",
+    "reasoning": "To find the cost per kg, divide the total cost by the quantity: $6.30 / 3 kg = $2.10 per kg.",
+    "answer": "$2.10"
+  },
+  {
+    "question": "A cylinder has a volume of 100 cm\u00b3 and a height of 10 cm. What is the radius of the base?",
+    "reasoning": "The volume V of a cylinder is V = \u03c0r\u00b2h. Rearranging, we find r\u00b2 = V / (\u03c0h). Substituting gives r\u00b2 = 100 / (\u03c0 \u00d7 10) = 10/\u03c0. Thus, r = \u221a(10/\u03c0) \u2248 1.79 cm.",
+    "answer": "1.79 cm"
+  },
+  {
+    "question": "If 10% of a number is 25, what is the number?",
+    "reasoning": "Let the number be x. The equation is 0.10x = 25. Dividing each side by 0.10 gives x = 25 / 0.10 = 250.",
+    "answer": "250"
+  },
+  {
+    "question": "A manufacturer produces two types of gadgets. Gadget A costs $50 to make, and Gadget B costs $80. If the total production cost for 120 gadgets is $7,200, how many of each type of gadget was made?",
+    "reasoning": "Let x be the number of Gadget A and y be Gadget B. We have two equations: x + y = 120 (total gadgets) and 50x + 80y = 7200 (total cost). Solving the first equation for y gives y = 120 - x. Substituting this into the second equation results in 50x + 80(120 - x) = 7200. Simplifying this gives 50x + 9600 - 80x = 7200, which leads to -30x = -2400, thus x = 80. Substituting back, y = 120 - 80 = 40. Therefore, 80 Gadget A and 40 Gadget B were produced.",
+    "answer": "80 Gadget A and 40 Gadget B"
+  },
+  {
+    "question": "If a sequence is defined by the recursive formula a_n = 2a_{n-1} + 3 with a_1 = 4, what is the value of a_5?",
+    "reasoning": "To find a_5, we first calculate a_2, a_3, and a_4. Starting with a_1 = 4, a_2 = 2(4) + 3 = 8 + 3 = 11. Next, a_3 = 2(11) + 3 = 22 + 3 = 25. Then, a_4 = 2(25) + 3 = 50 + 3 = 53. Finally, a_5 = 2(53) + 3 = 106 + 3 = 109. So, a_5 = 109.",
+    "answer": "109"
+  },
+  {
+    "question": "A cylinder has a volume of 100\u03c0 cubic centimeters. If its height is 10 cm, what is the radius of the cylinder?",
+    "reasoning": "Using the formula for the volume of a cylinder, V = \u03c0r^2h, we can substitute the values we know: 100\u03c0 = \u03c0r^2(10). Dividing both sides by \u03c0 gives 100 = 10r^2. Then, dividing by 10 gives 10 = r^2. Taking the square root of both sides results in r = \u221a10, which simplifies to approximately 3.16 cm.",
+    "answer": "\u2248 3.16 cm"
+  },
+  {
+    "question": "An investment of $1,000 is made at an interest rate of 6% per annum, compounded quarterly. What will the amount be after 5 years?",
+    "reasoning": "Using the formula for compound interest A = P(1 + r/n)^(nt), where P = 1000, r = 0.06, n = 4 (quarterly), and t = 5. We first calculate the interest: A = 1000(1 + 0.06/4)^(4*5) = 1000(1 + 0.015)^(20) = 1000(1.015)^(20). Now, calculating (1.015)^20 gives approximately 1.346855007. Thus, A = 1000 * 1.346855007 \u2248 1346.86.",
+    "answer": "\u2248 $1,346.86"
+  },
+  {
+    "question": "A rectangle's length is twice its width. If the perimeter of the rectangle is 40 cm, what are its dimensions?",
+    "reasoning": "Let w be the width. Then, length l = 2w. Using the perimeter formula, P = 2(l + w), we have 40 = 2(2w + w). Therefore, 40 = 2(3w) leads to 40 = 6w. Dividing by 6 gives w = 40/6 = 6.67 cm. Consequently, the length is 2w = 2 * 6.67 = 13.33 cm.",
+    "answer": "Width = 6.67 cm, Length = 13.33 cm"
+  },
+  {
+    "question": "In a triangle where one angle measures 60 degrees and the adjacent side to this angle is 5 cm long, find the length of the opposite side.",
+    "reasoning": "Using the tangent function for the angle \u03b8, we have tan(60\u00b0) = opposite/adjacent. Thus, opposite = adjacent * tan(60\u00b0). The value of tan(60\u00b0) is \u221a3. Therefore, opposite = 5 * \u221a3 cm, which is approximately 8.66 cm.",
+    "answer": "\u2248 8.66 cm"
+  },
+  {
+    "question": "If an airline offers a flight path with a distance of 500 miles to a destination at an average speed of 250 miles per hour, how long will the flight take?",
+    "reasoning": "Using the formula time = distance/speed, we substitute the known values: time = 500 miles / 250 miles per hour = 2 hours. Hence, the flight will take 2 hours.",
+    "answer": "2 hours"
+  },
+  {
+    "question": "A rectangular garden is 4 meters longer than it is wide. If the area of the garden is 96 m\u00b2, what are the dimensions of the garden?",
+    "reasoning": "Let w be the width. Then length l = w + 4. The area is given by A = length * width. Thus, 96 = w(w + 4). Expanding this gives us the quadratic equation w\u00b2 + 4w - 96 = 0. Using the quadratic formula w = [-b \u00b1 sqrt(b\u00b2 - 4ac)] / 2a, we find w = [-4 \u00b1 \u221a(16 + 384)] / 2 = [\u22124 \u00b1 20] / 2, giving w = 8 (only positive width matters). Therefore, length = 12 m. Dimensions: 8 m by 12 m.",
+    "answer": "Width = 8 m, Length = 12 m"
+  },
+  {
+    "question": "A car travels 240 miles in 4 hours and then another 180 miles in 3 hours. What is the overall average speed of the car for the entire trip?",
+    "reasoning": "Total distance = 240 miles + 180 miles = 420 miles. Total time = 4 hours + 3 hours = 7 hours. Average speed = total distance / total time = 420 miles / 7 hours = 60 miles per hour.",
+    "answer": "60 miles per hour"
+  },
+  {
+    "question": "In a sequence where a_1 = 1, a_2 = 2, and a_n = a_{n-1} + a_{n-2} for n > 2, what is the value of a_6?",
+    "reasoning": "Calculating the terms step-by-step: a_3 = 3 (1+2), a_4 = 5 (2+3), a_5 = 8 (3+5), and a_6 = 13 (5+8). Therefore, a_6 = 13.",
+    "answer": "13"
+  },
+  {
+    "question": "A train leaves a station and travels east at 60 mph for 2 hours, then turns around and travels west at 90 mph for 1 hour. What is the distance from the starting point when it stops?",
+    "reasoning": "In the first part, the train travels 60 mph * 2 hours = 120 miles east. In the second part, it travels west for 90 mph * 1 hour = 90 miles. So the train is at 120 - 90 = 30 miles east from the starting point.",
+    "answer": "30 miles east"
+  },
+  {
+    "question": "A triangle has sides of lengths 7 cm, 24 cm, and 25 cm. Is this triangle a right triangle?",
+    "reasoning": "To determine if it is a right triangle, we apply the Pythagorean theorem: a\u00b2 + b\u00b2 = c\u00b2. Here, 7\u00b2 + 24\u00b2 should equal 25\u00b2. Calculating, 49 + 576 = 625, which indeed equals 625. Therefore, it is a right triangle.",
+    "answer": "Yes, it is a right triangle."
+  },
+  {
+    "question": "If you roll two dice, what is the probability of rolling a sum of 8?",
+    "reasoning": "To find this probability, calculate how many ways there are to roll a sum of 8. There are 5 pairs: (2,6), (3,5), (4,4), (5,3), (6,2). The total number of outcomes when rolling two dice is 6 * 6 = 36. Thus, the probability = 5/36.",
+    "answer": "5/36"
+  },
+  {
+    "question": "A box contains 12 balls, of which 7 are white and 5 are black. If two balls are drawn at random without replacement, what is the probability that at least one is black?",
+    "reasoning": "To find this, first calculate the total probability of drawing no black balls: P(no black) = (7/12) * (6/11) = 42/132. The probability of at least one black ball = 1 - P(no black) = 1 - 42/132 = 90/132 = 15/22.",
+    "answer": "15/22"
+  },
+  {
+    "question": "A person is standing on the edge of a circular park with a radius of 50m. If they walk along the circumference for a distance of 31.4m, what angle in degrees have they subtended at the center of the park?",
+    "reasoning": "To find the angle, use the arc length formula s = r\u03b8 (r in meters, \u03b8 in radians). Here, 31.4 = 50\u03b8. Therefore, \u03b8 = 31.4/50 = 0.628 radians. Converting to degrees: \u03b8 = 0.628 * (180/\u03c0) = 36 degrees approximately.",
+    "answer": "36 degrees"
+  },
+  {
+    "question": "A function is defined as f(x) = 2x^2 - 3x + 5. What is the value of f(4)?",
+    "reasoning": "To find f(4), substitute x = 4 into the function: f(4) = 2(4^2) - 3(4) + 5 = 2(16) - 12 + 5 = 32 - 12 + 5 = 25.",
+    "answer": "25"
+  },
+  {
+    "question": "If you have a 30% chance of winning a game, what is the probability of losing the game twice in a row?",
+    "reasoning": "The probability of not winning (losing) in one game is 1 - 0.30 = 0.70. The probability of losing twice in a row = 0.70 * 0.70 = 0.49.",
+    "answer": "0.49"
+  },
+  {
+    "question": "A pizza has a diameter of 12 inches. If you want to cut the pizza into 8 equal slices, what is the angle of each slice?",
+    "reasoning": "The total angle in a circle is 360 degrees. To find the angle of each slice, divide the total angle by the number of slices: 360 degrees / 8 slices = 45 degrees per slice.",
+    "answer": "45 degrees"
+  },
+  {
+    "question": "A 50-liter tank is filled with water at the rate of 2 liters per minute. If water is simultaneously drained from the tank at the rate of 1 liter per minute, how long will it take to fill the tank?",
+    "reasoning": "The net rate of water being added to the tank is 2 liters/min - 1 liter/min = 1 liter/min. Therefore, to fill a 50-liter tank at this rate takes 50 liters / 1 liter/min = 50 minutes.",
+    "answer": "50 minutes"
+  },
+  {
+    "question": "A farmer is planting two types of trees, A and B, in a ratio of 3:2. If he plants a total of 150 trees, how many of each type does he plant?",
+    "reasoning": "Let x be the total ratio parts, x = 3 + 2 = 5. Then, for type A, the number of trees = 150 * (3/5) = 90. For type B, it is 150 * (2/5) = 60. Thus, he plants 90 trees of type A and 60 trees of type B.",
+    "answer": "90 trees of type A and 60 trees of type B"
+  },
+  {
+    "question": "If you have a rectangular piece of paper measuring 8 inches by 11 inches, and you cut out a square of side length 4 inches from one corner, what is the area of the remaining paper?",
+    "reasoning": "First, calculate the area of the original rectangle: 8 inches * 11 inches = 88 square inches. The area of the square cutout is 4 inches * 4 inches = 16 square inches. Thus, the remaining area = 88 - 16 = 72 square inches.",
+    "answer": "72 square inches"
+  },
+  {
+    "question": "A cyclist travels 30 km in 1 hour and then 45 km in 1.5 hours. What is the average speed of the cyclist for the entire trip?",
+    "reasoning": "Total distance = 30 km + 45 km = 75 km. Total time = 1 hour + 1.5 hours = 2.5 hours. Average speed = total distance / total time = 75 km / 2.5 hours = 30 km/h.",
+    "answer": "30 km/h"
+  },
+  {
+    "question": "If a function f(x) is defined as f(x) = 3x - 4, find the roots of the function.",
+    "reasoning": "To find the roots, set f(x) = 0: 0 = 3x - 4. Solving for x gives 3x = 4, leading to x = 4/3. Hence, the root is x = 1.33.",
+    "answer": "1.33"
+  },
+  {
+    "question": "In a statistics class, the average score of the students is 75 with a standard deviation of 10. What percentage of students scored between 65 and 85 if the scores are normally distributed?",
+    "reasoning": "Using the z-scores: z1 = (65-75)/10 = -1 and z2 = (85-75)/10 = 1. Consulting the standard normal distribution table, the area between z = -1 and z = 1 is approximately 68%. Thus, about 68% of the students scored between 65 and 85.",
+    "answer": "68%"
+  },
+  {
+    "question": "A ladder 10 feet long leans against a wall. If the base of the ladder is placed 6 feet away from the wall, how high up the wall does the ladder reach?",
+    "reasoning": "Using the Pythagorean theorem: a\u00b2 + b\u00b2 = c\u00b2, where a is the height up the wall and b is the distance from the wall, and c is the length of the ladder. Here, a\u00b2 + 6\u00b2 = 10\u00b2, leading to a\u00b2 + 36 = 100, thus a\u00b2 = 64. Taking the square root, we find a = 8 feet.",
+    "answer": "8 feet"
+  },
+  {
+    "question": "A car's value depreciates by 15% each year. If the car was initially valued at $20,000, what will it be worth at the end of 3 years?",
+    "reasoning": "Using the formula for depreciation: V = P(1 - r)^t, where P = $20,000, r = 0.15, and t = 3. Therefore, V = 20000(1 - 0.15)^3 = 20000(0.85)^3. Calculating, V \u2248 20000 * 0.614125 \u2248 12282.5.",
+    "answer": "\u2248 $12,282.50"
+  },
+  {
+    "question": "If a home is sold for $250,000 and the real estate commission is 6%, how much is the commission?",
+    "reasoning": "The commission can be calculated using the formula: commission = sale price * rate. Here, it becomes 250,000 * 0.06 = 15,000. Therefore, the commission is $15,000.",
+    "answer": "$15,000"
+  },
+  {
+    "question": "A baseball diamond is a square with 90 feet on each side. What is the distance from home plate to second base?",
+    "reasoning": "Using the Pythagorean theorem on the square, the distance from home to second base (the diagonal) is calculated as d = \u221a(90\u00b2 + 90\u00b2) = \u221a(8100 + 8100) = \u221a16200. Thus, d \u2248 127.28 feet.",
+    "answer": "\u2248 127.28 feet"
+  },
+  {
+    "question": "In a lottery, you can choose 6 numbers from a set of 49. How many different combinations of numbers can you choose?",
+    "reasoning": "The number of combinations is given by C(n, k) = n! / [k!(n-k)!]. Therefore, C(49, 6) = 49! / (6! * 43!) = (49 * 48 * 47 * 46 * 45 * 44) / (6 * 5 * 4 * 3 * 2 * 1). Calculating this gives 13,983,816 possible combinations.",
+    "answer": "13,983,816"
+  },
+  {
+    "question": "If 5x + 3 = 2(x + 4), what is the value of x?",
+    "reasoning": "First, expand the right side: 5x + 3 = 2x + 8. Next, isolate x: 5x - 2x = 8 - 3 leads to 3x = 5. Thus, x = 5/3.",
+    "answer": "5/3"
+  },
+  {
+    "question": "A piece of wire 300 inches long is cut into two pieces. One piece is x inches long, and the other piece is (300 - x) inches long. If the lengths of both pieces must be greater than 60 inches, what are the values of x?",
+    "reasoning": "To satisfy the condition for both pieces, we must have x > 60 and (300 - x) > 60. Starting with x > 60, for the second inequality we obtain x < 240 (after rearranging 300 - x > 60). Therefore, the solution for x must be 60 < x < 240.",
+    "answer": "60 < x < 240"
+  },
+  {
+    "question": "The ratio of the ages of two siblings is 4:5. If the younger sibling is 8 years old, how old is the older sibling?",
+    "reasoning": "Let the age of the younger sibling be 4x and the older sibling be 5x. If the younger sibling is 8, then 4x = 8 implies x = 2. Therefore, the older sibling's age is 5x = 5(2) = 10 years.",
+    "answer": "10 years"
+  },
+  {
+    "question": "Two numbers have an average of 50 and a difference of 20. What are the two numbers?",
+    "reasoning": "Let's call the two numbers x and y. From the average, we have (x + y)/2 = 50, giving x + y = 100. From the difference, we know x - y = 20. Solving these two equations, we add: 2x = 120, thus x = 60. Subtract: y = 100 - 60 = 40. The two numbers are 60 and 40.",
+    "answer": "60 and 40"
+  },
+  {
+    "question": "If a store sells a shirt for $30 after a 25% discount, what was the original price of the shirt?",
+    "reasoning": "Let the original price be x. The price after discount is x - 0.25x = 0.75x. Setting this equal to the sale price gives 0.75x = 30. Therefore, x = 30/0.75 = 40.",
+    "answer": "$40"
+  },
+  {
+    "question": "A school is organizing a field trip for 240 students, and each bus can hold 48 students. How many buses are needed?",
+    "reasoning": "To determine the number of buses required, we divide the number of students by the bus capacity: 240 students / 48 students per bus = 5. Thus, 5 buses are required.",
+    "answer": "5 buses"
+  },
+  {
+    "question": "In a classroom, the ratio of boys to girls is 3:5. If there are 24 girls, how many boys are there?",
+    "reasoning": "Let b be the number of boys. The ratio gives us the equation b/24 = 3/5. Cross multiplying produces 5b = 72, leading to b = 72/5 = 15. So, there are 15 boys.",
+    "answer": "15 boys"
+  },
+  {
+    "question": "A rectangular garden has a length that is 4 meters longer than its width. If the perimeter of the garden is 40 meters, what are the dimensions of the garden?",
+    "reasoning": "Let the width be x meters. Therefore, the length is x + 4 meters. The formula for the perimeter is P = 2(length + width). Thus, we have the equation 40 = 2((x + 4) + x). Simplifying gives us 40 = 2(2x + 4), which leads to 20 = 2x + 4. From here, we can isolate x by subtracting 4 from both sides, yielding 16 = 2x. Dividing by 2 gives us x = 8 (width). The length, therefore, is 12 (8 + 4).",
+    "answer": "Width: 8 meters, Length: 12 meters"
+  },
+  {
+    "question": "In a class of 30 students, the ratio of boys to girls is 2:3. If 5 girls join the class, what is the new ratio of boys to girls?",
+    "reasoning": "Initially, the ratio of boys to girls is 2:3, totaling 5 parts (2 + 3). Therefore, the number of boys is (2/5) * 30 = 12, and the number of girls is (3/5) * 30 = 18. After adding 5 girls, the total number of girls becomes 18 + 5 = 23. The number of boys remains 12. The new ratio is 12:23.",
+    "answer": "12:23"
+  },
+  {
+    "question": "If a sequence is defined as a_n = a_(n-1) + 3n for n \u2265 1, with a_0 = 1, what is the value of a_5?",
+    "reasoning": "We start with a_0 = 1. To find a_5, we apply the recursive formula: a_1 = a_0 + 3*1 = 1 + 3 = 4. Next, a_2 = a_1 + 3*2 = 4 + 6 = 10. Then, a_3 = a_2 + 3*3 = 10 + 9 = 19. After that, a_4 = a_3 + 3*4 = 19 + 12 = 31. Finally, a_5 = a_4 + 3*5 = 31 + 15 = 46.",
+    "answer": "46"
+  },
+  {
+    "question": "A chemist mixes two solutions with concentrations of 30% and 70%, respectively. If she wants to prepare 200 ml of a solution that has a concentration of 50%, how much of each solution should she use?",
+    "reasoning": "Let x ml be the amount of the 30% solution and (200 - x) ml be the amount of the 70% solution. The concentration equation is 0.3x + 0.7(200 - x) = 0.5 * 200. Expanding gives 0.3x + 140 - 0.7x = 100. Simplifying, we have -0.4x + 140 = 100 \u21d2 -0.4x = -40 \u21d2 x = 100. Thus, 100 ml of the 30% solution and (200 - 100) = 100 ml of the 70% solution.",
+    "answer": "100 ml of 30% solution and 100 ml of 70% solution"
+  },
+  {
+    "question": "A triangle has sides of lengths 7 cm, 24 cm, and 25 cm. Determine if this triangle is a right triangle.",
+    "reasoning": "To verify if the triangle is a right triangle, we can apply the Pythagorean theorem (a^2 + b^2 = c^2). Here, we assume 25 cm is the longest side (hypotenuse). Calculating: 7^2 + 24^2 = 49 + 576 = 625. Then, check 25^2 = 625. Since both are equal, by the Pythagorean theorem, this confirms it is a right triangle.",
+    "answer": "Yes, it is a right triangle."
+  },
+  {
+    "question": "If a car travels at a speed of 60 mph for the first 2 hours and then at 45 mph for the next 3 hours, what is the average speed of the car for the entire trip?",
+    "reasoning": "First, calculate the total distance traveled during each segment of the trip: Distance 1 = Speed \u00d7 Time = 60 mph \u00d7 2 hours = 120 miles. Distance 2 = 45 mph \u00d7 3 hours = 135 miles. Next, add the distances to get total distance: 120 miles + 135 miles = 255 miles. The total time is 2 + 3 = 5 hours. Average speed = Total distance / Total time = 255 miles / 5 hours = 51 mph.",
+    "answer": "51 mph"
+  },
+  {
+    "question": "Find the roots of the quadratic equation 2x^2 - 4x - 6 = 0 using the quadratic formula.",
+    "reasoning": "Use the quadratic formula x = (-b \u00b1 \u221a(b\u00b2 - 4ac)) / 2a, where a = 2, b = -4, c = -6. First, calculate the discriminant: b\u00b2 - 4ac = (-4)\u00b2 - 4(2)(-6) = 16 + 48 = 64. Next, substitute into the formula: x = (4 \u00b1 \u221a64) / (4) = (4 \u00b1 8) / 4 gives solutions: x = 3 or x = -1.",
+    "answer": "3, -1"
+  },
+  {
+    "question": "A cylindrical tank has a radius of 5 meters and a height of 10 meters. What is the volume of the tank in cubic meters?",
+    "reasoning": "The formula for the volume of a cylinder is V = \u03c0r\u00b2h, where r is the radius and h is the height. Substituting the values, V = \u03c0(5)\u00b2(10) = \u03c0(25)(10) = 250\u03c0. Approximating \u03c0 as 3.14 gives V \u2248 785 cubic meters.",
+    "answer": "785"
+  },
+  {
+    "question": "If a sequence is defined as a_n = 2a_(n-1) + 1 for n \u2265 1, with a_0 = 3, what is the value of a_4?",
+    "reasoning": "Calculate a_1 = 2(3) + 1 = 7. Then a_2 = 2(7) + 1 = 15. Next, a_3 = 2(15) + 1 = 31. Finally, a_4 = 2(31) + 1 = 63.",
+    "answer": "63"
+  },
+  {
+    "question": "A triangle has vertices at (0, 0), (4, 0), and (4, 3). What is the area of the triangle?",
+    "reasoning": "First, recognize the base of the triangle (length 4) and height (3). Use the area formula for a triangle: Area = (1/2) \u00d7 base \u00d7 height = (1/2) \u00d7 4 \u00d7 3 = 6 square units.",
+    "answer": "6"
+  },
+  {
+    "question": "If a population of bacteria doubles every 3 hours, how many bacteria will there be after 12 hours if the initial population is 500?",
+    "reasoning": "Determine the number of doubling periods in 12 hours: 12 hours / 3 hours = 4 periods. The population growth can be calculated using P = P0 \u00d7 2^n, where P0 is the initial population and n is the number of doubling periods. Thus, P = 500 \u00d7 2^4 = 500 \u00d7 16 = 8000.",
+    "answer": "8000"
+  },
+  {
+    "question": "A rectangle's length is three times its width. If the perimeter of the rectangle is 48 meters, what are the dimensions of the rectangle?",
+    "reasoning": "Let the width be w meters. Then, length = 3w. The perimeter P = 2(length + width) = 2(3w + w) = 2(4w) = 8w. Setting this equal to 48, we get 8w = 48, so w = 6 meters. Therefore, the length is 3 \u00d7 6 = 18 meters.",
+    "answer": "Width: 6 meters, Length: 18 meters"
+  },
+  {
+    "question": "In an arithmetic series, the first term is 5 and the last term is 45. If the total number of terms is 10, what is the sum of the series?",
+    "reasoning": "The sum of an arithmetic series is given by S_n = n/2 \u00d7 (a_1 + a_n), where n = number of terms, a_1 = first term, and a_n = last term. Here, n = 10, a_1 = 5, a_n = 45. Thus, S = 10/2 \u00d7 (5 + 45) = 5 \u00d7 50 = 250.",
+    "answer": "250"
+  },
+  {
+    "question": "A square has an area of 100 square meters. What is the length of each side?",
+    "reasoning": "The area of a square A is given by A = side\u00b2. To find the side length, take the square root of the area: side = \u221a100 = 10 meters.",
+    "answer": "10 meters"
+  },
+  {
+    "question": "A train travels from station A to B at 80 km/h and returns at 120 km/h. What is the average speed for the round trip?",
+    "reasoning": "Let the distance between A and B be d km. The time taken to travel to B is d/80 hours, and the time to return is d/120 hours. Total distance for round trip = 2d. Total time = d/80 + d/120 = (3d + 2d) / 240 = 5d / 240 = d / 48 hours. Average speed = Total distance / Total time = 2d / (d / 48) = 96 km/h.",
+    "answer": "96 km/h"
+  },
+  {
+    "question": "If the internal angles of a triangle are in the ratio 2:3:5, what are the measures of the angles?",
+    "reasoning": "Let the common ratio be x. Then the angles can be expressed as 2x, 3x, and 5x. The sum of angles in a triangle is 180 degrees. Therefore, 2x + 3x + 5x = 180, leading to 10x = 180; hence x = 18. The angles are 36, 54, and 90 degrees.",
+    "answer": "36\u00b0, 54\u00b0, 90\u00b0"
+  },
+  {
+    "question": "A right circular cone has a base radius of 4 cm and a height of 9 cm. Calculate the volume.",
+    "reasoning": "The volume V of a cone is given by V = (1/3)\u03c0r\u00b2h. Here, r = 4 cm and h = 9 cm. Thus, V = (1/3)\u03c0(4\u00b2)(9) = (1/3)\u03c0(16)(9) = 48\u03c0 cm\u00b3. Approximating \u03c0 as 3.14 gives V \u2248 150.72 cm\u00b3.",
+    "answer": "150.72 cm\u00b3"
+  },
+  {
+    "question": "Solve the following system of equations: 2x + 3y = 12 and x - 2y = -1.",
+    "reasoning": "First, solve the second equation for x to get x = 2y - 1. Substitute x in the first equation: 2(2y - 1) + 3y = 12 \u2192 4y - 2 + 3y = 12 \u2192 7y = 14 \u2192 y = 2. Substitute y back to find x: x = 2(2) - 1 = 3.",
+    "answer": "x = 3, y = 2"
+  },
+  {
+    "question": "A box contains 3 red, 4 blue, and 5 green marbles. If one marble is drawn at random, what is the probability that it is either red or blue?",
+    "reasoning": "Calculate the total number of marbles: 3 + 4 + 5 = 12. The number of favorable outcomes (red or blue) is 3 + 4 = 7. The probability P = Number of favorable outcomes / Total outcomes = 7 / 12.",
+    "answer": "7/12"
+  },
+  {
+    "question": "If an angle is increased by 20 degrees, the new angle measures 70 degrees. What was the measure of the original angle?",
+    "reasoning": "Let the original angle be x degrees. The equation formed is x + 20 = 70. Solving for x gives x = 70 - 20 = 50 degrees.",
+    "answer": "50 degrees"
+  },
+  {
+    "question": "The price of a shirt is reduced from $60 to $45. What is the percentage decrease in the price?",
+    "reasoning": "The decrease in price is $60 - $45 = $15. The percentage decrease is given by (Decrease / Original Price) \u00d7 100 = ($15 / $60) \u00d7 100 = 25%.",
+    "answer": "25%"
+  },
+  {
+    "question": "A polygon has 10 sides. How many diagonals can be drawn in this polygon?",
+    "reasoning": "The formula for the number of diagonals in a polygon with n sides is n(n-3)/2. For a 10-sided polygon, substituting gives 10(10-3)/2 = 10(7)/2 = 35.",
+    "answer": "35"
+  },
+  {
+    "question": "A car depreciates at a rate of 15% annually. If it is worth $20,000 now, what will be its value after 2 years?",
+    "reasoning": "After the first year: Value = $20,000 - 0.15 \u00d7 $20,000 = $20,000 \u00d7 0.85 = $17,000. After the second year: Value = $17,000 - 0.15 \u00d7 $17,000 = $17,000 \u00d7 0.85 = $14,450.",
+    "answer": "$14,450"
+  },
+  {
+    "question": "In a dice roll, what is the probability of rolling a sum of 7 with two dice?",
+    "reasoning": "Calculate favorable outcomes for a sum of 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) = 6 outcomes. The total outcomes when rolling two dice is 6 \u00d7 6 = 36. Probability = 6/36 = 1/6.",
+    "answer": "1/6"
+  },
+  {
+    "question": "A rectangular prism has dimensions of 4 cm by 5 cm by 6 cm. What is the surface area of the prism?",
+    "reasoning": "Surface area S = 2(lw + lh + wh) where l=4, w=5, h=6: S = 2(4\u00d75 + 4\u00d76 + 5\u00d76) = 2(20 + 24 + 30) = 2(74) = 148 cm\u00b2.",
+    "answer": "148 cm\u00b2"
+  },
+  {
+    "question": "Calculate the compound interest on an investment of $1,000 at an annual interest rate of 5% compounded quarterly for 2 years.",
+    "reasoning": "Use A = P(1 + r/n)^(nt). Here, P = 1000, r = 0.05, n = 4, t = 2. Thus, A = 1000(1 + 0.05/4)^(4\u00d72) = 1000(1 + 0.0125)^(8) = 1000(1.0125^8) = 1000(1.104486) \u2248 1104.49. The compound interest earned is approximately $104.49.",
+    "answer": "$104.49"
+  },
+  {
+    "question": "If the sum of three consecutive integers is 57, what are the integers?",
+    "reasoning": "Let the integers be x, x + 1, and x + 2. The equation becomes x + (x + 1) + (x + 2) = 57. Simplifying gives 3x + 3 = 57, so 3x = 54, leading to x = 18. Thus, the integers are 18, 19, and 20.",
+    "answer": "18, 19, 20"
+  },
+  {
+    "question": "A bag contains 4 red balls, 5 blue balls, and 6 green balls. If one ball is drawn at random, what is the probability that it is not green?",
+    "reasoning": "Total balls = 4 + 5 + 6 = 15. The number of non-green balls = 4 + 5 = 9. Probability = 9 / 15 = 3 / 5.",
+    "answer": "3/5"
+  },
+  {
+    "question": "In the expression 5x\u00b2 - 3x + 2, what is the value of the expression when x = 2?",
+    "reasoning": "Substitute 2 for x: 5(2)\u00b2 - 3(2) + 2 = 5(4) - 6 + 2 = 20 - 6 + 2 = 16.",
+    "answer": "16"
+  },
+  {
+    "question": "If the first angle of a triangle is 40 degrees and the second angle is twice the first angle, what is the measure of the third angle?",
+    "reasoning": "Let the first angle be A = 40 degrees. Then the second angle B = 2A = 80 degrees. The sum of angles in a triangle is 180 degrees, so C = 180 - A - B = 180 - 40 - 80 = 60 degrees.",
+    "answer": "60 degrees"
+  },
+  {
+    "question": "A right triangle has legs measuring 6 cm and 8 cm. What is the length of the hypotenuse?",
+    "reasoning": "Using the Pythagorean theorem, c\u00b2 = a\u00b2 + b\u00b2. Thus, c\u00b2 = 6\u00b2 + 8\u00b2 = 36 + 64 = 100, so c = \u221a100 = 10 cm.",
+    "answer": "10 cm"
+  },
+  {
+    "question": "A company sells a product for $50 and has variable costs of $30 per unit. If they sell 100 units, what is their profit?",
+    "reasoning": "Total revenue from selling 100 units = 100 \u00d7 $50 = $5000. Total variable costs = 100 \u00d7 $30 = $3000. Profit = Total Revenue - Total Costs = $5000 - $3000 = $2000.",
+    "answer": "$2000"
+  },
+  {
+    "question": "If an angle measures 140 degrees, what is its supplementary angle?",
+    "reasoning": "A supplementary angle is found by subtracting the angle from 180 degrees. Therefore, supplementary angle = 180 - 140 = 40 degrees.",
+    "answer": "40 degrees"
+  },
+  {
+    "question": "A box has dimensions 2m by 3m by 4m. What is the volume and surface area of the box?",
+    "reasoning": "Volume V = l \u00d7 w \u00d7 h = 2m \u00d7 3m \u00d7 4m = 24m\u00b3. Surface area SA = 2(lw + lh + wh) = 2(2\u00d73 + 2\u00d74 + 3\u00d74) = 2(6 + 8 + 12) = 2(26) = 52m\u00b2.",
+    "answer": "Volume: 24m\u00b3, Surface Area: 52m\u00b2"
+  },
+  {
+    "question": "A function f(x) = 3x + 2 has a certain value at x = 4. What is that value?",
+    "reasoning": "Substituting x with 4 gives f(4) = 3(4) + 2 = 12 + 2 = 14.",
+    "answer": "14"
+  },
+  {
+    "question": "A train leaves a station traveling north at a speed of 60 km/h. Two hours later, a second train leaves the same station traveling north at 90 km/h. When will the second train catch up to the first?",
+    "reasoning": "Let t be the time in hours the first train travels after 2 hours. The distance of the first train = 60(t + 2). The distance of the second train = 90t. Set these equal to find when the second train catches up: 60(t + 2) = 90t \u2192 60t + 120 = 90t \u2192 30t = 120 \u2192 t = 4. Thus, the second train catches up after 4 hours.",
+    "answer": "4 hours after the second train leaves"
+  },
+  {
+    "question": "An investment of $1,000 at an annual interest rate of 4% compounded annually will yield how much in total after 3 years?",
+    "reasoning": "Using A = P(1 + r)^t, with P = 1,000, r = 0.04, t = 3: A = 1000(1 + 0.04)^3 = 1000(1.124864) \u2248 1124.86. The total amount = $1124.86.",
+    "answer": "$1124.86"
+  },
+  {
+    "question": "If a = 3 and b = -4, what is the value of a\u00b2 + b\u00b2?",
+    "reasoning": "Substitute a and b into the expression: a\u00b2 + b\u00b2 = 3\u00b2 + (-4)\u00b2 = 9 + 16 = 25.",
+    "answer": "25"
+  },
+  {
+    "question": "How many possible combinations of 5 numbers can be made if you choose from a set of 12 numbers?",
+    "reasoning": "Use the combination formula C(n, r) = n! / (r!(n-r)!), where n = 12, r = 5: C(12, 5) = 12! / (5!(12-5)!) = 12! / (5!7!) = 792.",
+    "answer": "792"
+  },
+  {
+    "question": "A triangle has an area of 30 square meters and a base of 10 meters. What is the height?",
+    "reasoning": "Use the area formula A = 1/2 \u00d7 base \u00d7 height. Here, 30 = 1/2 \u00d7 10 \u00d7 height. Solving for height gives height = 30 / (1/2 \u00d7 10) = 6 meters.",
+    "answer": "6 meters"
+  },
+  {
+    "question": "A store sells a product for $80 after a 20% discount. What was the original price?",
+    "reasoning": "Let the original price be x. The equation representing the discount is x - 0.20x = 80, or 0.80x = 80. Solving for x gives x = 100.",
+    "answer": "$100"
+  },
+  {
+    "question": "A ladder leaning against a wall forms a right triangle with the ground and the wall. If the ladder is 10 feet long and the wall is 6 feet high, how far from the wall is the base of the ladder?",
+    "reasoning": "Using the Pythagorean theorem: c\u00b2 = a\u00b2 + b\u00b2, where c is the ladder, a is the height of the wall, and b is the distance from the wall. Thus, 10\u00b2 = 6\u00b2 + b\u00b2 \u2192 100 = 36 + b\u00b2 \u2192 b\u00b2 = 64 \u2192 b = 8.",
+    "answer": "8 feet"
+  },
+  {
+    "question": "If a circle has a radius of 5 cm, what is its circumference?",
+    "reasoning": "The circumference C of a circle is given by C = 2\u03c0r. Here, r = 5 cm: C = 2\u03c0(5) = 10\u03c0 cm. Approximating \u03c0 as 3.14 gives C \u2248 31.4 cm.",
+    "answer": "31.4 cm"
+  },
+  {
+    "question": "A rectangle's length is twice its width. If the perimeter is 36 meters, what are the dimensions?",
+    "reasoning": "Let width be w, so length = 2w. Perimeter P = 2(length + width) = 2(2w + w) = 6w = 36. Thus, w = 6 meters, length = 12 meters.",
+    "answer": "Width: 6 meters, Length: 12 meters"
+  },
+  {
+    "question": "If an object weighs 30 kg on Earth, what would its weight be on Mars (where gravity is approximately 0.38 times that of Earth)?",
+    "reasoning": "Weight on Mars = weight on Earth \u00d7 Mars gravity factor = 30 kg \u00d7 0.38 = 11.4 kg.",
+    "answer": "11.4 kg"
+  },
+  {
+    "question": "A triangle has sides of lengths 7, 24, and 25. Prove that it is a right triangle.",
+    "reasoning": "Use the Pythagorean theorem: check if a\u00b2 + b\u00b2 = c\u00b2 where c is the longest side. Here, 7\u00b2 + 24\u00b2 = 49 + 576 = 625, and 25\u00b2 = 625. Since they equal, it is a right triangle.",
+    "answer": "Yes, it is a right triangle."
+  },
+  {
+    "question": "How many zeros are there at the end of 100! (factorial of 100)?",
+    "reasoning": "The number of trailing zeros in n! is found by calculating n/5 + n/25 + n/125, etc. For 100: 100/5 + 100/25 = 20 + 4 = 24.",
+    "answer": "24"
+  },
+  {
+    "question": "If you spin a spinner divided into 5 equal sections, what is the probability of landing on an even number?",
+    "reasoning": "Assuming the sections are numbered 1 to 5, there are 2 even numbers (2 and 4). Thus, probability = favorable outcomes / total outcomes = 2 / 5.",
+    "answer": "2/5"
+  },
+  {
+    "question": "A garment originally priced at $120 is marked down by 25%. What is the sale price?",
+    "reasoning": "The discount amount = 25% of $120 = 0.25 \u00d7 120 = $30. Sale price = Original price - Discount = $120 - $30 = $90.",
+    "answer": "$90"
+  },
+  {
+    "question": "What is the standard deviation of the following set of numbers: 4, 8, 6, 5, 3?",
+    "reasoning": "Calculate the mean: (4 + 8 + 6 + 5 + 3) / 5 = 5.2. Then find the squared deviations from the mean: (4-5.2)\u00b2, (8-5.2)\u00b2, (6-5.2)\u00b2, (5-5.2)\u00b2, (3-5.2)\u00b2. This equals: 1.44, 7.84, 0.64, 0.04, 4.84. The variance = (1.44 + 7.84 + 0.64 + 0.04 + 4.84) / 5 = 2.76. The standard deviation is \u221a2.76 \u2248 1.66.",
+    "answer": "1.66"
+  },
+  {
+    "question": "How many litres of a 60% alcohol solution must be mixed with 2 litres of a 40% alcohol solution to produce a 50% alcohol solution?",
+    "reasoning": "Let x be the litres of the 60% solution. The amount of alcohol from 60% solution = 0.6x, and from 40% solution = 0.4 * 2 = 0.8. The total solution is (x + 2) litres. Set up the equation: (0.6x + 0.8) / (x + 2) = 0.5. Cross-multiply: 0.6x + 0.8 = 0.5(x + 2). Simplifying gives x = 1.7 litres.",
+    "answer": "1.7 litres"
+  },
+  {
+    "question": "What is the least common multiple (LCM) of 12 and 15?",
+    "reasoning": "Find the prime factorization: 12 = 2\u00b2 \u00d7 3; 15 = 3 \u00d7 5. The LCM is found by taking the highest power of each prime number: LCM = 2\u00b2 \u00d7 3 \u00d7 5 = 60.",
+    "answer": "60"
+  },
+  {
+    "question": "An investor buys 100 shares of a stock at $75 per share and sells them at $90 per share. What is the total profit?",
+    "reasoning": "Calculate the total cost: 100 \u00d7 $75 = $7500. Calculate total revenue: 100 \u00d7 $90 = $9000. Profit = Total revenue - Total cost = $9000 - $7500 = $1500.",
+    "answer": "$1500"
+  },
+  {
+    "question": "The circumference of a circle is 31.4 cm. What is the radius?",
+    "reasoning": "Use the formula C = 2\u03c0r. Thus, r = C / (2\u03c0) = 31.4 / (2 \u00d7 3.14) = 5 cm.",
+    "answer": "5 cm"
+  },
+  {
+    "question": "A function f(x) is defined as f(x) = 2x^2 - 5x + 3. What is the vertex of the parabola represented by this function?",
+    "reasoning": "To find the vertex of the quadratic function f(x) = ax^2 + bx + c, we use the formula for the x-coordinate of the vertex, x = -b/(2a). Here, a = 2 and b = -5. Substituting these values, x = -(-5)/(2*2) = 5/4. Next, we calculate f(5/4) to find the y-coordinate: f(5/4) = 2(5/4)^2 - 5(5/4) + 3 = 2(25/16) - 25/4 + 3 = 50/16 - 100/16 + 48/16 = -2/16 = -1/8. Therefore, the vertex is (5/4, -1/8).",
+    "answer": "(5/4, -1/8)"
+  },
+  {
+    "question": "A circle is inscribed in a triangle with sides of lengths 7 cm, 8 cm, and 9 cm. What is the radius of the circle?",
+    "reasoning": "To find the radius of the inscribed circle, we first calculate the semi-perimeter s = (7 + 8 + 9) / 2 = 12. Next, we calculate the area of the triangle using Heron's formula: Area = \u221a[s(s-a)(s-b)(s-c)] = \u221a[12(12-7)(12-8)(12-9)] = \u221a[12 * 5 * 4 * 3] = \u221a720 = 12\u221a5. The radius r of the inscribed circle is given by the formula r = Area/s = (12\u221a5)/12 = \u221a5.",
+    "answer": "\u221a5 cm"
+  },
+  {
+    "question": "If 3x + 4y = 36 and 2x - y = 4, what are the values of x and y?",
+    "reasoning": "We can solve the two equations simultaneously by substitution or elimination. From the first equation, we can express y = (36 - 3x) / 4. substituting this into the second equation gives 2x - [(36 - 3x) / 4] = 4. Multiplying through by 4 to eliminate the fraction yields 8x - (36 - 3x) = 16. This simplifies to 11x = 52, giving x = 52/11. Substituting back to find y gives y = (36 - 3(52/11)) / 4 = (396 - 156)/44 = 240/44 = 60/11.",
+    "answer": "x = 52/11, y = 60/11"
+  },
+  {
+    "question": "Given a sequence defined by a_n = 3a_(n-1) - 2 where a_1 = 5. What is a_5?",
+    "reasoning": "To find a_5, we need to calculate a_2 through a_5 sequentially. Starting with a_1 = 5, a_2 = 3*5 - 2 = 15 - 2 = 13, a_3 = 3*13 - 2 = 39 - 2 = 37, a_4 = 3*37 - 2 = 111 - 2 = 109, and finally a_5 = 3*109 - 2 = 327 - 2 = 325. Thus, a_5 = 325.",
+    "answer": "325"
+  },
+  {
+    "question": "In a geo-transport problem, a car travels north for 3 miles, then east for 4 miles. What is the straight-line distance from the starting point to the endpoint?",
+    "reasoning": "This scenario can be modeled with the Pythagorean theorem since the car's path forms a right-angled triangle. The lengths of the two sides are 3 miles and 4 miles. The hypotenuse can be calculated using c\u00b2 = a\u00b2 + b\u00b2, where c is the hypotenuse, a = 3, and b = 4. Thus, c\u00b2 = 3\u00b2 + 4\u00b2 = 9 + 16 = 25, so c = \u221a25 = 5 miles.",
+    "answer": "5 miles"
+  },
+  {
+    "question": "A cylindrical tank has a radius of 6 cm and a height of 10 cm. What is the volume of the tank?",
+    "reasoning": "The volume V of a cylinder is calculated using the formula V = \u03c0r\u00b2h, where r is the radius and h is the height. Substituting r = 6 and h = 10 gives V = \u03c0(6)\u00b2(10) = \u03c0(36)(10) = 360\u03c0 cubic cm.",
+    "answer": "360\u03c0 cubic cm"
+  },
+  {
+    "question": "A person invests $1000 at an annual interest rate of 5% compounded quarterly. How much money will they have at the end of 3 years?",
+    "reasoning": "The future value A of an investment compounded periodically is given by A = P(1 + r/n)^(nt), where P is the principal amount, r is the annual interest rate (decimal), n is the number of times interest is compounded per year, and t is the number of years. Here, P = 1000, r = 0.05, n = 4, and t = 3. Thus, A = 1000(1 + 0.05/4)^(4*3) = 1000(1 + 0.0125)^(12) = 1000(1.0125)^(12). Computing this gives A \u2248 1000(1.1608) \u2248 1160.79.",
+    "answer": "$1160.79"
+  },
+  {
+    "question": "If the area of a triangle is 60 square units and its base is 10 units, what is the height?",
+    "reasoning": "The area A of a triangle is calculated with the formula A = (1/2) * base * height. Here, we have the area A = 60 and base = 10. Rearranging the formula to find height gives height = (2 * A) / base = (2 * 60) / 10 = 120 / 10 = 12 units.",
+    "answer": "12 units"
+  },
+  {
+    "question": "A right triangle has one angle measuring 30 degrees and the hypotenuse measuring 10 cm. Calculate the length of the opposite side.",
+    "reasoning": "In a right triangle, the length of the side opposite an angle can be found using the sine function: opposite = hypotenuse * sin(angle). Here, hypotenuse = 10 cm and the angle is 30 degrees: opposite = 10 * sin(30\u00b0) = 10 * 0.5 = 5 cm.",
+    "answer": "5 cm"
+  },
+  {
+    "question": "If a polynomial p(x) = x^3 - 3x^2 + 4x - 5 has a value of zero at x = 1, what is the value of p(2)?",
+    "reasoning": "To find p(2), we need to substitute x = 2 into the polynomial p(x) = x^3 - 3x^2 + 4x - 5: p(2) = (2)^3 - 3(2)^2 + 4(2) - 5 = 8 - 12 + 8 - 5 = -1.",
+    "answer": "-1"
+  },
+  {
+    "question": "What is the domain of the function f(x) = 1/(x-3)?",
+    "reasoning": "To determine the domain of f(x), we need to find the values of x that do not lead to division by zero. The function is undefined when x - 3 = 0, hence at x = 3. Consequently, the domain of f is all real numbers except x = 3, which can be expressed in interval notation as (-\u221e, 3) \u222a (3, \u221e).",
+    "answer": "(-\u221e, 3) \u222a (3, \u221e)"
+  },
+  {
+    "question": "In a linear programming problem, suppose you have constraints represented by the inequalities x + y \u2264 5, x \u2265 0, and y \u2265 0. What is the feasible region represented graphically?",
+    "reasoning": "To find the feasible region, we will graph the equations represented by the boundaries of the inequalities. The line from x + y = 5 intersects the axes at (5, 0) and (0, 5) forming a triangle with vertices at these points along with the origin (0, 0). The feasible region includes all points (x, y) that satisfy all inequalities, which is the area below the line and above the axes, bounded by the triangle.",
+    "answer": "A triangular area formed by points (0,0), (5, 0), and (0, 5)"
+  },
+  {
+    "question": "If a number is increased by 15% and the result is 69, what is the original number?",
+    "reasoning": "Let x be the original number. The equation representing the increase is x + 0.15x = 69, or 1.15x = 69. To solve for x, we divide both sides by 1.15, yielding x = 69/1.15 \u2248 60.",
+    "answer": "60"
+  },
+  {
+    "question": "Find the value of x in the equation log2(x) + log2(8) = 5.",
+    "reasoning": "Using the properties of logarithms, we can combine the left-hand side: log2(x * 8) = 5. This means x * 8 = 2^5 = 32, hence x = 32/8 = 4.",
+    "answer": "4"
+  },
+  {
+    "question": "Two parallel lines are cut by a transversal. If one angle measures 35 degrees, what are the measures of the other angles created?",
+    "reasoning": "When two parallel lines are cut by a transversal, corresponding angles are equal, and alternate interior angles are equal. Thus, the angle measuring 35 degrees has a corresponding angle of 35 degrees. The angles adjacent to this one measure 180\u00b0 - 35\u00b0 = 145\u00b0, thus giving us two angles of 35\u00b0 and two angles of 145\u00b0.",
+    "answer": "35\u00b0, 35\u00b0, 145\u00b0, 145\u00b0"
+  },
+  {
+    "question": "Calculate the least common multiple (LCM) of 12 and 15.",
+    "reasoning": "To find the least common multiple, we can use the prime factorization method. The prime factors are: 12 = 2^2 * 3^1 and 15 = 3^1 * 5^1. The LCM is obtained by taking the highest power of all prime factors: LCM = 2^2 * 3^1 * 5^1 = 4 * 3 * 5 = 60.",
+    "answer": "60"
+  },
+  {
+    "question": "A backpack contains 3 red, 4 blue, and 5 green marbles. If one marble is drawn at random, what is the probability that it is not red?",
+    "reasoning": "To find the probability of drawing a non-red marble, we first calculate the total number of marbles: 3 + 4 + 5 = 12. The number of non-red marbles is 4 (blue) + 5 (green) = 9. The probability P of drawing a non-red marble is thus P = (number of non-red marbles) / (total number of marbles) = 9/12 = 3/4.",
+    "answer": "3/4"
+  },
+  {
+    "question": "If a car travels from City A to City B at a speed of 60 km/h and returns at a speed of 90 km/h, what is the average speed for the round trip?",
+    "reasoning": "The average speed for a round trip is calculated using the formula: average speed = (2 * speed1 * speed2) / (speed1 + speed2). In this case, speed1 = 60 km/h and speed2 = 90 km/h, so average speed = (2 * 60 * 90) / (60 + 90) = 10800 / 150 = 72 km/h.",
+    "answer": "72 km/h"
+  },
+  {
+    "question": "A rectangle has a length of 12 cm and a width that is 5 cm shorter than the length. Calculate the area of the rectangle.",
+    "reasoning": "The width w of the rectangle can be expressed as w = l - 5 = 12 - 5 = 7 cm. The area A of a rectangle is given by A = length * width. Thus, A = 12 * 7 = 84 cm\u00b2.",
+    "answer": "84 cm\u00b2"
+  },
+  {
+    "question": "If the perimeter of a square is 64 cm, what is the length of one side?",
+    "reasoning": "The perimeter P of a square is calculated by P = 4s, where s is the length of a side. With P = 64 cm, we can find s by rearranging the formula: s = P / 4 = 64 / 4 = 16 cm.",
+    "answer": "16 cm"
+  },
+  {
+    "question": "An exponential function is defined by f(x) = 3 * 2^x. What is the value of f(4)?",
+    "reasoning": "To find f(4), we substitute x = 4 into the function: f(4) = 3 * 2^4 = 3 * 16 = 48.",
+    "answer": "48"
+  },
+  {
+    "question": "If the coordinates of two points are (3, 7) and (3, 1), what is the distance between these two points?",
+    "reasoning": "Since both points have the same x-coordinate, the distance can be calculated vertically as |y2 - y1| = |1 - 7| = | -6 | = 6 units.",
+    "answer": "6 units"
+  },
+  {
+    "question": "If a rectangular prism has a length of 10 cm, a width of 5 cm, and a height of 2 cm, what is its volume?",
+    "reasoning": "The volume V of a rectangular prism is given by V = length * width * height. Therefore, V = 10 * 5 * 2 = 100 cm\u00b3.",
+    "answer": "100 cm\u00b3"
+  },
+  {
+    "question": "Consider the quadratic equation x^2 - 4x + 4 = 0. What are the roots of the equation?",
+    "reasoning": "The roots of a quadratic equation ax^2 + bx + c = 0 can be found using the quadratic formula x = [-b \u00b1 \u221a(b\u00b2 - 4ac)] / (2a). Here, a = 1, b = -4, c = 4. The discriminant (b\u00b2 - 4ac) = (-4)\u00b2 - 4*1*4 = 16 - 16 = 0. Since the discriminant equals 0, there is one real root: x = [4 \u00b1 0] / 2 = 4 / 2 = 2. Hence, the roots are x = 2.",
+    "answer": "2"
+  },
+  {
+    "question": "A triangle has angles measuring x, x + 10, and x + 20 degrees. Find the value of x.",
+    "reasoning": "The sum of the angles in a triangle is always 180 degrees. Therefore, we can set up the equation: x + (x + 10) + (x + 20) = 180. Simplifying, we have 3x + 30 = 180, which gives 3x = 150 and x = 50 degrees.",
+    "answer": "50 degrees"
+  },
+  {
+    "question": "An item is purchased for $80 and sold for $100. What is the percentage profit?",
+    "reasoning": "Percentage profit can be calculated using the formula: (Selling Price - Cost Price) / Cost Price * 100%. Thus, Profit = $100 - $80 = $20. The percentage profit = (20/80) * 100% = 25%.",
+    "answer": "25%"
+  },
+  {
+    "question": "Find the median of the following set of numbers: 7, 9, 3, 4, 8.",
+    "reasoning": "To find the median, we first arrange the numbers in ascending order: 3, 4, 7, 8, 9. Since there are five numbers (an odd count), the median is the middle number, which is 7.",
+    "answer": "7"
+  },
+  {
+    "question": "A class has 30 students, and the ratio of boys to girls is 2:3. How many boys are in the class?",
+    "reasoning": "Let the number of boys be 2x and the number of girls be 3x. Then, 2x + 3x = 30 gives 5x = 30, hence x = 6. Consequently, the number of boys is 2x = 2*6 = 12.",
+    "answer": "12"
+  },
+  {
+    "question": "What is the integral of the function f(x) = 2x with respect to x?",
+    "reasoning": "The integral of f(x) = 2x can be computed using the power rule for integrals, which states that \u222bx^n dx = (1/(n+1))x^(n+1) + C. Here, n = 1, so \u222b2x dx = 2 * (1/(1+1)) * x^(1+1) = 2 * (1/2) * x^2 + C = x^2 + C, where C is the constant of integration.",
+    "answer": "x^2 + C"
+  },
+  {
+    "question": "A right circular cone has a base radius of 3 cm and a height of 9 cm. What is the volume of the cone?",
+    "reasoning": "The volume V of a cone is given by the formula V = (1/3) * \u03c0 * r\u00b2 * h, where r is the radius and h is the height. Substituting r = 3 cm and h = 9 cm gives V = (1/3) * \u03c0 * (3)\u00b2 * 9 = (1/3) * \u03c0 * 9 * 9 = 27\u03c0 cm\u00b3.",
+    "answer": "27\u03c0 cm\u00b3"
+  },
+  {
+    "question": "Calculate the value of x if 5^x = 25.",
+    "reasoning": "We can express 25 as a power of 5: 25 = 5^2. Therefore, we can rewrite the equation as 5^x = 5^2, leading to the conclusion that x = 2.",
+    "answer": "2"
+  },
+  {
+    "question": "If a die is rolled, what is the probability of rolling a number greater than 4?",
+    "reasoning": "A standard die has 6 faces numbered 1 to 6. The numbers greater than 4 are 5 and 6, giving us 2 favorable outcomes. The probability P is calculated as P = (number of favorable outcomes) / (total outcomes) = 2 / 6 = 1 / 3.",
+    "answer": "1/3"
+  },
+  {
+    "question": "A farmer has a rectangular field that is 120 meters long and 80 meters wide. He wants to plant a crop in such a way that he leaves a border of 5 meters around the entire field. What is the area available for planting the crop?",
+    "reasoning": "First, calculate the dimensions of the inner rectangle by subtracting the border: length = 120 - 2(5) = 110 meters, width = 80 - 2(5) = 70 meters. Then, calculate the area of the inner rectangle as Area = Length \u00d7 Width = 110 \u00d7 70 = 7700 square meters.",
+    "answer": "7700 square meters"
+  },
+  {
+    "question": "If the sum of three consecutive integers is 81, what are the integers?",
+    "reasoning": "Let the integers be n, n + 1, and n + 2. Their sum can be expressed as n + (n + 1) + (n + 2) = 81. This simplifies to 3n + 3 = 81. Subtracting 3 gives us 3n = 78, leading to n = 26. The integers are 26, 27, and 28.",
+    "answer": "26, 27, 28"
+  },
+  {
+    "question": "A car's value decreases by 15% each year. If the initial value of the car is $20,000, what will the value of the car be after 3 years?",
+    "reasoning": "The value after one year is $20,000 - (0.15 \u00d7 $20,000) = $20,000 \u00d7 0.85 = $17,000. After the second year, the value is $17,000 \u00d7 0.85 = $14,450. After the third year, it is $14,450 \u00d7 0.85 = $12,282.50.",
+    "answer": "$12,282.50"
+  },
+  {
+    "question": "A box contains red, blue, and green balls in the ratio of 3:2:1. If there are 60 balls in total, how many balls of each color are there?",
+    "reasoning": "Let the common ratio factor be x. Then, the number of red balls is 3x, blue balls is 2x, and green balls is x. Together, they add up to 6x = 60, leading to x = 10. Therefore, red = 30, blue = 20, green = 10.",
+    "answer": "30 red balls, 20 blue balls, 10 green balls"
+  },
+  {
+    "question": "The perimeter of a triangle is 54 cm, and one side is twice as long as another side, which is 3 cm longer than the third side. What are the lengths of the sides?",
+    "reasoning": "Let the sides be x, 2x, and (x - 3). The equation is x + 2x + (x - 3) = 54. Simplifying gives 4x - 3 = 54, thus 4x = 57, making x = 14.25. The sides are 14.25 cm, 28.5 cm, and 11.25 cm.",
+    "answer": "14.25 cm, 28.5 cm, 11.25 cm"
+  },
+  {
+    "question": "A circle has a radius that is double that of another circle. If the area of the smaller circle is 50\u03c0 square units, what is the area of the larger circle?",
+    "reasoning": "The area of a circle is A = \u03c0r\u00b2. For the smaller circle, let r be its radius: 50\u03c0 = \u03c0r\u00b2, so r\u00b2 = 50 and r = \u221a50. The larger circle's radius is 2r, giving an area of A = \u03c0(2r)\u00b2 = 4\u03c0(50) = 200\u03c0.",
+    "answer": "200\u03c0 square units"
+  },
+  {
+    "question": "If you flip a fair coin 6 times, what is the probability of getting exactly 4 heads?",
+    "reasoning": "Use the binomial probability formula: P(X=k) = C(n, k)(p^k)(1-p)^(n-k). Here, n=6, k=4, p=0.5. Calculate C(6, 4) = 15, giving P(4 heads) = 15 * (0.5^4) * (0.5^2) = 15 * (1/16) * (1/4) = 15/64.",
+    "answer": "15/64"
+  },
+  {
+    "question": "A rectangle has a length that is 4 times its width. If the area of the rectangle is 128 square meters, what are the dimensions of the rectangle?",
+    "reasoning": "Let the width be w, then the length is 4w. The area formula gives 4w * w = 128. This simplifies to 4w\u00b2 = 128, leading to w\u00b2 = 32, so w = \u221a32 = 4\u221a2. Thus, length = 16\u221a2 and width = 4\u221a2.",
+    "answer": "Length: 16\u221a2 meters, Width: 4\u221a2 meters"
+  },
+  {
+    "question": "What is the greatest common divisor (GCD) of 84, 126, and 210?",
+    "reasoning": "First, find the prime factorizations: 84 = 2^2 x 3 x 7, 126 = 2 x 3^2 x 7, and 210 = 2 x 3 x 5 x 7. The GCD is the product of the lowest powers of common prime factors: GCD = 2^1 x 3^1 x 7^1 = 42.",
+    "answer": "42"
+  },
+  {
+    "question": "In a right triangle, if one leg is 6 cm long and the hypotenuse is 10 cm long, what is the length of the other leg?",
+    "reasoning": "Use the Pythagorean theorem: a\u00b2 + b\u00b2 = c\u00b2. Let a = 6 cm and c = 10 cm. Plugging in gives 6\u00b2 + b\u00b2 = 10\u00b2, so 36 + b\u00b2 = 100. Thus, b\u00b2 = 64 and b = 8 cm.",
+    "answer": "8 cm"
+  },
+  {
+    "question": "The sum of two numbers is 100 and their difference is 40. What are the two numbers?",
+    "reasoning": "Let the numbers be x and y. We have the equations x + y = 100 and x - y = 40. Solving these simultaneously: Adding yields 2x = 140, thus x = 70. Then y = 100 - 70 = 30.",
+    "answer": "70 and 30"
+  },
+  {
+    "question": "If the cost price of an item is $120 and it is sold for $150, what is the percentage profit?",
+    "reasoning": "The profit is selling price - cost price = $150 - $120 = $30. The percentage profit = (Profit / Cost Price) \u00d7 100% = ($30 / $120) \u00d7 100% = 25%.",
+    "answer": "25%"
+  },
+  {
+    "question": "What is the area of a trapezoid with bases of lengths 10 cm and 6 cm, and a height of 5 cm?",
+    "reasoning": "The area of a trapezoid is given by the formula A = (1/2)(Base1 + Base2) \u00d7 Height. Plugging in the values gives A = (1/2)(10 + 6) \u00d7 5 = 40 cm\u00b2.",
+    "answer": "40 cm\u00b2"
+  },
+  {
+    "question": "If a cylinder has a radius of 3 cm and a height of 7 cm, what is the volume?",
+    "reasoning": "The volume of a cylinder is given by the formula V = \u03c0r\u00b2h. Using the known values, V = \u03c0(3\u00b2)(7) = \u03c0(9)(7) = 63\u03c0 cm\u00b3.",
+    "answer": "63\u03c0 cm\u00b3"
+  },
+  {
+    "question": "Solve for x in the equation 3(x - 5) = 2(2x + 4).",
+    "reasoning": "Expanding both sides gives 3x - 15 = 4x + 8. Rearranging yields -15 - 8 = 4x - 3x, so -23 = x. Thus, x = -23.",
+    "answer": "-23"
+  },
+  {
+    "question": "A train travels 60 kilometers in 45 minutes. What is its average speed in kilometers per hour?",
+    "reasoning": "First, convert 45 minutes to hours: 45/60 = 0.75 hours. Average speed = Distance / Time = 60 km / 0.75 hr = 80 km/h.",
+    "answer": "80 km/h"
+  },
+  {
+    "question": "If an angle in a triangle is three times the other angle and the third angle is 20 degrees, what are the measures of the two unknown angles?",
+    "reasoning": "Let x be the unknown angle. Hence, angles can be expressed as x, 3x, and 20. Using the triangle sum property: x + 3x + 20 = 180. Simplifying gives 4x = 160, thus x = 40. The angles are 40\u00b0 and 120\u00b0.",
+    "answer": "40\u00b0 and 120\u00b0"
+  },
+  {
+    "question": "A sequence is defined such that a_n = a_(n-1) + 2n - 1 for n \u2265 1, with a_1 = 1. Find a_5.",
+    "reasoning": "Using the recursive relation: a_2 = 1 + 2(2) - 1 = 4, a_3 = 4 + 2(3) - 1 = 9, a_4 = 9 + 2(4) - 1 = 16, and finally a_5 = 16 + 2(5) - 1 = 25.",
+    "answer": "25"
+  },
+  {
+    "question": "Evaluate the integral of the function f(x) = 3x\u00b2 with respect to x from 1 to 4.",
+    "reasoning": "The indefinite integral is \u222b3x\u00b2dx = x\u00b3 + C. Evaluating from 1 to 4 yields [4\u00b3 - 1\u00b3] = [64 - 1] = 63.",
+    "answer": "63"
+  }
+]
