@@ -23,4 +23,5 @@ if __name__ == "__main__":
             json.dump(all_questions, f, indent=2)
     """
     
-    MODEL()
+    md = MODEL()
+    

@@ -1,9 +1,10 @@
 from unsloth import FastLanguageModel
 from trl import SFTTrainer, SFTConfig
 from transformers import Trainer
+from datasets import Dataset
+import pandas as pd 
 import torch
-class SFTTrainer(Trainer):
-    
+class CustomSFTTrainer(Trainer):
     def __init__(self, *args, reward, **kwargs):
         super().__init__(*args, **kwargs)
         self.reward = reward
@@ -98,10 +99,11 @@ class SFTTrainer(Trainer):
 
 
 class MODEL:
-    def __init__(self):
+    def __init__(self, train_data, test_data):
         self.max_seq_length = 2048 # Can increase for longer reasoning traces
         self.lora_rank = 32 # Larger rank = smarter, but slower
-
+        self.train_data = train_data
+        self.test_data = test_data
         self.model, self.tokenizer = FastLanguageModel.from_pretrained(
             model_name = "unsloth/Qwen3-4B-Base",
             max_seq_length = self.max_seq_length,
@@ -174,3 +176,45 @@ class MODEL:
             {"role" : "user",      "content" : problem},
             {"role" : "assistant", "content" : final_prompt},
         ]
+
+    
+    def _train(self):
+        self.train_data = pd.DataFrame(self.train_data)
+        self.test_data  = pd.DataFrame(self.test_data)
+        
+        self.train_data["Messages"] = self.train_data.apply(self.format_dataset, axis=1)
+        self.test_data["Messages"] = self.test_data.apply(self.format_dataset, axis=1)
+        
+        self.train_data["text"] = self.tokenizer.apply_chat_template(self.train_data["Messages"].values.tolist(), tokenize = False)
+        self.test_data["text"] = self.tokenizer.apply_chat_template(self.test_data["Messages"].values.tolist(), tokenize = False)
+
+        self.train_dataset = Dataset.from_pandas(self.train_data)
+        self.test_dataset  = Dataset.from_pandas(self.test_data)
+        
+        self.trainer = CustomSFTTrainer(
+            model = self.model,
+            tokenizer = self.tokenizer,
+            train_dataset = self.train_dataset,
+            args = SFTConfig(
+                dataset_text_field = "text",
+                per_device_train_batch_size = 1,
+                gradient_accumulation_steps = 1, # Use GA to mimic batch size!
+                warmup_steps = 5,
+                num_train_epochs = 2, # Set this for 1 full training run.
+                learning_rate = 2e-4, # Reduce to 2e-5 for long training runs
+                logging_steps = 5,
+                optim = "adamw_8bit",
+                weight_decay = 0.01,
+                lr_scheduler_type = "linear",
+                seed = 3407,
+                report_to = "none", # Use this for WandB etc
+            ),
+        )
+        
+        
+        self.trainer.train()
+        
+    
+    def _prediction(self):
+        pass
+        
