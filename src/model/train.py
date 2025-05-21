@@ -202,8 +202,11 @@ class MODEL:
             {"role" : "assistant", "content" : final_prompt},
         ]
 
-    def data_collator(batch):
+    def data_collator(self,batch):
         batch = default_data_collator(batch)
+        batch["solution_score"] = rewards["solution_score"]
+        batch["reasoning_score"] = rewards["reasoning_score"]
+        batch["is_correct"] = rewards["is_correct"]
         return batch
     
     def _train(self):
@@ -237,6 +240,8 @@ class MODEL:
                 seed = 3407,
                 report_to = "none", # Use this for WandB etc
             ),
+            
+            data_collator=self.data_collator
         )
         
         
