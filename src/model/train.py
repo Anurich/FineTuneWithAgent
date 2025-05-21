@@ -5,9 +5,9 @@ from datasets import Dataset
 import pandas as pd 
 import torch
 class CustomSFTTrainer(Trainer):
-    def __init__(self, *args, reward, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.reward = reward
+    def __init__(self, *args, rewards):
+        super().__init__(*args)
+        self.rewards = rewards
         
     def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
         """
@@ -58,11 +58,11 @@ class CustomSFTTrainer(Trainer):
 
             # ------------------- FEEDBACK-AUGMENTED LOSS STARTS HERE -------------------
 
-            if mode == "train" and all(k in inputs for k in ["solution_score", "reasoning_score", "is_correct"]):
+            if mode == "train" and len(self.rewards["solution_score"]) > 0:
                 # Get feedback tensors
-                solution_score = inputs["solution_score"].float()  # [batch]
-                reasoning_score = inputs["reasoning_score"].float()  # [batch]
-                is_correct = inputs["is_correct"].bool()  # [batch]
+                solution_score = self.rewards["solution_score"].float()  # [batch]
+                reasoning_score = self.rewards["reasoning_score"].float()  # [batch]
+                is_correct = self.rewards["is_correct"].bool()  # [batch]
                 feedback_score = (solution_score + reasoning_score) / 2  # [batch]
 
                 # For each sample, gather mean log-prob of correct tokens
@@ -181,16 +181,17 @@ class MODEL:
     def _train(self):
         self.train_data = pd.DataFrame(self.train_data)
         self.test_data  = pd.DataFrame(self.test_data)
-        
         self.train_data["Messages"] = self.train_data.apply(self.format_dataset, axis=1)
         self.test_data["Messages"] = self.test_data.apply(self.format_dataset, axis=1)
-        
         self.train_data["text"] = self.tokenizer.apply_chat_template(self.train_data["Messages"].values.tolist(), tokenize = False)
         self.test_data["text"] = self.tokenizer.apply_chat_template(self.test_data["Messages"].values.tolist(), tokenize = False)
-
         self.train_dataset = Dataset.from_pandas(self.train_data)
         self.test_dataset  = Dataset.from_pandas(self.test_data)
-        
+        rewards = {
+          "solution_score": torch.tensor([]),
+          "reasoning_score": torch.tensor([]),
+          "is_correct": torch.tensor([])
+        }
         self.trainer = CustomSFTTrainer(
             model = self.model,
             tokenizer = self.tokenizer,
