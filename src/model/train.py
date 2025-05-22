@@ -24,8 +24,8 @@ class CustomSFTTrainer(Trainer):
         # Initialize feedback storage if not exists
         if not hasattr(self, 'rewards'):
             self.rewards = {"is_correct": [], "reasoning_score": [], "solution_score": []}
-        if not hasattr(self, 'training_step'):
-            self.training_step = 0
+        if not hasattr(self, 'training_step_'):
+            self.training_step_ = 0
         
         if isinstance(inputs, list):
             # Convert list to dictionary if needed
@@ -39,7 +39,7 @@ class CustomSFTTrainer(Trainer):
         )
         
         if mode == "train":
-            self.training_step += 1
+            self.training_step_ += 1
             # When using padding-free, the attention_mask is not present in the inputs, instead we have cu_seq_lens_q,
             # cu_seq_lens_k, and max_length_k, max_length_q and position_ids.
             if "attention_mask" in inputs:
@@ -109,7 +109,7 @@ class CustomSFTTrainer(Trainer):
                 
                 should_apply_feedback = (
                     len(self.rewards["solution_score"]) >= min_feedback_samples and 
-                    self.training_step > warmup_steps
+                    self.training_step_ > warmup_steps
                 )
                 
                 if should_apply_feedback:
@@ -145,7 +145,7 @@ class CustomSFTTrainer(Trainer):
                             
                             # Adaptive lambda based on feedback strength and training progress
                             base_lambda = 0.01  # Much smaller base multiplier
-                            adaptive_lambda = base_lambda * feedback_strength * min(1.0, self.training_step / 200)
+                            adaptive_lambda = base_lambda * feedback_strength * min(1.0, self.training_step_ / 200)
                             
                             # Reward/penalty calculation with proper scaling
                             if feedback_score > 0.5:  # Good feedback - encourage
@@ -160,8 +160,8 @@ class CustomSFTTrainer(Trainer):
                             loss = loss + feedback_adjustment
                             
                             # Debug logging (remove in production)
-                            if self.training_step % 100 == 0:
-                                print(f"Step {self.training_step}: Base loss: {loss.item():.4f}, "
+                            if self.training_step_ % 100 == 0:
+                                print(f"Step {self.training_step_}: Base loss: {loss.item():.4f}, "
                                     f"Feedback: {feedback_score:.3f}, Lambda: {adaptive_lambda:.5f}, "
                                     f"Adjustment: {feedback_adjustment.item():.5f}")
                     
