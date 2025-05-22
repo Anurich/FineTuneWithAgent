@@ -4,24 +4,34 @@ from transformers import Trainer
 from datasets import Dataset
 from transformers import default_data_collator
 import pandas as pd 
+from collections import defaultdict
 from Agent.evaluation_agent.evaluate import Evaluate
 import torch
-
-rewards = {
-          "solution_score": torch.tensor([]),
-          "reasoning_score": torch.tensor([]),
-          "is_correct": torch.tensor([])
-        }
+import json
+from collections import Counter
 eval = Evaluate()
 
 class CustomSFTTrainer(Trainer):
-        
+    _total_train_tokens= 0
+    _metrics = {"train": defaultdict(list), "eval": defaultdict(list)}
     def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
         """
         Compute training loss and additionally compute token accuracies,
         and augment the loss based on external feedback (solution_score, reasoning_score, is_correct).
         """
         mode = "eval" if self.control.should_evaluate else "train"
+        
+        # Initialize feedback storage if not exists
+        if not hasattr(self, 'rewards'):
+            self.rewards = {"is_correct": [], "reasoning_score": [], "solution_score": []}
+        
+        if isinstance(inputs, list):
+          # Convert list to dictionary if needed
+          if len(inputs) > 0 and isinstance(inputs[0], dict):
+              inputs = {k: torch.stack([item[k] for item in inputs]) if isinstance(inputs[0][k], torch.Tensor) else [item[k] for item in inputs] for k in inputs[0]}
+          else:
+              raise ValueError("Expected inputs to be a dictionary or a list of dictionaries")
+
         (loss, outputs) = super().compute_loss(
             model, inputs, return_outputs=True, num_items_in_batch=num_items_in_batch
         )
@@ -65,12 +75,50 @@ class CustomSFTTrainer(Trainer):
 
             # ------------------- FEEDBACK-AUGMENTED LOSS STARTS HERE -------------------
 
-            if mode == "train" and all(k in inputs for k in ["solution_score", "reasoning_score", "is_correct"]):
-                # Get feedback tensors
-                solution_score = inputs["solution_score"].float()  # [batch]
-                reasoning_score = inputs["reasoning_score"].float()  # [batch]
-                is_correct = inputs["is_correct"].bool()  # [batch]
+            if mode == "eval":
+                # Generate feedback during evaluation and store for next training iteration
+                preds = predictions.detach().cpu().tolist()
+                labels = shift_labels.detach().cpu().tolist()
+                labels = [
+                    [tok if tok != -100 else self.tokenizer.pad_token_id for tok in seq]
+                    for seq in labels
+                ]
+                
+                gt_texts = self.tokenizer.batch_decode(labels, skip_special_tokens=True)
+                pred_texts = self.tokenizer.batch_decode(preds, skip_special_tokens=True)
+                ot = eval.evaluate(gt_texts, pred_texts)
+                ot = ot.content
+                ot = ot.replace('```json','').replace('```','')
+                
+                ot = json.loads(ot)
+                self.rewards["is_correct"].append(ot["is_correct"])
+                self.rewards["reasoning_score"].append(float(ot["reasoning_score"]))
+                self.rewards["solution_score"].append(float(ot["solution_score"]))
+
+            elif mode == "train":
+                # Apply feedback-augmented loss using aggregated feedback from recent evaluations
+                batch_size = shift_labels.size(0)
+                
+                # Use aggregated feedback from recent evaluations (more stable than just latest)
+                if len(self.rewards["solution_score"]) > 0:
+                    recent_window = min(10, len(self.rewards["solution_score"]))  # last 10 evaluations or all if less
+                    avg_solution_score = sum(self.rewards["solution_score"][-recent_window:]) / recent_window
+                    avg_reasoning_score = sum(self.rewards["reasoning_score"][-recent_window:]) / recent_window
+                    avg_is_correct = sum(self.rewards["is_correct"][-recent_window:]) / recent_window
+                else:
+                    # Fallback to neutral values if no feedback yet
+                    avg_solution_score = 0.5
+                    avg_reasoning_score = 0.5
+                    avg_is_correct = 0.5
+                
+                solution_score = torch.full((batch_size,), avg_solution_score, 
+                                          device=shift_logits.device, dtype=torch.float)
+                reasoning_score = torch.full((batch_size,), avg_reasoning_score, 
+                                           device=shift_logits.device, dtype=torch.float)
+                is_correct = torch.full((batch_size,), avg_is_correct > 0.5, 
+                                      device=shift_logits.device, dtype=torch.bool)
                 feedback_score = (solution_score + reasoning_score) / 2  # [batch]
+                
                 if len(solution_score) > 0:
                 # For each sample, gather mean log-prob of correct tokens
                     log_probs = torch.log_softmax(shift_logits, dim=-1)  # [batch, seq, vocab]
@@ -79,41 +127,28 @@ class CustomSFTTrainer(Trainer):
 
                     # Sum and average logprobs per sample (handle variable lengths)
                     num_samples = shift_labels.size(0)
-                    sample_token_counts = mask.sum(dim=1)  # [batch]
+                    sample_token_counts = mask.sum(dim=1).float()  # [batch] - convert to float
                     sample_token_counts[sample_token_counts == 0] = 1  # avoid division by zero
-                    sum_logprobs_per_sample = torch.zeros(num_samples, device=shift_logits.device)
+                    sum_logprobs_per_sample = torch.zeros(num_samples, device=shift_logits.device, dtype=token_logprobs.dtype)
                     sum_logprobs_per_sample.index_add_(0, batch_indices, token_logprobs)
                     mean_logprob_per_sample = sum_logprobs_per_sample / sample_token_counts  # [batch]
 
                     # Feedback reward loss
                     lambda_fb = 1.0  # adjust as needed
-                    reward_loss = -lambda_fb * feedback_score * mean_logprob_per_sample  # [batch]
+                    reward_loss = lambda_fb * feedback_score * (-mean_logprob_per_sample)  # [batch] - FIXED: added negative sign
 
                     # Penalty for incorrect samples, encourage uncertainty on bad feedback
                     softmax_probs = torch.softmax(shift_logits, dim=-1)  # [batch, seq, vocab]
                     max_probs, _ = softmax_probs.max(dim=-1)  # [batch, seq]
                     max_probs_per_sample = (max_probs * mask.float()).sum(dim=1) / sample_token_counts  # [batch]
-                    penalty_loss = lambda_fb * (1 - feedback_score) * max_probs_per_sample * (~is_correct)  # [batch]
+                    penalty_loss = lambda_fb * (1 - feedback_score) * max_probs_per_sample * (1 - is_correct.float())  # [batch] - FIXED: convert bool to float
 
                     # If you want to only use penalty for incorrect, otherwise penalty_loss = 0
 
                     # Compose total loss per sample (main loss is already reduction='mean', so we need to re-scale)
                     total_feedback_loss = (reward_loss + penalty_loss).mean()
                     loss = loss + total_feedback_loss
-                else:
-                    # firs iteration we need to update the reward
-                    preds = predictions.detach().cpu().tolist()
-                    labels = shift_labels.detach().cpu().tolist()
-                    labels = [
-                        [tok if tok != -100 else self.tokenizer.pad_token_id for tok in seq]
-                        for seq in labels
-                    ]
                     
-                    gt_texts = self.tokenizer.batch_decode(labels, skip_special_tokens=True)
-                    pred_texts = self.tokenizer.batch_decode(preds, skip_special_tokens=True)
-                    ot = eval.evaluate(gt_texts, pred_texts)
-                    
-                    print(ot)
                     
                     
             # ------------------- FEEDBACK-AUGMENTED LOSS ENDS HERE -------------------
@@ -202,12 +237,17 @@ class MODEL:
             {"role" : "assistant", "content" : final_prompt},
         ]
 
+    
     def data_collator(self,batch):
-        batch = default_data_collator(batch)
-        batch["solution_score"] = rewards["solution_score"]
-        batch["reasoning_score"] = rewards["reasoning_score"]
-        batch["is_correct"] = rewards["is_correct"]
-        return batch
+        tokenized_inputs = self.tokenizer(
+            [example["text"] for example in batch],
+            padding=True,
+            truncation=True,
+            max_length=self.max_seq_length,
+            return_tensors="pt"
+        )
+        tokenized_inputs["labels"] = tokenized_inputs["input_ids"].clone()
+        return tokenized_inputs
     
     def _train(self):
         self.train_data = pd.DataFrame(self.train_data)
@@ -226,22 +266,29 @@ class MODEL:
             model = self.model,
             tokenizer = self.tokenizer,
             train_dataset = self.train_dataset,
+            eval_dataset = self.test_dataset,
             args = SFTConfig(
                 dataset_text_field = "text",
-                per_device_train_batch_size = 1,
+                per_device_train_batch_size = 4,
+                per_device_eval_batch_size = 4,
                 gradient_accumulation_steps = 1, # Use GA to mimic batch size!
                 warmup_steps = 5,
-                num_train_epochs = 2, # Set this for 1 full training run.
+                do_eval=True,
+                num_train_epochs = 10, # Set this for 1 full training run.
                 learning_rate = 2e-4, # Reduce to 2e-5 for long training runs
-                logging_steps = 5,
+                logging_steps = 20,
                 optim = "adamw_8bit",
                 weight_decay = 0.01,
                 lr_scheduler_type = "linear",
+                eval_steps=20,
+                eval_strategy="steps",
                 seed = 3407,
                 report_to = "none", # Use this for WandB etc
+                remove_unused_columns=False
             ),
             
-            data_collator=self.data_collator
+            data_collator=self.data_collator,
+            
         )
         
         

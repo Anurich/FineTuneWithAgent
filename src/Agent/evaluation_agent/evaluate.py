@@ -26,7 +26,8 @@ class Evaluate:
             "reasoning_score": <score from 0-1>,
             "is_correct": <true or false>
             }}
-
+            
+            **DO NOT PROVIDE ANY OTHER EXPLAINATION JUST RESPOND WITH JSON FORMAT SHOWN ABOVE**
         """
         
         self.template = PromptTemplate.from_template(self.prompt)
