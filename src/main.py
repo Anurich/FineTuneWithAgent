@@ -1,13 +1,14 @@
 from Agent.creator_agent.create import Agent_A
 import json
-# from model.train import MODEL
+from model.train import MODEL
 # Usage example:
 if __name__ == "__main__":
     # Create agent
    
-        agent = Agent_A(total_number_of_data=500, difficulty=5, domain="mathematics")
+        agent = Agent_A(total_number_of_data=500, difficulty=1, domain="mathematics")
         
         # Generate multiple batches
+        all_questions = []
         for i in range(5):
             print(f"\n--- Generating batch {i+1} ---")
             questions = agent._create_data()

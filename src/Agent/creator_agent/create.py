@@ -46,7 +46,7 @@ class Agent_A:
                     * **Level 7-8**: Advanced problems requiring 6+ reasoning steps, multiple concept synthesis, edge cases.
                     * **Level 9-10**: Expert-level problems requiring deep reasoning, multiple advanced concepts, creative problem-solving.
                     Ensure questions are appropriately challenging and require the complexity described for level {difficulty}. Do not generate questions simpler than level {difficulty}.
-
+                5. Always return the valid JSON.
                 ---
                 PREVIOUS QUESTIONS CONTEXT (for uniqueness guidance):
                 {previous_questions_context}
@@ -72,6 +72,7 @@ class Agent_A:
                     }}
                     // ... continue until you have exactly {total_number_data_samples} triplets
                 ]"""
+                
         )
         self.chain = self.prompt_template | self.llm 
     
