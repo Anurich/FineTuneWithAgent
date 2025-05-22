@@ -376,7 +376,7 @@ class MODEL:
                 weight_decay = 0.01,
                 lr_scheduler_type = "linear",
                 eval_steps=200,
-                evaluation_strategy="steps", # Changed from eval_strategy to evaluation_strategy
+                eval_strategy="steps", # Changed from eval_strategy to evaluation_strategy
                 seed = 3407,
                 report_to = "none",
                 remove_unused_columns=False 
