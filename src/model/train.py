@@ -275,9 +275,9 @@ class MODEL:
                 gradient_accumulation_steps = 1, # Use GA to mimic batch size!
                 warmup_steps = 5,
                 do_eval=True,
-                num_train_epochs = 10, # Set this for 1 full training run.
-                learning_rate = 2e-4, # Reduce to 2e-5 for long training runs
-                logging_steps = 20,
+                num_train_epochs = 50, # Set this for 1 full training run.
+                learning_rate = 2e-5, # Reduce to 2e-5 for long training runs
+                logging_steps = 200,
                 optim = "adamw_8bit",
                 weight_decay = 0.01,
                 lr_scheduler_type = "linear",
