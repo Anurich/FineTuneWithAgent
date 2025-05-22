@@ -244,10 +244,10 @@ class MODEL:
     
     
     def format_dataset(self,x):
-        expected_answer = x["answer"]
-        problem = x["question"]
+        expected_answer = str(x["answer"])
+        problem = str(x["question"])
         # Remove generated <think> and </think>
-        thoughts = x["reasoning"]
+        thoughts = str(x["reasoning"])
         # Strip newlines on left and right
         thoughts = thoughts.strip()
         # Add our custom formatting
