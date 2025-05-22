@@ -319,5 +319,6 @@ class MODEL:
         
     
     def _prediction(self):
-        pass
+        return self.trainer.performance_history
+        
         

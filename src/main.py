@@ -4,24 +4,27 @@ from model.train import MODEL
 # Usage example:
 if __name__ == "__main__":
     # Create agent
-    """
-        agent = Agent_A(total_number_of_data=100, difficulty=5, domain="mathematics")
+   
+        agent = Agent_A(total_number_of_data=500, difficulty=5, domain="mathematics")
         
         # Generate multiple batches
         for i in range(5):
             print(f"\n--- Generating batch {i+1} ---")
             questions = agent._create_data()
-            print(f"Generated {len(questions)} questions in batch {i+1}")
-        
-        # Get statistics
-        stats = agent.get_statistics()
-        print(f"\nFinal Statistics: {stats}")
-        
-        # Save all questions
-        all_questions = agent.get_all_generated_questions()
-        with open('all_generated_questions.json', 'w', encoding="utf-8") as f:
-            json.dump(all_questions, f, indent=2)
-    """
-    
-    md = MODEL()
+            # Save all questions
+            all_questions = agent.get_all_generated_questions()
+            
+            train_index = len(all_questions)*0.8
+            train_data = all_questions[:int(train_index)]
+            test_data = all_questions[int(train_index):]
+            
+            print(f"Test data: {len(test_data)} & Train data: {len(train_data)}")
+            md = MODEL(train_data,  test_data)
+            md._train()
+            
+            # let's do the prediction 
+            performance_history = md._prediction()
+            print(performance_history)
+            break
+            
     
