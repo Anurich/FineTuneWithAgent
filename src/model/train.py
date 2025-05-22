@@ -28,11 +28,11 @@ class CustomSFTTrainer(Trainer):
             self.training_step = 0
         
         if isinstance(inputs, list):
-        # Convert list to dictionary if needed
-        if len(inputs) > 0 and isinstance(inputs[0], dict):
-            inputs = {k: torch.stack([item[k] for item in inputs]) if isinstance(inputs[0][k], torch.Tensor) else [item[k] for item in inputs] for k in inputs[0]}
-        else:
-            raise ValueError("Expected inputs to be a dictionary or a list of dictionaries")
+            # Convert list to dictionary if needed
+            if len(inputs) > 0 and isinstance(inputs[0], dict):
+                inputs = {k: torch.stack([item[k] for item in inputs]) if isinstance(inputs[0][k], torch.Tensor) else [item[k] for item in inputs] for k in inputs[0]}
+            else:
+                raise ValueError("Expected inputs to be a dictionary or a list of dictionaries")
 
         (loss, outputs) = super().compute_loss(
             model, inputs, return_outputs=True, num_items_in_batch=num_items_in_batch
