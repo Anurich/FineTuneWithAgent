@@ -8,40 +8,41 @@ from collections import defaultdict
 from Agent.evaluation_agent.evaluate import Evaluate
 import torch
 import json
-from collections import Counter
+from collections import deque
 eval = Evaluate()
 
 class CustomSFTTrainer(Trainer):
     _total_train_tokens= 0
     _metrics = {"train": defaultdict(list), "eval": defaultdict(list)}
+
     def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
         """
-        Compute training loss and additionally compute token accuracies,
-        and augment the loss based on external feedback (solution_score, reasoning_score, is_correct).
+        Meta-learning inspired feedback loss: Use test performance trends to adjust training dynamics.
         """
         mode = "eval" if self.control.should_evaluate else "train"
         
-        # Initialize feedback storage if not exists
-        if not hasattr(self, 'rewards'):
-            self.rewards = {"is_correct": [], "reasoning_score": [], "solution_score": []}
-        if not hasattr(self, 'training_step_'):
-            self.training_step_ = 0
+        # Initialize feedback tracking
+        if not hasattr(self, 'performance_history'):
+            self.performance_history = deque(maxlen=20)  # Keep last 20 evaluations
+        if not hasattr(self, 'feedback_momentum'):
+            self.feedback_momentum = {'trend': 0.0, 'strength': 0.0}
+        if not hasattr(self, 'step_counter'):
+            self.step_counter = 0
         
         if isinstance(inputs, list):
-            # Convert list to dictionary if needed
             if len(inputs) > 0 and isinstance(inputs[0], dict):
                 inputs = {k: torch.stack([item[k] for item in inputs]) if isinstance(inputs[0][k], torch.Tensor) else [item[k] for item in inputs] for k in inputs[0]}
             else:
                 raise ValueError("Expected inputs to be a dictionary or a list of dictionaries")
 
+        # Compute base loss
         (loss, outputs) = super().compute_loss(
             model, inputs, return_outputs=True, num_items_in_batch=num_items_in_batch
         )
         
         if mode == "train":
-            self.training_step_ += 1
-            # When using padding-free, the attention_mask is not present in the inputs, instead we have cu_seq_lens_q,
-            # cu_seq_lens_k, and max_length_k, max_length_q and position_ids.
+            self.step_counter += 1
+            # Standard token counting
             if "attention_mask" in inputs:
                 num_tokens_in_batch = self.accelerator.gather_for_metrics(inputs["attention_mask"].sum()).sum().item()
             elif "position_ids" in inputs:
@@ -50,124 +51,151 @@ class CustomSFTTrainer(Trainer):
             else:
                 raise ValueError("Expected 'attention_mask' or 'position_ids' in inputs.")
             self._total_train_tokens += num_tokens_in_batch
+        
         self._metrics[mode]["num_tokens"] = [self._total_train_tokens]
 
-        # Compute token accuracy if we have labels and if the model is not using Liger (no logits)
+        # Token accuracy computation
         if "labels" in inputs and not self.args.use_liger_kernel:
             shift_logits = outputs.logits[..., :-1, :].contiguous()
             shift_labels = inputs["labels"][..., 1:].contiguous()
-
-            # Get predictions
             predictions = shift_logits.argmax(dim=-1)
-
-            # Create mask for non-padding tokens (assuming ignore_index is -100)
             mask = shift_labels != -100
-
-            # Calculate accuracy only on non-padding tokens
+            
             correct_predictions = (predictions == shift_labels) & mask
             total_tokens = mask.sum()
             correct_tokens = correct_predictions.sum()
-
-            # Gather the correct_tokens and total_tokens across all processes
             correct_tokens = self.accelerator.gather_for_metrics(correct_tokens)
             total_tokens = self.accelerator.gather_for_metrics(total_tokens)
-
-            # Compute the mean token accuracy and log it
             total_sum = total_tokens.sum()
             accuracy = (correct_tokens.sum() / total_sum).item() if total_sum > 0 else 0.0
             self._metrics[mode]["mean_token_accuracy"].append(accuracy)
 
-            # ------------------- INTELLIGENT FEEDBACK-AUGMENTED LOSS STARTS HERE -------------------
-
+            # ============ META-LEARNING FEEDBACK APPROACH ============
+            
             if mode == "eval":
-                # Generate feedback during evaluation and store for next training iteration
+                # Get batch-level feedback from Agent B (single call)
                 preds = predictions.detach().cpu().tolist()
-                labels = shift_labels.detach().cpu().tolist()
-                labels = [
+                labels_cpu = shift_labels.detach().cpu().tolist()
+                labels_decoded = [
                     [tok if tok != -100 else self.tokenizer.pad_token_id for tok in seq]
-                    for seq in labels
+                    for seq in labels_cpu
                 ]
                 
-                gt_texts = self.tokenizer.batch_decode(labels, skip_special_tokens=True)
+                gt_texts = self.tokenizer.batch_decode(labels_decoded, skip_special_tokens=True)
                 pred_texts = self.tokenizer.batch_decode(preds, skip_special_tokens=True)
-                ot = eval.evaluate(gt_texts, pred_texts)
-                ot = ot.content
-                ot = ot.replace('```json','').replace('```','')
                 
-                ot = json.loads(ot)
-                self.rewards["is_correct"].append(ot["is_correct"])
-                self.rewards["reasoning_score"].append(float(ot["reasoning_score"]))
-                self.rewards["solution_score"].append(float(ot["solution_score"]))
+                try:
+                    # Single batch call to Agent B
+                    feedback_result = eval.evaluate(gt_texts, pred_texts)
+                    feedback_content = feedback_result.content.replace('```json','').replace('```','')
+                    feedback_data = json.loads(feedback_content)
+                    
+                    # Extract performance metrics
+                    performance_score = {
+                        'is_correct': feedback_data.get("is_correct", False),
+                        'reasoning_score': float(feedback_data.get("reasoning_score", 0.5)),
+                        'solution_score': float(feedback_data.get("solution_score", 0.5)),
+                        'token_accuracy': accuracy,
+                        'step': self.step_counter
+                    }
+                    
+                    # Add to performance history
+                    self.performance_history.append(performance_score)
+                    
+                    # Compute performance trend if we have enough history
+                    if len(self.performance_history) >= 3:
+                        self._update_feedback_momentum()
+                    
+                except Exception as e:
+                    print(f"Warning: Failed to get feedback: {e}")
+                    # Add neutral performance record
+                    self.performance_history.append({
+                        'is_correct': False,
+                        'reasoning_score': 0.5,
+                        'solution_score': 0.5,
+                        'token_accuracy': accuracy,
+                        'step': self.step_counter
+                    })
             
             elif mode == "train":
-                # Apply feedback-augmented loss using aggregated feedback from recent evaluations
-                batch_size = shift_labels.size(0)
+                # Apply meta-learning based adjustments
+                warmup_steps = 50
+                min_history = 3
                 
-                # Only apply feedback after we have some evaluations AND after warmup period
-                warmup_steps = 50  # Allow model to learn basics first
-                min_feedback_samples = 3  # Need at least 3 feedback samples
-                
-                should_apply_feedback = (
-                    len(self.rewards["solution_score"]) >= min_feedback_samples and 
-                    self.training_step_ > warmup_steps
-                )
-                
-                if should_apply_feedback:
-                    # Use aggregated feedback from recent evaluations (more stable than just latest)
-                    recent_window = min(5, len(self.rewards["solution_score"]))  # Reduced from 10 to 5
-                    avg_solution_score = sum(self.rewards["solution_score"][-recent_window:]) / recent_window
-                    avg_reasoning_score = sum(self.rewards["reasoning_score"][-recent_window:]) / recent_window
-                    avg_is_correct = sum(self.rewards["is_correct"][-recent_window:]) / recent_window
+                if len(self.performance_history) >= min_history and self.step_counter > warmup_steps:
+                    # Get current performance trend
+                    trend = self.feedback_momentum['trend']
+                    strength = self.feedback_momentum['strength']
                     
-                    # Normalize feedback scores to be centered around 0.5
-                    feedback_score = (avg_solution_score + avg_reasoning_score) / 2
-                    
-                    # Only apply feedback if it's significantly different from neutral (0.5)
-                    feedback_strength = abs(feedback_score - 0.5)
-                    feedback_threshold = 0.1  # Only apply if feedback is strong enough
-                    
-                    if feedback_strength > feedback_threshold:
-                        # Compute feedback components
-                        log_probs = torch.log_softmax(shift_logits, dim=-1)  # [batch, seq, vocab]
-                        batch_indices, seq_indices = torch.where(mask)
+                    # Only apply if trend is significant
+                    if abs(trend) > 0.1 and strength > 0.2:
+                        # Compute gradient-based adjustment
+                        log_probs = torch.log_softmax(shift_logits, dim=-1)
                         
-                        if len(batch_indices) > 0:  # Make sure we have valid tokens
+                        # Get per-token log probabilities
+                        batch_indices, seq_indices = torch.where(mask)
+                        if len(batch_indices) > 0:
                             token_logprobs = log_probs[batch_indices, seq_indices, shift_labels[batch_indices, seq_indices]]
+                            mean_log_prob = token_logprobs.mean()
                             
-                            # Sum and average logprobs per sample
-                            num_samples = shift_labels.size(0)
-                            sample_token_counts = mask.sum(dim=1).float()
-                            sample_token_counts = torch.clamp(sample_token_counts, min=1.0)  # avoid division by zero
+                            # Compute confidence entropy (uncertainty measure)
+                            probs = torch.softmax(shift_logits, dim=-1)
+                            entropy = -(probs * torch.log(probs + 1e-8)).sum(dim=-1)
+                            mean_entropy = entropy[mask].mean()
                             
-                            sum_logprobs_per_sample = torch.zeros(num_samples, device=shift_logits.device, dtype=token_logprobs.dtype)
-                            sum_logprobs_per_sample.index_add_(0, batch_indices, token_logprobs)
-                            mean_logprob_per_sample = sum_logprobs_per_sample / sample_token_counts
+                            # Adaptive learning rate based on performance trend
+                            base_lr_mult = 0.01
                             
-                            # Adaptive lambda based on feedback strength and training progress
-                            base_lambda = 0.01  # Much smaller base multiplier
-                            adaptive_lambda = base_lambda * feedback_strength * min(1.0, self.training_step_ / 200)
+                            if trend > 0:  # Performance improving
+                                # Encourage current learning direction (reduce loss slightly)
+                                adjustment = -base_lr_mult * trend * strength * (-mean_log_prob)
+                            else:  # Performance degrading
+                                # Add regularization to prevent overconfidence
+                                adjustment = base_lr_mult * abs(trend) * strength * (1.0 / (mean_entropy + 1e-8))
                             
-                            # Reward/penalty calculation with proper scaling
-                            if feedback_score > 0.5:  # Good feedback - encourage
-                                feedback_adjustment = -adaptive_lambda * (feedback_score - 0.5) * mean_logprob_per_sample.mean()
-                            else:  # Bad feedback - discourage overconfidence
-                                softmax_probs = torch.softmax(shift_logits, dim=-1)
-                                max_probs, _ = softmax_probs.max(dim=-1)
-                                mean_max_prob = (max_probs * mask.float()).sum() / mask.sum().float()
-                                feedback_adjustment = adaptive_lambda * (0.5 - feedback_score) * mean_max_prob
+                            # Safety clipping
+                            max_adjustment = 0.05 * loss.abs()
+                            adjustment = torch.clamp(adjustment, -max_adjustment, max_adjustment)
                             
-                            # Apply feedback adjustment (much smaller impact)
-                            loss = loss + feedback_adjustment
+                            loss = loss + adjustment
                             
-                            # Debug logging (remove in production)
-                            if self.training_step_ % 100 == 0:
-                                print(f"Step {self.training_step_}: Base loss: {loss.item():.4f}, "
-                                    f"Feedback: {feedback_score:.3f}, Lambda: {adaptive_lambda:.5f}, "
-                                    f"Adjustment: {feedback_adjustment.item():.5f}")
-                    
-            # ------------------- INTELLIGENT FEEDBACK-AUGMENTED LOSS ENDS HERE -------------------
+                            # Debug logging
+                            if self.step_counter % 100 == 0:
+                                print(f"Step {self.step_counter}: Trend: {trend:.3f}, Strength: {strength:.3f}, "
+                                    f"Adjustment: {adjustment.item():.5f}, Base Loss: {loss.item():.4f}")
 
         return (loss, outputs) if return_outputs else loss
+
+    def _update_feedback_momentum(self):
+        """Update performance trend and strength based on recent history."""
+        if len(self.performance_history) < 3:
+            return
+        
+        # Extract recent performance scores
+        recent_scores = []
+        for perf in list(self.performance_history)[-5:]:  # Last 5 evaluations
+            combined_score = (perf['reasoning_score'] + perf['solution_score']) / 2
+            recent_scores.append(combined_score)
+        
+        # Compute trend using linear regression
+        x = np.arange(len(recent_scores))
+        y = np.array(recent_scores)
+        
+        if len(recent_scores) > 1:
+            # Simple linear trend
+            trend = np.polyfit(x, y, 1)[0]  # Slope
+            
+            # Trend strength based on R-squared
+            y_pred = np.polyval([trend, y[0]], x)
+            ss_res = np.sum((y - y_pred) ** 2)
+            ss_tot = np.sum((y - np.mean(y)) ** 2)
+            r_squared = 1 - (ss_res / (ss_tot + 1e-8))
+            
+            self.feedback_momentum['trend'] = float(trend)
+            self.feedback_momentum['strength'] = float(max(0, r_squared))
+        else:
+            self.feedback_momentum['trend'] = 0.0
+            self.feedback_momentum['strength'] = 0.0
 
 
 class MODEL:
