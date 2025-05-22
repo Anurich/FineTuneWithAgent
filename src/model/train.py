@@ -24,7 +24,7 @@ class CustomSFTTrainer(Trainer):
         
         # Initialize feedback tracking
         if not hasattr(self, 'performance_history'):
-            self.performance_history = deque(maxlen=20)  # Keep last 20 evaluations
+            self.performance_history = deque(maxlen=20)
         if not hasattr(self, 'feedback_momentum'):
             self.feedback_momentum = {'trend': 0.0, 'strength': 0.0}
         if not hasattr(self, 'step_counter'):
@@ -43,7 +43,6 @@ class CustomSFTTrainer(Trainer):
         
         if mode == "train":
             self.step_counter += 1
-            # Standard token counting
             if "attention_mask" in inputs:
                 num_tokens_in_batch = self.accelerator.gather_for_metrics(inputs["attention_mask"].sum()).sum().item()
             elif "position_ids" in inputs:
@@ -73,127 +72,108 @@ class CustomSFTTrainer(Trainer):
 
             # ============ META-LEARNING FEEDBACK APPROACH ============
             
-            if mode == "eval":
-                # Get batch-level feedback from Agent B (single call)
-                preds = predictions.detach().cpu().tolist()
-                labels_cpu = shift_labels.detach().cpu().tolist()
+            # Collect feedback (eval mode or periodic training feedback)
+            feedback_interval = 50
+            if mode == "eval" or (mode == "train" and self.step_counter % feedback_interval == 0):
+                sample_size = min(max(10, len(predictions) // 10), 20) if mode == "train" else len(predictions)
+                preds = predictions[:sample_size].detach().cpu().tolist()
+                labels_cpu = shift_labels[:sample_size].detach().cpu().tolist()
                 labels_decoded = [
                     [tok if tok != -100 else self.tokenizer.pad_token_id for tok in seq]
                     for seq in labels_cpu
                 ]
-                
                 gt_texts = self.tokenizer.batch_decode(labels_decoded, skip_special_tokens=True)
                 pred_texts = self.tokenizer.batch_decode(preds, skip_special_tokens=True)
                 
                 try:
-                    # Single batch call to Agent B
                     feedback_result = eval.evaluate(gt_texts, pred_texts)
                     feedback_content = feedback_result.content.replace('```json','').replace('```','')
                     feedback_data = json.loads(feedback_content)
-                    
-                    # Extract performance metrics
+                    # Re-scale normalized scores to [0, 1] using sigmoid
+                    solution_score = 1 / (1 + np.exp(-feedback_data.get("solution_score", 0.0)))
+                    reasoning_score = 1 / (1 + np.exp(-feedback_data.get("reasoning_score", 0.0)))
                     performance_score = {
                         'is_correct': feedback_data.get("is_correct", False),
-                        'reasoning_score': float(feedback_data.get("reasoning_score", 0.5)),
-                        'solution_score': float(feedback_data.get("solution_score", 0.5)),
+                        'reasoning_score': float(reasoning_score),
+                        'solution_score': float(solution_score),
                         'token_accuracy': accuracy,
-                        'step': self.step_counter
+                        'step': self.step_counter,
+                        'mode': mode
                     }
-                    
-                    # Add to performance history
                     self.performance_history.append(performance_score)
-                    
-                    # Compute performance trend if we have enough history
                     if len(self.performance_history) >= 3:
                         self._update_feedback_momentum()
-                    
                 except Exception as e:
-                    print(f"Warning: Failed to get feedback: {e}")
-                    # Add neutral performance record
+                    print(f"Warning: Failed to get {'training' if mode == 'train' else 'eval'} feedback: {e}")
                     self.performance_history.append({
                         'is_correct': False,
                         'reasoning_score': 0.5,
                         'solution_score': 0.5,
                         'token_accuracy': accuracy,
-                        'step': self.step_counter
+                        'step': self.step_counter,
+                        'mode': mode
                     })
             
-            elif mode == "train":
-                # Apply meta-learning based adjustments
+            # Apply meta-learning adjustments
+            if mode == "train":
                 warmup_steps = 50
                 min_history = 3
-                
+                base_lr_mult = 0.05
                 if len(self.performance_history) >= min_history and self.step_counter > warmup_steps:
-                    # Get current performance trend
                     trend = self.feedback_momentum['trend']
                     strength = self.feedback_momentum['strength']
-                    
-                    # Only apply if trend is significant
                     if abs(trend) > 0.1 and strength > 0.2:
-                        # Compute gradient-based adjustment
                         log_probs = torch.log_softmax(shift_logits, dim=-1)
-                        
-                        # Get per-token log probabilities
                         batch_indices, seq_indices = torch.where(mask)
                         if len(batch_indices) > 0:
                             token_logprobs = log_probs[batch_indices, seq_indices, shift_labels[batch_indices, seq_indices]]
                             mean_log_prob = token_logprobs.mean()
-                            
-                            # Compute confidence entropy (uncertainty measure)
                             probs = torch.softmax(shift_logits, dim=-1)
                             entropy = -(probs * torch.log(probs + 1e-8)).sum(dim=-1)
                             mean_entropy = entropy[mask].mean()
-                            
-                            # Adaptive learning rate based on performance trend
-                            base_lr_mult = 0.01
-                            
-                            if trend > 0:  # Performance improving
-                                # Encourage current learning direction (reduce loss slightly)
-                                adjustment = -base_lr_mult * trend * strength * (-mean_log_prob)
-                            else:  # Performance degrading
-                                # Add regularization to prevent overconfidence
-                                adjustment = base_lr_mult * abs(trend) * strength * (1.0 / (mean_entropy + 1e-8))
-                            
-                            # Safety clipping
-                            max_adjustment = 0.05 * loss.abs()
+                            val_loss_trend = 0.0
+                            if len(self._metrics["eval"]["loss"]) >= 2:
+                                val_loss_trend = self._metrics["eval"]["loss"][-1] - self._metrics["eval"]["loss"][-2]
+                            adaptive_scale = 1.0 + max(0, val_loss_trend)
+                            if trend > 0:
+                                adjustment = -base_lr_mult * trend * strength * (-mean_log_prob) * adaptive_scale
+                                l2_reg = 1e-5 * torch.norm(shift_logits, p=2)
+                            else:
+                                adjustment = base_lr_mult * abs(trend) * strength * (1.0 / (mean_entropy + 1e-8)) * adaptive_scale
+                                l2_reg = 1e-4 * torch.norm(shift_logits, p=2)
+                            loss = loss + l2_reg
+                            max_adjustment = 0.1 * loss.abs()
                             adjustment = torch.clamp(adjustment, -max_adjustment, max_adjustment)
-                            
                             loss = loss + adjustment
-                            
-                            # Debug logging
                             if self.step_counter % 100 == 0:
                                 print(f"Step {self.step_counter}: Trend: {trend:.3f}, Strength: {strength:.3f}, "
-                                    f"Adjustment: {adjustment.item():.5f}, Base Loss: {loss.item():.4f}")
+                                    f"Val Loss Trend: {val_loss_trend:.3f}, Adjustment: {adjustment.item():.5f}, "
+                                    f"L2 Reg: {l2_reg.item():.5f}, Base Loss: {loss.item():.4f}")
 
         return (loss, outputs) if return_outputs else loss
 
     def _update_feedback_momentum(self):
-        """Update performance trend and strength based on recent history."""
+        """Update performance trend and strength using EWMA."""
         if len(self.performance_history) < 3:
             return
         
-        # Extract recent performance scores
         recent_scores = []
-        for perf in list(self.performance_history)[-5:]:  # Last 5 evaluations
+        for perf in list(self.performance_history)[-5:]:
             combined_score = (perf['reasoning_score'] + perf['solution_score']) / 2
             recent_scores.append(combined_score)
         
-        # Compute trend using linear regression
-        x = np.arange(len(recent_scores))
-        y = np.array(recent_scores)
+        alpha = 0.3
+        ewma = recent_scores[0]
+        for score in recent_scores[1:]:
+            ewma = alpha * score + (1 - alpha) * ewma
         
-        if len(recent_scores) > 1:
-            # Simple linear trend
-            trend = np.polyfit(x, y, 1)[0]  # Slope
-            
-            # Trend strength based on R-squared
-            y_pred = np.polyval([trend, y[0]], x)
-            ss_res = np.sum((y - y_pred) ** 2)
-            ss_tot = np.sum((y - np.mean(y)) ** 2)
-            r_squared = 1 - (ss_res / (ss_tot + 1e-8))
-            
+        if len(recent_scores) >= 2:
+            prev_ewma = alpha * recent_scores[-2] + (1 - alpha) * recent_scores[-3] if len(recent_scores) >= 3 else recent_scores[-2]
+            trend = ewma - prev_ewma
+            score_var = np.var(recent_scores)
+            strength = min(1.0, 1.0 / (1.0 + score_var))
             self.feedback_momentum['trend'] = float(trend)
-            self.feedback_momentum['strength'] = float(max(0, r_squared))
+            self.feedback_momentum['strength'] = float(strength)
         else:
             self.feedback_momentum['trend'] = 0.0
             self.feedback_momentum['strength'] = 0.0
