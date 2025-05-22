@@ -7,6 +7,7 @@ import pandas as pd
 from collections import defaultdict
 from Agent.evaluation_agent.evaluate import Evaluate
 import torch
+import numpy as np
 import json
 from collections import deque
 eval = Evaluate()
@@ -317,12 +318,12 @@ class MODEL:
                 warmup_steps = 5,
                 do_eval=True,
                 num_train_epochs = 50, # Set this for 1 full training run.
-                learning_rate = 2e-5, # Reduce to 2e-5 for long training runs
+                learning_rate = 2e-4, # Reduce to 2e-5 for long training runs
                 logging_steps = 200,
                 optim = "adamw_8bit",
                 weight_decay = 0.01,
                 lr_scheduler_type = "linear",
-                eval_steps=20,
+                eval_steps=200,
                 eval_strategy="steps",
                 seed = 3407,
                 report_to = "none", # Use this for WandB etc
