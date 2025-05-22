@@ -94,13 +94,14 @@ class CustomSFTTrainer(Trainer):
                 self.rewards["is_correct"].append(ot["is_correct"])
                 self.rewards["reasoning_score"].append(float(ot["reasoning_score"]))
                 self.rewards["solution_score"].append(float(ot["solution_score"]))
-
+               
             elif mode == "train":
                 # Apply feedback-augmented loss using aggregated feedback from recent evaluations
                 batch_size = shift_labels.size(0)
                 
                 # Use aggregated feedback from recent evaluations (more stable than just latest)
                 if len(self.rewards["solution_score"]) > 0:
+                    print("I am here")
                     recent_window = min(10, len(self.rewards["solution_score"]))  # last 10 evaluations or all if less
                     avg_solution_score = sum(self.rewards["solution_score"][-recent_window:]) / recent_window
                     avg_reasoning_score = sum(self.rewards["reasoning_score"][-recent_window:]) / recent_window
