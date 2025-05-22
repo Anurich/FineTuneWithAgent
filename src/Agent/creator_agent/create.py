@@ -20,62 +20,59 @@ class Agent_A:
         self.call_count = 0           # Track number of calls
         
         self.prompt_template = PromptTemplate(
-            input_variables=["difficulty", "domain", "total_number_data_samples", "previous_questions_context", "call_number"],
-            template="""Generate exactly {total_number_data_samples} question-reasoning-answer triplets for training a language model.
+                input_variables=["difficulty", "domain", "total_number_data_samples", "previous_questions_context", "call_number"],
+                template="""You are an expert at generating question-reasoning-answer triplets in JSON format.
+                Your task is to generate exactly {total_number_data_samples} unique triplets for training a language model, strictly adhering to the specified difficulty and uniqueness requirements.
 
-            Current difficulty level: {difficulty}/10
-            Domain: {domain}
-            Required number of samples: {total_number_data_samples}
-            Call number: {call_number}
-            
-            IMPORTANT: You must generate exactly {total_number_data_samples} triplets. No more, no less.
-            
-            {previous_questions_context}
-            
-            UNIQUENESS REQUIREMENTS FOR CALL #{call_number}:
-            - Generate completely NEW questions different from all previously generated ones
-            - Explore different subtopics and areas within {domain}
-            - Use different problem types, contexts, and approaches
-            - Avoid any patterns or structures similar to previous questions
-            - Each question should test different aspects of {domain} knowledge
-            
-            DIFFICULTY REQUIREMENTS FOR LEVEL {difficulty}/10:
-            - Level 1-2: Basic concepts, single-step problems, direct application of formulas
-            - Level 3-4: Multi-step problems requiring 2-3 reasoning steps, basic concept combinations
-            - Level 5-6: Complex problems requiring 4-5 reasoning steps, intermediate concept integration
-            - Level 7-8: Advanced problems requiring 6+ reasoning steps, multiple concept synthesis, edge cases
-            - Level 9-10: Expert-level problems requiring deep reasoning, multiple advanced concepts, creative problem-solving
-            
-            For difficulty level {difficulty}, ensure questions are appropriately challenging and require the complexity described above.
-            
-            Each triplet should include:
-            1. A clear, unambiguous question that matches difficulty level {difficulty}
-            2. Step-by-step reasoning with appropriate complexity for level {difficulty}
-            3. The correct final answer
-            
-            Format your response as a JSON array with exactly {total_number_data_samples} objects:
-            [
-                {{
-                    "question": "A completely unique question not similar to any previous ones",
-                    "reasoning": "The step-by-step reasoning (with complexity matching level {difficulty})",
-                    "answer": "The final answer"
-                }},
-                {{
-                    "question": "Another unique question exploring different aspects of {domain}",
-                    "reasoning": "The step-by-step reasoning (with complexity matching level {difficulty})", 
-                    "answer": "The final answer"
-                }}
-                // ... continue until you have exactly {total_number_data_samples} triplets
-            ]
-            
-            CRITICAL: 
-            - Do not generate questions that are simpler than difficulty level {difficulty}
-            - Each question must genuinely require the level of reasoning and complexity specified for level {difficulty}
-            - All questions must be completely different from previously generated ones
-            - This is call #{call_number}, so explore NEW areas of {domain} not covered before
-            """
+                Current difficulty level: {difficulty}/10
+                Domain: {domain}
+                Required number of samples: {total_number_data_samples}
+                Call number: {call_number}
+
+                ---
+                IMPORTANT INSTRUCTIONS:
+                1.  **EXACT QUANTITY**: You MUST generate exactly {total_number_data_samples} triplets. No more, no less.
+                2.  **STRICT JSON FORMAT**: Your entire response MUST be a single, valid JSON array. Do NOT include any introductory text, concluding remarks, or markdown code block delimiters (```json or ```). Start directly with `[` and end with `]`.
+                3.  **UNIQUENESS (CALL #{call_number})**:
+                    * Generate completely NEW questions different from all previously generated ones.
+                    * Explore diverse subtopics and areas within the "{domain}" domain.
+                    * Employ various problem types, contexts, and approaches.
+                    * Avoid any patterns, structures, or exact phrasing similar to previous questions.
+                    * Each question should test distinct aspects of "{domain}" knowledge.
+                4.  **DIFFICULTY (LEVEL {difficulty}/10)**:
+                    * **Level 1-2**: Basic concepts, single-step problems, direct application of formulas.
+                    * **Level 3-4**: Multi-step problems requiring 2-3 reasoning steps, basic concept combinations.
+                    * **Level 5-6**: Complex problems requiring 4-5 reasoning steps, intermediate concept integration.
+                    * **Level 7-8**: Advanced problems requiring 6+ reasoning steps, multiple concept synthesis, edge cases.
+                    * **Level 9-10**: Expert-level problems requiring deep reasoning, multiple advanced concepts, creative problem-solving.
+                    Ensure questions are appropriately challenging and require the complexity described for level {difficulty}. Do not generate questions simpler than level {difficulty}.
+
+                ---
+                PREVIOUS QUESTIONS CONTEXT (for uniqueness guidance):
+                {previous_questions_context}
+
+                ---
+                OUTPUT FORMAT:
+                Each triplet must be an object with the following keys:
+                -   `"question"`: A clear, unambiguous question matching difficulty level {difficulty} and unique.
+                -   `"reasoning"`: Step-by-step reasoning with complexity appropriate for level {difficulty}.
+                -   `"answer"`: The correct final answer.
+
+                Begin your JSON array now:
+                [
+                    {{
+                        "question": "A completely unique question not similar to any previous ones and matching difficulty {difficulty}",
+                        "reasoning": "The step-by-step reasoning (with complexity matching level {difficulty})",
+                        "answer": "The final answer"
+                    }},
+                    {{
+                        "question": "Another unique question exploring different aspects of {domain} and matching difficulty {difficulty}",
+                        "reasoning": "The step-by-step reasoning (with complexity matching level {difficulty})",
+                        "answer": "The final answer"
+                    }}
+                    // ... continue until you have exactly {total_number_data_samples} triplets
+                ]"""
         )
-        
         self.chain = self.prompt_template | self.llm 
     
     def _get_question_hash(self, question: str) -> str:

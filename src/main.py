@@ -1,6 +1,6 @@
 from Agent.creator_agent.create import Agent_A
 import json
-from model.train import MODEL
+# from model.train import MODEL
 # Usage example:
 if __name__ == "__main__":
     # Create agent
