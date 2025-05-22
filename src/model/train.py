@@ -87,7 +87,7 @@ class CustomSFTTrainer(Trainer):
                 
                 try:
                     feedback_result = eval.evaluate(gt_texts, pred_texts)
-                    feedback_content = feedback_result.content.replace('```json','').replace('```','')
+                    feedback_content = feedback_result["content"].replace('```json','').replace('```','')
                     feedback_data = json.loads(feedback_content)
                     # Re-scale normalized scores to [0, 1] using sigmoid
                     solution_score = 1 / (1 + np.exp(-feedback_data.get("solution_score", 0.0)))
