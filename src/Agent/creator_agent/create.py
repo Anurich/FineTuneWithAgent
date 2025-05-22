@@ -9,7 +9,7 @@ load_dotenv()
 
 class Agent_A:
     def __init__(self, total_number_of_data: int = 100, difficulty: int = 0, domain="math"):
-        self.llm = ChatOpenAI(model="gpt-4o-mini")
+        self.llm = ChatOpenAI(model="gpt-4.1-mini")
         self.domain = domain 
         self.total_number_data = total_number_of_data
         self.difficulty = difficulty
