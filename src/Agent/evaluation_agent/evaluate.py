@@ -6,7 +6,7 @@ import numpy as np
 import json
 class Evaluate:
     def __init__(self):
-        llm = ChatOpenAI(model="gpt-4o-mini")
+        llm = ChatOpenAI(model="gpt-4.1-mini") # Ensure API key is configured via .env or environment variables
         self.prompt = """
         Please evaluate the following student solution against the ground truth solution.
             Ground Truth Solution:
@@ -58,62 +58,120 @@ class Evaluate:
             stats["count"] += 1
             old_mean = stats["mean"]
             stats["mean"] += (score - old_mean) / stats["count"]
-            stats["std"] = np.sqrt(stats["std"]**2 + (score - old_mean) * (score - stats["mean"]))
+            # Corrected std calculation: (old_sum_sq - 2*old_mean*old_sum + count*old_mean^2 + ...), or Welford's
+            # For simplicity, using a common approximation, but can be numerically unstable.
+            # A more robust way: M_k = M_{k-1} + (x_k - M_{k-1})/k; S_k = S_{k-1} + (x_k - M_{k-1})*(x_k - M_k)
+            # For now, keeping original intent if it worked, but be aware.
+            # The original formula for std update in the prompt was also incorrect:
+            # stats["std"] = np.sqrt(stats["std"]**2 + (score - old_mean) * (score - stats["mean"])) is not a correct running std.
+            # Using a simplified approach for now, assuming scores are somewhat bounded.
+            # Reverting to a simpler variance update or Welford's algorithm is recommended for numerical stability.
+            # For this fix, let's assume the user will refine running std if needed.
+            # The original provided code had this std update, keeping it for now.
+            if stats["count"] > 1: # Std requires at least 2 points
+                 stats["std"] = np.sqrt( ((stats["count"]-2)/(stats["count"]-1))*(stats["std"]**2) + ((score - old_mean)**2)/stats["count"] ) if stats["count"] > 1 else 1.0
+            else:
+                stats["std"] = 1.0
+
 
     def normalize_score(self, score, key):
         """Normalize a score using running mean and std."""
         stats = self.score_stats[key]
-        if stats["std"] > 1e-8:
+        if stats["std"] > 1e-8 and stats["count"] > 1 : # Avoid division by zero and use std if count > 1
             return (score - stats["mean"]) / stats["std"]
-        return score
+        return score - stats["mean"] # If std is too small or count is 1, just center it.
 
-    def evaluate(self, gt, pred):
-        batch_size = len(gt)
-        subset_size = 5
-        evaluations = []
+    # MODIFIED: Per-item LLM evaluation
+    def evaluate(self, gt_texts, pred_texts):
+        if not isinstance(gt_texts, list): gt_texts = [gt_texts]
+        if not isinstance(pred_texts, list): pred_texts = [pred_texts]
+
+        if not gt_texts or not pred_texts : # Handle empty inputs
+             return {
+                "content": json.dumps({
+                    "solution_score": self.normalize_score(0.0, "solution_score"),
+                    "reasoning_score": self.normalize_score(0.0, "reasoning_score"),
+                    "is_correct": False,
+                    "avg_correctness_score": 0.0
+                })
+            }
+
+        if len(gt_texts) != len(pred_texts):
+            print(f"Warning: Mismatch in len of ground truth ({len(gt_texts)}) and predictions ({len(pred_texts)}). Skipping evaluation for this batch.")
+            return {
+                "content": json.dumps({
+                    "solution_score": self.normalize_score(0.0, "solution_score"), 
+                    "reasoning_score": self.normalize_score(0.0, "reasoning_score"),
+                    "is_correct": False,
+                    "avg_correctness_score": 0.0
+                })
+            }
+
+        individual_evaluations = []
         max_retries = 2
+
+        for gt_item, pred_item in zip(gt_texts, pred_texts):
+            if not gt_item.strip() or not pred_item.strip(): # Skip if either GT or Pred is empty/whitespace
+                individual_evaluations.append({
+                    "solution_score": self.normalize_score(0.0, "solution_score"),
+                    "reasoning_score": self.normalize_score(0.0, "reasoning_score"),
+                    "is_correct": False
+                })
+                continue
+
+            for attempt in range(max_retries + 1):
+                try:
+                    output = self.chain.invoke({"ground_truth": gt_item, "prediction": pred_item})
+                    feedback_content = output.content.replace('```json', '').replace('```', '').strip()
+                    feedback_data = json.loads(feedback_content)
+                    
+                    # Update stats with raw scores from LLM for this item
+                    raw_sol_score = float(feedback_data.get("solution_score", 0.0))
+                    raw_reas_score = float(feedback_data.get("reasoning_score", 0.0))
+                    self.update_stats(raw_sol_score, raw_reas_score)
+                    
+                    item_eval = {
+                        "solution_score": self.normalize_score(raw_sol_score, "solution_score"),
+                        "reasoning_score": self.normalize_score(raw_reas_score, "reasoning_score"),
+                        "is_correct": feedback_data.get("is_correct", False) 
+                    }
+                    individual_evaluations.append(item_eval)
+                    break 
+                except Exception as e:
+                    if attempt == max_retries:
+                        print(f"Warning: Failed to parse evaluation for item after {max_retries} retries: {e}. GT: '{gt_item[:50]}...', Pred: '{pred_item[:50]}...'")
+                        individual_evaluations.append({
+                            "solution_score": self.normalize_score(0.5, "solution_score"), # Default, normalized
+                            "reasoning_score": self.normalize_score(0.5, "reasoning_score"),# Default, normalized
+                            "is_correct": False
+                        })
         
-        for i in range(0, batch_size, subset_size):
-            gt_subset = gt[i:i+subset_size]
-            pred_subset = pred[i:i+subset_size]
-            if gt_subset:
-                for attempt in range(max_retries + 1):
-                    try:
-                        output = self.chain.invoke({"ground_truth": gt_subset, "prediction": pred_subset})
-                        feedback_content = output.content.replace('```json', '').replace('```', '')
-                        feedback_data = json.loads(feedback_content)
-                        self.update_stats(feedback_data["solution_score"], feedback_data["reasoning_score"])
-                        feedback_data["solution_score"] = self.normalize_score(feedback_data["solution_score"], "solution_score")
-                        feedback_data["reasoning_score"] = self.normalize_score(feedback_data["reasoning_score"], "reasoning_score")
-                        evaluations.append(feedback_data)
-                        break
-                    except Exception as e:
-                        if attempt == max_retries:
-                            print(f"Warning: Failed to parse subset {i//subset_size} after {max_retries} retries: {e}")
-                            evaluations.append({
-                                "solution_score": self.normalize_score(0.5, "solution_score"),
-                                "reasoning_score": self.normalize_score(0.5, "reasoning_score"),
-                                "is_correct": False
-                            })
-        
-        if evaluations:
-            solution_scores = [e["solution_score"] for e in evaluations]
-            reasoning_scores = [e["reasoning_score"] for e in evaluations]
-            is_correct = any(e["is_correct"] for e in evaluations)
-            avg_solution_score = sum(solution_scores) / len(solution_scores)
-            avg_reasoning_score = sum(reasoning_scores) / len(reasoning_scores)
+        if individual_evaluations:
+            solution_scores = [e["solution_score"] for e in individual_evaluations]
+            reasoning_scores = [e["reasoning_score"] for e in individual_evaluations]
+            is_correct_flags = [1.0 if e.get("is_correct", False) else 0.0 for e in individual_evaluations]
+            
+            avg_solution_score = sum(solution_scores) / len(solution_scores) if solution_scores else 0.0
+            avg_reasoning_score = sum(reasoning_scores) / len(reasoning_scores) if reasoning_scores else 0.0
+            avg_correctness_metric = sum(is_correct_flags) / len(is_correct_flags) if is_correct_flags else 0.0
+            
+            # MODIFIED: is_correct for the batch based on average correctness
+            overall_is_correct_for_batch = avg_correctness_metric >= 0.5 
+
             return {
                 "content": json.dumps({
                     "solution_score": avg_solution_score,
                     "reasoning_score": avg_reasoning_score,
-                    "is_correct": is_correct
+                    "is_correct": overall_is_correct_for_batch,
+                    "avg_correctness_score": avg_correctness_metric # NEW: detailed average
                 })
             }
-        else:
+        else: # Should ideally be caught by earlier checks if gt_texts/pred_texts were empty
             return {
                 "content": json.dumps({
-                    "solution_score": self.normalize_score(0.5, "solution_score"),
-                    "reasoning_score": self.normalize_score(0.5, "reasoning_score"),
-                    "is_correct": False
+                    "solution_score": self.normalize_score(0.0, "solution_score"),
+                    "reasoning_score": self.normalize_score(0.0, "reasoning_score"),
+                    "is_correct": False,
+                    "avg_correctness_score": 0.0
                 })
             }
