@@ -22,11 +22,21 @@ class CustomSFTTrainer(Trainer):
         # Initialize feedback history and counters
         self._total_train_tokens = 0
         self._metrics = {"train": defaultdict(list), "eval": defaultdict(list)}
-        self.performance_history = deque(maxlen=20)
+        self.performance_history = deque(maxlen=50)  # Increased for stability
         self.feedback_momentum = {'trend': 0.0, 'strength': 0.0}
         self.step_counter = 0
+        
+        # Regularization parameters
+        self.l2_strength = 1e-5
+        self.label_smoothing = 0.1
+        
+        # Meta-learning parameters (more conservative)
+        self.warmup_steps = 100  # Longer warmup
+        self.feedback_interval = 100  # Less frequent feedback
+        self.min_history_for_meta = 10  # More history required
+        self.meta_lr_mult = 0.005  # Smaller adjustments
 
-    def compute_loss(self, model, inputs, return_outputs=False,num_items_in_batch=None):
+    def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
         mode = "eval" if self.control.should_evaluate else "train"
 
         # Normalize inputs if passed as list
@@ -41,151 +51,262 @@ class CustomSFTTrainer(Trainer):
             else:
                 raise ValueError("Expected inputs to be a dictionary or list of dicts")
 
-        # Get the base loss & model outputs (loss has grad)
+        # Get the base loss & model outputs
         (loss, outputs) = super().compute_loss(
             model, inputs, return_outputs=True, num_items_in_batch=num_items_in_batch
         )
-        # Detached copy for metrics & potential meta adjustments logging
-        detached_loss = loss.detach().clone()
 
-        if mode == "train":
-            self.step_counter += 1
-            # Count tokens
-            if "attention_mask" in inputs:
-                num_tokens = self.accelerator.gather_for_metrics(
-                    inputs["attention_mask"].sum()
-                ).sum().item()
-            elif "position_ids" in inputs:
-                local = torch.tensor(inputs["position_ids"].size(1), device=inputs["position_ids"].device)
-                num_tokens = self.accelerator.gather_for_metrics(local).sum().item()
-            else:
-                raise ValueError("Expected 'attention_mask' or 'position_ids' in inputs.")
-            self._total_train_tokens += num_tokens
+        # CRITICAL FIX: Only modify loss during training, never during evaluation
+        if mode == "eval":
+            # Store metrics for evaluation but don't modify loss
+            detached_loss = loss.detach().clone()
+            self._store_eval_metrics(inputs, outputs, detached_loss)
+            return (loss, outputs) if return_outputs else loss
+
+        # Training mode: apply modifications
+        self.step_counter += 1
+        detached_loss = loss.detach().clone()
+        
+        # Count tokens for training
+        if "attention_mask" in inputs:
+            num_tokens = self.accelerator.gather_for_metrics(
+                inputs["attention_mask"].sum()
+            ).sum().item()
+        elif "position_ids" in inputs:
+            local = torch.tensor(inputs["position_ids"].size(1), device=inputs["position_ids"].device)
+            num_tokens = self.accelerator.gather_for_metrics(local).sum().item()
+        else:
+            raise ValueError("Expected 'attention_mask' or 'position_ids' in inputs.")
+        
+        self._total_train_tokens += num_tokens
         self._metrics[mode]["num_tokens"] = [self._total_train_tokens]
 
-        # Compute token accuracy
+        # Apply consistent regularization to all training steps
+        modified_loss = self._apply_regularization(loss, inputs, outputs)
+
+        # Compute token accuracy and collect feedback (less frequently)
         if "labels" in inputs and not self.args.use_liger_kernel:
+            token_accuracy = self._compute_token_accuracy(inputs, outputs)
+            self._metrics[mode]["mean_token_accuracy"].append(token_accuracy)
+            
+            # Collect feedback less frequently and only during training
+            if self.step_counter % self.feedback_interval == 0:
+                self._collect_feedback(inputs, outputs, token_accuracy, mode)
+            
+            # Apply meta-learning adjustments more conservatively
+            if self._should_apply_meta_adjustment():
+                modified_loss = self._apply_meta_adjustment(modified_loss, inputs, outputs)
+
+        return (modified_loss, outputs) if return_outputs else modified_loss
+
+    def _store_eval_metrics(self, inputs, outputs, loss):
+        """Store evaluation metrics without modifying loss"""
+        if "labels" in inputs and not self.args.use_liger_kernel:
+            token_accuracy = self._compute_token_accuracy(inputs, outputs)
+            self._metrics["eval"]["mean_token_accuracy"].append(token_accuracy)
+            
+            # Collect feedback for monitoring (but don't use for loss modification)
+            if len(self.performance_history) == 0 or self.step_counter % (self.feedback_interval * 2) == 0:
+                self._collect_feedback(inputs, outputs, token_accuracy, "eval")
+
+    def _apply_regularization(self, loss, inputs, outputs):
+        """Apply consistent regularization to all training steps"""
+        regularized_loss = loss
+        
+        # L2 regularization
+        if self.l2_strength > 0:
+            l2_penalty = sum(p.pow(2.0).sum() for p in self.model.parameters() if p.requires_grad)
+            regularized_loss = regularized_loss + self.l2_strength * l2_penalty
+        
+        # Label smoothing (simple implementation)
+        if self.label_smoothing > 0 and "labels" in inputs:
+            shift_logits = outputs.logits[..., :-1, :].contiguous()
+            shift_labels = inputs["labels"][..., 1:].contiguous()
+            vocab_size = shift_logits.size(-1)
+            
+            # Create smoothed targets
+            mask = shift_labels != -100
+            if mask.any():
+                log_probs = torch.log_softmax(shift_logits, dim=-1)
+                nll_loss = -log_probs.gather(dim=-1, index=shift_labels.unsqueeze(-1)).squeeze(-1)
+                smooth_loss = -log_probs.mean(dim=-1)
+                
+                # Apply label smoothing
+                smoothed_loss = (1 - self.label_smoothing) * nll_loss + self.label_smoothing * smooth_loss
+                smoothed_loss = smoothed_loss[mask].mean()
+                
+                # Blend with original loss
+                regularized_loss = 0.8 * regularized_loss + 0.2 * smoothed_loss
+        
+        return regularized_loss
+
+    def _compute_token_accuracy(self, inputs, outputs):
+        """Compute token-level accuracy"""
+        shift_logits = outputs.logits[..., :-1, :].contiguous()
+        shift_labels = inputs["labels"][..., 1:].contiguous()
+        preds = shift_logits.argmax(dim=-1)
+        mask = shift_labels != -100
+
+        correct = (preds == shift_labels) & mask
+        tot = mask.sum()
+        corr = correct.sum()
+        corr = self.accelerator.gather_for_metrics(corr)
+        tot = self.accelerator.gather_for_metrics(tot)
+        tot_sum = tot.sum()
+        return (corr.sum() / tot_sum).item() if tot_sum > 0 else 0.0
+
+    def _collect_feedback(self, inputs, outputs, token_accuracy, mode):
+        """Collect feedback for meta-learning (with error handling)"""
+        try:
             shift_logits = outputs.logits[..., :-1, :].contiguous()
             shift_labels = inputs["labels"][..., 1:].contiguous()
             preds = shift_logits.argmax(dim=-1)
+            
+            # Sample a smaller subset for efficiency
+            sample_size = min(5, preds.size(0))  # Reduced sample size
+            pred_sample = preds[:sample_size].detach().cpu().tolist()
+            lbl_sample = shift_labels[:sample_size].detach().cpu().tolist()
+            
+            # Pad -100 to pad_token_id for decoding
+            lbl_dec = [[tok if tok != -100 else self.tokenizer.pad_token_id for tok in seq]
+                       for seq in lbl_sample]
+            gt_texts = self.tokenizer.batch_decode(lbl_dec, skip_special_tokens=True)
+            pred_texts = self.tokenizer.batch_decode(pred_sample, skip_special_tokens=True)
+            
+            if gt_texts and pred_texts:
+                feedback = eval.evaluate(gt_texts, pred_texts)
+                content = feedback["content"].replace('```json','').replace('```','')
+                data = json.loads(content)
+                
+                # Apply sigmoid to z-scores more safely
+                sol_z = np.clip(data.get("solution_score", 0.0), -10, 10)
+                rea_z = np.clip(data.get("reasoning_score", 0.0), -10, 10)
+                sol = 1/(1+np.exp(-sol_z))
+                rea = 1/(1+np.exp(-rea_z))
+                
+                perf = {
+                    'is_correct': data.get("is_correct", False),
+                    'reasoning_score': float(rea),
+                    'solution_score': float(sol),
+                    'token_accuracy': token_accuracy,
+                    'step': self.step_counter,
+                    'mode': mode
+                }
+                self.performance_history.append(perf)
+                
+                # Update momentum only with sufficient history
+                if len(self.performance_history) >= self.min_history_for_meta:
+                    self._update_feedback_momentum()
+            else:
+                # Add neutral entry when no valid texts
+                self.performance_history.append({
+                    'is_correct': False,
+                    'reasoning_score': 0.5,
+                    'solution_score': 0.5,
+                    'token_accuracy': token_accuracy,
+                    'step': self.step_counter,
+                    'mode': mode
+                })
+                
+        except Exception as e:
+            print(f"Warning: feedback collection failed at step {self.step_counter}: {e}")
+            # Add neutral entry on failure
+            self.performance_history.append({
+                'is_correct': False,
+                'reasoning_score': 0.5,
+                'solution_score': 0.5,
+                'token_accuracy': token_accuracy,
+                'step': self.step_counter,
+                'mode': mode
+            })
+
+    def _should_apply_meta_adjustment(self):
+        """Determine if meta-learning adjustment should be applied"""
+        return (len(self.performance_history) >= self.min_history_for_meta and 
+                self.step_counter > self.warmup_steps and
+                abs(self.feedback_momentum['trend']) > 0.02 and  # More conservative threshold
+                self.feedback_momentum['strength'] > 0.2)
+
+    def _apply_meta_adjustment(self, loss, inputs, outputs):
+        """Apply meta-learning adjustment more conservatively"""
+        try:
+            shift_logits = outputs.logits[..., :-1, :].contiguous()
+            shift_labels = inputs["labels"][..., 1:].contiguous()
             mask = shift_labels != -100
-
-            correct = (preds == shift_labels) & mask
-            tot = mask.sum()
-            corr = correct.sum()
-            corr = self.accelerator.gather_for_metrics(corr)
-            tot = self.accelerator.gather_for_metrics(tot)
-            tot_sum = tot.sum()
-            acc = (corr.sum() / tot_sum).item() if tot_sum > 0 else 0.0
-            self._metrics[mode]["mean_token_accuracy"].append(acc)
-
-            # META-LEARNING FEEDBACK
-            feedback_interval = 50
-            if mode == "eval" or (mode == "train" and self.step_counter % feedback_interval == 0):
-                sample_size = (min(max(10, preds.size(0) // 10), 20)
-                               if mode == "train" else preds.size(0))
-                actual_n = min(sample_size, preds.size(0))
-                pred_sample = preds[:actual_n].detach().cpu().tolist()
-                lbl_sample = shift_labels[:actual_n].detach().cpu().tolist()
-                # Pad -100 to pad_token_id for decoding
-                lbl_dec = [[tok if tok != -100 else self.tokenizer.pad_token_id for tok in seq]
-                           for seq in lbl_sample]
-                gt_texts = self.tokenizer.batch_decode(lbl_dec, skip_special_tokens=True)
-                pred_texts = self.tokenizer.batch_decode(pred_sample, skip_special_tokens=True)
-                try:
-                    if gt_texts and pred_texts:
-                        feedback = eval.evaluate(gt_texts, pred_texts)
-                        content = feedback["content"].replace('```json','').replace('```','')
-                        data = json.loads(content)
-                        sol_z = data.get("solution_score", 0.0)
-                        rea_z = data.get("reasoning_score", 0.0)
-                        sol = 1/(1+np.exp(-sol_z))
-                        rea = 1/(1+np.exp(-rea_z))
-                        perf = {
-                            'is_correct': data.get("is_correct", False),
-                            'reasoning_score': float(rea),
-                            'solution_score': float(sol),
-                            'token_accuracy': acc,
-                            'step': self.step_counter,
-                            'mode': mode
-                        }
-                        self.performance_history.append(perf)
-                        if len(self.performance_history) >= 3:
-                            self._update_feedback_momentum()
-                    else:
-                        # skip or append neutral
-                        self.performance_history.append({
-                            'is_correct': False,
-                            'reasoning_score': 0.5,
-                            'solution_score': 0.5,
-                            'token_accuracy': acc,
-                            'step': self.step_counter,
-                            'mode': mode
-                        })
-                except Exception as e:
-                    print(f"Warning: feedback failed at step {self.step_counter}: {e}")
-                    self.performance_history.append({
-                        'is_correct': False,
-                        'reasoning_score': 0.5,
-                        'solution_score': 0.5,
-                        'token_accuracy': acc,
-                        'step': self.step_counter,
-                        'mode': mode
-                    })
-
-            # META-ADJUSTMENT OF LOSS
-            if mode == "train":
-                warmup = 50
-                min_history = 3
-                base_lr_mult = 0.01
-                if len(self.performance_history) >= min_history and self.step_counter > warmup:
-                    trend = self.feedback_momentum['trend']
-                    strength = self.feedback_momentum['strength']
-                    if abs(trend) > 0.05 and strength > 0.1:
-                        # compute L2
-                        l2_strength = 1e-5
-                        l2 = l2_strength * torch.norm(shift_logits, p=2)
-                        # log probs & entropy
-                        logp = torch.log_softmax(shift_logits, dim=-1)
-                        bidx, sidx = torch.where(mask)
-                        if bidx.numel() > 0:
-                            token_lp = logp[bidx, sidx, shift_labels[bidx, sidx]]
-                            mean_lp = token_lp.mean()
-                            probs = torch.softmax(shift_logits, dim=-1)
-                            ent = -(probs * torch.log(probs + 1e-9)).sum(dim=-1)
-                            mean_ent = ent[mask].mean()
-                        else:
-                            mean_lp = torch.tensor(0.0, device=loss.device)
-                            mean_ent = torch.tensor(0.0, device=loss.device)
-                        # build adjustment
-                        if trend > 0:
-                            adj = -base_lr_mult * trend * strength * (-mean_lp)
-                        else:
-                            adj = base_lr_mult * abs(trend) * strength * (1.0/(mean_ent+1e-9))
-                        # apply on real loss
-                        loss_l2 = loss + l2
-                        max_adj = 0.1 * loss_l2.abs().item()
-                        adj_clamped = torch.clamp(adj, -max_adj, max_adj)
-                        loss = loss_l2 + adj_clamped
-        # return
-        return (loss, outputs) if return_outputs else loss
+            
+            if not mask.any():
+                return loss
+            
+            # Compute metrics more safely
+            log_probs = torch.log_softmax(shift_logits, dim=-1)
+            probs = torch.softmax(shift_logits, dim=-1)
+            
+            # Get valid indices
+            valid_indices = torch.where(mask)
+            if len(valid_indices[0]) == 0:
+                return loss
+            
+            # Token-level log probabilities and entropy
+            token_log_probs = log_probs[valid_indices[0], valid_indices[1], shift_labels[valid_indices]]
+            mean_log_prob = token_log_probs.mean()
+            
+            token_entropy = -(probs * torch.log(probs + 1e-9)).sum(dim=-1)
+            mean_entropy = token_entropy[mask].mean()
+            
+            # Simple, conservative adjustment
+            trend = self.feedback_momentum['trend']
+            strength = self.feedback_momentum['strength']
+            
+            if trend > 0:
+                # Model is improving - slightly encourage diversity
+                adjustment = -self.meta_lr_mult * trend * strength * mean_entropy
+            else:
+                # Model is declining - slightly encourage confidence
+                adjustment = -self.meta_lr_mult * abs(trend) * strength * mean_log_prob
+            
+            # Clamp adjustment to prevent instability
+            max_adjustment = 0.05 * loss.abs().item()
+            adjustment = torch.clamp(adjustment, -max_adjustment, max_adjustment)
+            
+            return loss + adjustment
+            
+        except Exception as e:
+            print(f"Warning: meta-adjustment failed at step {self.step_counter}: {e}")
+            return loss
 
     def _update_feedback_momentum(self):
-        history = list(self.performance_history)[-10:]
-        if len(history) < 3:
+        """Update feedback momentum with more stable calculation"""
+        # Use more history for stability
+        history = list(self.performance_history)[-20:]  # Increased window
+        if len(history) < self.min_history_for_meta:
             self.feedback_momentum['trend'] = 0.0
             self.feedback_momentum['strength'] = 0.0
             return
-        combined = [ (p['reasoning_score'] + p['solution_score'])/2.0 for p in history ]
-        alpha = 0.3
-        ewma = [combined[0]]
-        for val in combined[1:]:
-            ewma.append(alpha*val + (1-alpha)*ewma[-1])
-        trend = ewma[-1] - ewma[-2]
-        var = np.var(combined)
-        strength = 1.0/(1.0 + var + 1e-6)
-        self.feedback_momentum['trend'] = float(trend)
-        self.feedback_momentum['strength'] = float(strength)
+        
+        # Compute combined score
+        combined_scores = []
+        for p in history:
+            # Weight recent scores more heavily
+            combined = (p['reasoning_score'] + p['solution_score']) / 2.0
+            combined_scores.append(combined)
+        
+        # Use more stable trend calculation
+        if len(combined_scores) >= 5:
+            # Compare first and last thirds for trend
+            first_third = np.mean(combined_scores[:len(combined_scores)//3])
+            last_third = np.mean(combined_scores[-len(combined_scores)//3:])
+            trend = last_third - first_third
+        else:
+            trend = 0.0
+        
+        # More stable strength calculation
+        variance = np.var(combined_scores) if len(combined_scores) > 1 else 1.0
+        strength = 1.0 / (1.0 + variance + 1e-3)  # Less sensitive to variance
+        
+        # Apply momentum smoothing
+        alpha = 0.7  # Higher smoothing
+        self.feedback_momentum['trend'] = alpha * self.feedback_momentum['trend'] + (1 - alpha) * trend
+        self.feedback_momentum['strength'] = alpha * self.feedback_momentum['strength'] + (1 - alpha) * strength
 
 class MODEL:
     def __init__(self, train_data, test_data):
