@@ -1,4 +1,4 @@
-from Agent.creator_agent.create import Agent_A  # Your original Agent_A
+from Agent.creator_agent.create import FeedbackGuidedAgentA  # Your original Agent_A
 # from Agent.creator_agent.feedback_guided_create import FeedbackGuidedAgentA  # If you want to use the new one
 import json
 from model.train import MODEL
@@ -10,7 +10,7 @@ def main_training_loop():
     print("🚀 Starting iterative training with feedback-guided data generation")
     
     # Initialize agent - use your original Agent_A for now
-    agent = Agent_A(total_number_of_data=100, difficulty=1, domain="mathematics")  # Reduced size per batch
+    agent = FeedbackGuidedAgentA(total_number_of_data=100, difficulty=1, domain="mathematics")  # Reduced size per batch
     
     # Track performance across iterations
     iteration_results = []
