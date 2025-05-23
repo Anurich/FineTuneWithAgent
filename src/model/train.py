@@ -26,7 +26,7 @@ class CustomSFTTrainer(Trainer):
         self.feedback_momentum = {'trend': 0.0, 'strength': 0.0}
         self.step_counter = 0
 
-    def compute_loss(self, model, inputs, return_outputs=False,num_items_in_batch=None)):
+    def compute_loss(self, model, inputs, return_outputs=False,num_items_in_batch=None):
         mode = "eval" if self.control.should_evaluate else "train"
 
         # Normalize inputs if passed as list
