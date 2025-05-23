@@ -26,7 +26,7 @@ class CustomSFTTrainer(Trainer):
         self.feedback_momentum = {'trend': 0.0, 'strength': 0.0}
         self.step_counter = 0
 
-    def compute_loss(self, model, inputs, return_outputs=False):
+    def compute_loss(self, model, inputs, return_outputs=False,num_items_in_batch=None)):
         mode = "eval" if self.control.should_evaluate else "train"
 
         # Normalize inputs if passed as list
@@ -42,7 +42,9 @@ class CustomSFTTrainer(Trainer):
                 raise ValueError("Expected inputs to be a dictionary or list of dicts")
 
         # Get the base loss & model outputs (loss has grad)
-        loss, outputs = super().compute_loss(model, inputs, return_outputs=True)
+        (loss, outputs) = super().compute_loss(
+            model, inputs, return_outputs=True, num_items_in_batch=num_items_in_batch
+        )
         # Detached copy for metrics & potential meta adjustments logging
         detached_loss = loss.detach().clone()
 
